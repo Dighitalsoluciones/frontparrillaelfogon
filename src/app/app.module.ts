@@ -7,6 +7,7 @@ import { MesasComponent } from './componentes/mesas/mesas.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BarrainicialComponent } from './componentes/barrainicial/barrainicial.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     MesasComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    BarrainicialComponent
   ],
   imports: [
     BrowserModule,
