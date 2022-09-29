@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BarrainicialComponent } from './componentes/barrainicial/barrainicial.component';
+import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
+import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
+import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
 
 
 @NgModule({
@@ -16,7 +19,11 @@ import { BarrainicialComponent } from './componentes/barrainicial/barrainicial.c
     MesasComponent,
     HomeComponent,
     LoginComponent,
-    BarrainicialComponent
+    BarrainicialComponent,
+    MenuproductosComponent,
+    NuevoproductoComponent,
+    EditarproductoComponent,
+    
   ],
   imports: [
     BrowserModule,
