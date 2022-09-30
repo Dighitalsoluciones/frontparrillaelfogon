@@ -9,6 +9,8 @@ import { ArticulosService } from 'src/app/Service/articulos.service';
   styleUrls: ['./nuevoproducto.component.css']
 })
 export class NuevoproductoComponent implements OnInit {
+  lista: string[]=["COMIDAS", "BEBIDAS" , "POSTRES"];
+
   nombre: string = '';
   familia: string = '';
   stock: string = '';

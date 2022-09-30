@@ -11,6 +11,7 @@ import { BarrainicialComponent } from './componentes/barrainicial/barrainicial.c
 import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
 import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
 import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
+import { FiltroarticulosPipe } from './pipes/filtroarticulos.pipe';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { EditarproductoComponent } from './componentes/menuproductos/editarprodu
     MenuproductosComponent,
     NuevoproductoComponent,
     EditarproductoComponent,
+    FiltroarticulosPipe,
     
   ],
   imports: [
