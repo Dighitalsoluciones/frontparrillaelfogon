@@ -24,15 +24,9 @@
 
             
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-               
-            </li>
-
+            <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink=''><i class="fa-solid fa-house"> Volver a la Pantalla Principal</i>
+            </button>
+          
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
@@ -78,12 +72,10 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" class="form-control bg-light border-0 small" name="filtrarArticulos" placeholder="Buscar por Articulo..." style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarArticulos"
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                
                             </div>
                         </div>
                     </form>
@@ -147,7 +139,7 @@
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let Articulos of producto">
+                                    <tbody *ngFor="let Articulos of producto | filtroarticulos: filtrarArticulos">
                                         <tr>
                                             <td>{{Articulos.id}}</td>
                                             <td>{{Articulos.nombre}}</td>

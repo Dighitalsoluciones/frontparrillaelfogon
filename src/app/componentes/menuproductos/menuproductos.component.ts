@@ -11,6 +11,8 @@ import { TokenService } from 'src/app/Service/token.service';
 export class MenuproductosComponent implements OnInit {
   producto: Articulos[] = [];
   constructor(private sProductos: ArticulosService, private tokenService: TokenService ) { }
+  
+  filtrarArticulos = [];
 
   isLogged = false;
 
