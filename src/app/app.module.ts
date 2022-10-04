@@ -12,6 +12,9 @@ import { MenuproductosComponent } from './componentes/menuproductos/menuproducto
 import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
 import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
 import { FiltroarticulosPipe } from './pipes/filtroarticulos.pipe';
+import { NuevamesaComponent } from './componentes/mesas/nuevamesa.component';
+import { MenumesasComponent } from './componentes/mesas/menumesas.component';
+import { FiltrarmesasPipe } from './pipes/filtrarmesas.pipe';
 
 
 @NgModule({
@@ -25,6 +28,9 @@ import { FiltroarticulosPipe } from './pipes/filtroarticulos.pipe';
     NuevoproductoComponent,
     EditarproductoComponent,
     FiltroarticulosPipe,
+    NuevamesaComponent,
+    MenumesasComponent,
+    FiltrarmesasPipe,
     
   ],
   imports: [

@@ -43,3 +43,13 @@ h2{
     border: steelblue solid 1px;
     height: auto;
 }
+
+#imgHor{
+    width: 52px; 
+    height: 102px;
+    margin: 10px 10px;
+}
+
+#posicionId{
+    margin-left: 32px;
+}

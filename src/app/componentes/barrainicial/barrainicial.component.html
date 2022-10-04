@@ -10,7 +10,10 @@
           <a title="Nuevo Producto" class="btn btn-outline-dark my-2 my-sm-0 espaciado-btn-redes" type="submit" *ngIf="isLogged" style="background-color: gainsboro;"><i class="fa-solid fa-cash-register"></i>  Ver Caja</a>
         </li>
         <li class="espaciado-botones">
-          <a title="Nuevo Producto" class="btn btn-outline-dark my-2 my-sm-0 espaciado-btn-redes" type="submit" routerLink="/menuarticulos" *ngIf="isLogged" style="background-color: gainsboro;"><i class="fa-regular fa-square-plus"></i>  Nuevo Producto</a>
+          <a title="Menú Productos" class="btn btn-outline-dark my-2 my-sm-0 espaciado-btn-redes" type="submit" routerLink="/menuarticulos" *ngIf="isLogged" style="background-color: gainsboro;"><i class="fa-regular fa-square-plus"></i>  Productos</a>
+        </li>
+        <li class="espaciado-botones">
+          <a title="Menú Mesas" class="btn btn-outline-dark my-2 my-sm-0 espaciado-btn-redes" type="submit" routerLink="/menumesas" *ngIf="isLogged" style="background-color: gainsboro;"><i class="fa-regular fa-square-plus"></i>  Mesas</a>
         </li>
         <li class="espaciado-botones">
         <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged" >LOGIN</button>

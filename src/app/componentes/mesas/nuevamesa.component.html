@@ -1,0 +1,27 @@
+<div class="container fondoEdit">
+    <div class="row" id="textosColor">
+        <div>
+            <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+                
+                <div class="form-group">
+                    <label for="numeroMesa"> Número de Mesa</label>
+                    <input type="text" class="form-control" id="numeroMesa" name="numeroMesa" [(ngModel)]="numeroMesa" required>
+                </div>
+                <div class="form-group" style="margin-top: 15px; margin-bottom: 10px;">
+                    <label for="Imagen"> Seleccionar imagen</label>
+                    <select name="Imagen" style="margin-left: 10px;" [(ngModel)]="imagen">
+                        <option [value]="item" *ngFor="let item of listaMesas">{{item}}</option>
+                        </select>
+                </div>
+                              
+                <button class="btn btn-success" id="botonAgregar">
+                    AGREGAR MESA
+                </button>
+                <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
+                    CANCELAR
+                </button>
+                
+            </form>
+        </div>
+    </div>
+</div>

@@ -72,7 +72,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" name="filtrarArticulos" placeholder="Buscar por Articulo..." style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarArticulos"
+                            <input type="text" class="form-control bg-light border-0 small" name="filtrarMesas" placeholder="Buscar por Número..." style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarMesas"
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 
@@ -118,7 +118,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink="/nuevoarticulo" *ngIf="isLogged" title="Agregar Nuevo Articulo"><i class="fas fa-plus"> Nuevo</i>
+                            <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink="/nuevamesa" *ngIf="isLogged" title="Agregar Nueva Mesa"><i class="fas fa-plus"> Nuevo</i>
                             </button>
                         </div>
                         <div class="card-body">
@@ -126,34 +126,23 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Codigo</th>
+                                            <th>Id</th>
+                                            <th>Número de Mesa</th>
                                             <th>Imagen</th>
-                                            <th>Nombre</th>
-                                            <th>Familia</th>
-                                            <th>Costo</th>
-                                            <th>Valor de Venta</th>
-                                            <th>Stock Inicial</th>
-                                            <th>Stock Actual</th>
-                                            <th>Punto de Reposición</th>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
+                                        
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let Articulos of producto | filtroarticulos: filtrarArticulos">
+                                    <tbody *ngFor="let Mesas of mesas">
                                         <tr>
-                                            <td>{{Articulos.id}}</td>
-                                            <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
-                                            <td>{{Articulos.nombre}}</td>
-                                            <td>{{Articulos.familia}}</td>
-                                            <td>{{Articulos.costo}}</td>
-                                            <td>{{Articulos.precioventa}}</td>
-                                            <td>{{Articulos.stockinicial}}</td>
-                                            <td>{{Articulos.stock}}</td>
-                                            <td>{{Articulos.puntorepo}}</td>
-                                            <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" (click)="delete(Articulos.id)" *ngIf="isLogged" title="Eliminar">
+                                            <td>{{Mesas.id}}</td>
+                                            <td>{{Mesas.numeroMesa}}</td>
+                                            <td><img id="imgArticulo" [src]="[Mesas.imagen]"></td>
+                                            <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" (click)="delete(Mesas.id)" *ngIf="isLogged" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i></button></td>
-                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticulo/{{Articulos.id}}" title="Editar">
+                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticulo/{{Mesas.id}}" title="Editar">
                                                     <i class="far fa-edit"></i></button></td>
                                         </tr>
                                         

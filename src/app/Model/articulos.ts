@@ -7,8 +7,9 @@ export class Articulos {
     costo: string;
     precioventa: string;
     stockinicial: string;
+    imagen: string;
 
-    constructor(nombre: string, familia: string,  stock: string, puntorepo: string, costo: string, precioventa: string, stockinicial: string){
+    constructor(nombre: string, familia: string,  stock: string, puntorepo: string, costo: string, precioventa: string, stockinicial: string, imagen: string){
         this.nombre = nombre;
         this.familia = familia;
         this.stock = stock;
@@ -16,6 +17,7 @@ export class Articulos {
         this.costo = costo;
         this.precioventa = precioventa;
         this.stockinicial = stockinicial;
+        this.imagen = imagen;
        
     }
 }
