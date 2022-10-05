@@ -27,20 +27,7 @@
             <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink=''><i class="fa-solid fa-house"> Volver a la Pantalla Principal</i>
             </button>
           
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
+       
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -72,7 +59,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" name="filtrarMesas" placeholder="Buscar por Número..." style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarMesas"
+                            <input type="text" class="form-control bg-light border-0 small" name="filtrarMesas" placeholder="Buscar por mesa..." style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarmesas"
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 
@@ -126,7 +113,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>ID</th>
                                             <th>Número de Mesa</th>
                                             <th>Imagen</th>
                                             <th>Eliminar</th>
@@ -135,14 +122,14 @@
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let Mesas of mesas">
+                                    <tbody *ngFor="let Mesas of mesas | filtrarmesas: filtrarmesas">
                                         <tr>
                                             <td>{{Mesas.id}}</td>
                                             <td>{{Mesas.numeroMesa}}</td>
                                             <td><img id="imgArticulo" [src]="[Mesas.imagen]"></td>
                                             <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" (click)="delete(Mesas.id)" *ngIf="isLogged" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i></button></td>
-                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticulo/{{Mesas.id}}" title="Editar">
+                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarmesa/{{Mesas.id}}" title="Editar">
                                                     <i class="far fa-edit"></i></button></td>
                                         </tr>
                                         

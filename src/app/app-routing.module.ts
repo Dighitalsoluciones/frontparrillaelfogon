@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
 import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
 import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
+import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.component';
+import { EditarmesasComponent } from './componentes/mesas/editarmesas.component';
 import { MenumesasComponent } from './componentes/mesas/menumesas.component';
 import { NuevamesaComponent } from './componentes/mesas/nuevamesa.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'editarticulo/:id', component: EditarproductoComponent},
   {path: 'menumesas', component: MenumesasComponent},
   {path: 'nuevamesa', component: NuevamesaComponent},
+  {path: 'editarmesa/:id', component: EditarmesasComponent},
+  {path: 'agregarcomanda/:id', component: ComandasmesasComponent},
   
 ];
 

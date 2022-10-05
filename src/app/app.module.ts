@@ -15,6 +15,8 @@ import { FiltroarticulosPipe } from './pipes/filtroarticulos.pipe';
 import { NuevamesaComponent } from './componentes/mesas/nuevamesa.component';
 import { MenumesasComponent } from './componentes/mesas/menumesas.component';
 import { FiltrarmesasPipe } from './pipes/filtrarmesas.pipe';
+import { EditarmesasComponent } from './componentes/mesas/editarmesas.component';
+import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { FiltrarmesasPipe } from './pipes/filtrarmesas.pipe';
     NuevamesaComponent,
     MenumesasComponent,
     FiltrarmesasPipe,
+    EditarmesasComponent,
+    ComandasmesasComponent,
     
   ],
   imports: [

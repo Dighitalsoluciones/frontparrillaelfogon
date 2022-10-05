@@ -13,6 +13,7 @@ export class MesasComponent implements OnInit {
 
   constructor(private sMesas1: Mesas1Service, private tokenService: TokenService) { }
 
+  
   isLogged = false;
 
   ngOnInit(): void {

@@ -13,7 +13,7 @@ mesas: Mesas1 [] = [];
 
   constructor(private sMesas1: Mesas1Service, private tokenService: TokenService) { }
 
-  filtrarMesas = [];
+  filtrarmesas = [];
 
   isLogged = false;
 

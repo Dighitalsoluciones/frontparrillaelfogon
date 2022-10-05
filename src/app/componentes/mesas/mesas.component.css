@@ -51,5 +51,8 @@ h2{
 }
 
 #posicionId{
-    margin-left: 32px;
+    margin-left: 30px;
+    color: red;
+    font-size: 16px;
+    font-family: Impact;
 }
