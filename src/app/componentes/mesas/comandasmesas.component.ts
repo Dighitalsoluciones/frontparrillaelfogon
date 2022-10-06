@@ -11,6 +11,7 @@ import { Mesas1Service } from 'src/app/Service/mesas1.service';
 export class ComandasmesasComponent implements OnInit {
   Mesas : Mesas1 = null;
 
+  
   displayStyle = "none";
   
   openPopup() {
@@ -19,7 +20,8 @@ export class ComandasmesasComponent implements OnInit {
   closePopup() {
     this.displayStyle = "none";
   }
-  
+
+   
   constructor(private sMesas: Mesas1Service, private activatedRouter: ActivatedRoute, 
     private router: Router) { }
 
@@ -30,7 +32,7 @@ export class ComandasmesasComponent implements OnInit {
           this.Mesas = data;
         }, err =>{
           alert("Error al modificar la mesa");
-          this.router.navigate(['menumesas']);
+          this.router.navigate(['']);
         }
       )
     }
@@ -39,17 +41,19 @@ export class ComandasmesasComponent implements OnInit {
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.update(id, this.Mesas).subscribe(
         data => {alert("✅ Mesa modificada correctamente");
-          this.router.navigate(['menumesas']);
+          this.router.navigate(['']);
         }, err =>{
           alert("⛔ Error al modificar la mesa ⛔");
-          this.router.navigate(['menumesas']);
+          this.router.navigate(['']);
         }
       )
       
     }
   
     cancelar(): void {
-      this.router.navigate(['menumesas']);
+      this.router.navigate(['']);
     }
+    
+   
 
 }

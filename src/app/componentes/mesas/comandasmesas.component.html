@@ -2,7 +2,7 @@
     style="margin: 50px; padding: 10px"
     type="button"
     class="btn btn-primary"
-    (click)="openPopup()">Show Data
+    (click)="openPopup()">ABRIR MESA
   </button>
 </div>
 <div
@@ -39,11 +39,22 @@ role="dialog"
             <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
                 
                 <div class="form-group">
-                    <label for="numeroMesa"> Número de Mesa</label>
-                    <input type="text" class="form-control" id="numeroMesa" name="numeroMesa" [(ngModel)]="Mesas.numeroMesa" required>
+                  
+                    <h3>MESA N°: {{Mesas.numeroMesa}}</h3>
                 </div>
-                                           
-                <button class="btn btn-success" id="botonAgregar">
+
+                <div class="form-group">
+                  
+                    <h3>ESTADO: {{Mesas.estado}}</h3>
+                </div>
+                <div class="form-group">
+                  
+                    <h3>MESA ABIERTA?: {{Mesas.cierre}}</h3>
+                </div>
+               
+                                 
+                       
+               <button class="btn btn-success" id="botonAgregar">
                     MODIFICAR MESA
                 </button>
                 <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
