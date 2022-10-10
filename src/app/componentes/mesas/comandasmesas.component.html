@@ -14,7 +14,8 @@ role="dialog"
     </div>
     
     <div class="modal-footer">
-      <button type="button" class="btn btn-success">
+      <input type="text" class="form-control" [(ngModel)]="Mesas.cierre" style="display: none;">
+      <button type="button" class="btn btn-success" (click)="abrirMesa()">
           Abrir
         </button>
       <button type="button" class="btn btn-danger" 
@@ -36,39 +37,58 @@ role="dialog"
                         <h3>MESA N°: {{Mesas.numeroMesa}}</h3>
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
+                      <h5 class="card-title">Abrir mesa para comenzar a agregar articulos a la comanda</h5>
                       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                       <button class="btn btn-primary" (click)="openPopup()">ABRIR MESA</button>
                     </div>
                     <div class="card-footer text-muted">
-                      2 days ago
+                     <input type="text" class="form-control" [(ngModel)]="Mesas.estado" style="display: none;">
+                     <h3>ESTADO: {{Mesas.estado}}</h3>
                     </div>
                   </div>
-
-                <div class="form-group">
-                  
-                    <h3>MESA N°: {{Mesas.numeroMesa}}</h3>
-                </div>
-
-                <div class="form-group">
-                  
-                    <h3>ESTADO: {{Mesas.estado}}</h3>
-                </div>
-                <div class="form-group">
-                  
-                    <h3>MESA ABIERTA?: {{Mesas.cierre}}</h3>
-                </div>
-               
-                                 
+                  <div>
+                    <button type="button" class="btn btn-success" (click)="mostrarComanda()" ngIf="Mesas.cierre">
+                        Agregar Articulos
+                      </button>
+                      
+                    </div>  
+                    <div class="card-body" id="comandaArt" [ngStyle]="{'display':verComanda}">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                       
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        
+                                        
+                                        <th>Precio</th>
+                                        
+                                        <th>Eliminar</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                    <tbody *ngFor="let Articulos of producto">
+                        <tr>
+                            <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
+                            <td>{{Articulos.nombre}}</td>
+                            
+                            <td>{{Articulos.precioventa}}</td>
+                        
+                        </tr>  
+                        </tbody>
+                        </table>  
+              </div>
+          </div>
+                 
                        
                <button class="btn btn-success" id="botonAgregar" (click)="onUpdate()">
-                    MODIFICAR MESA
+                    GUARDAR CAMBIOS
                 </button>
                 <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
                 </button>
                 
             </form>
-        </div>
-    </div>
+          
 </div>

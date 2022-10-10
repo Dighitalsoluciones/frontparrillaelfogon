@@ -35,6 +35,7 @@ import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.compon
     FiltrarmesasPipe,
     EditarmesasComponent,
     ComandasmesasComponent,
+   
     
   ],
   imports: [
