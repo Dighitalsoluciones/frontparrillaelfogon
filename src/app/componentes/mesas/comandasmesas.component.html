@@ -46,8 +46,11 @@ role="dialog"
                      <h3>ESTADO: {{Mesas.estado}}</h3>
                     </div>
                   </div>
-                  <div>
-                    <button type="button" class="btn btn-success" (click)="mostrarComanda()" ngIf="Mesas.cierre">
+                  <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()">
+
+                  </mat-slide-toggle>
+                  <div *ngIf="cerrar">
+                    <button type="button" class="btn btn-success" (click)="mostrarComanda()">
                         Agregar Articulos
                       </button>
                       

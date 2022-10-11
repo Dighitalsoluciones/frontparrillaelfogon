@@ -27,13 +27,16 @@ export class ComandasmesasComponent implements OnInit {
 
   verComanda = "none";
 
-  
 
   mostrarComanda(){
     this.verComanda = "block";
   }
  
-  
+  cerrar = false;
+
+ cambioCierre(){
+  this.cerrar = true;
+ }
   
    
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
