@@ -13,8 +13,8 @@ export class NuevamesaComponent implements OnInit {
 
     estado: string = "libre";
     comanda: string = "vacio";
-    cierre: boolean = false;
-    liquidada: boolean = false;
+    cierre: string = "false";
+    liquidada: string = "false";
     imagen: string = '';
     numeroMesa: string = '';
 

@@ -89,12 +89,12 @@ export class ComandasmesasComponent implements OnInit {
     
     abrirMesa(){
       this.Mesas.estado="abierta";
-      this.Mesas.cierre = true;
+      this.Mesas.cierre = "true";
     } 
 
     cerrarMesa(){
       this.Mesas.estado="cerrada";
-      this.Mesas.cierre = false;
+      this.Mesas.cierre = "false";
     } 
     
 }
