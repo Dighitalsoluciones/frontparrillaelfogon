@@ -16,27 +16,37 @@ export class ComandasmesasComponent implements OnInit {
   producto: Articulos[] = [];
 
   displayStyle = "none";
+
+  botonAgregarArticulos = "none"
   
+  verAbrirMesas = "none";
+
+  verComanda = "none";
+  
+  cerrar = false;
+
+  condicionIf = false;
+
   openPopup() {
     this.displayStyle = "block";
   }
   closePopup() {
     this.displayStyle = "none";
   }
-  verAbrirMesas = "none";
-
-  verComanda = "none";
-
 
   mostrarComanda(){
     this.verComanda = "block";
   }
  
-  cerrar = false;
-
- cambioCierre(){
+  cambioCierre(){
   this.cerrar = true;
- }
+  } 
+ 
+  verBotonAgregar(){
+  this.botonAgregarArticulos = "block";
+  this.displayStyle = "none";
+  }
+
   
    
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
@@ -44,6 +54,7 @@ export class ComandasmesasComponent implements OnInit {
 
     ngOnInit(): void {
 
+        
       this.traerProductos();
       
 
@@ -59,6 +70,14 @@ export class ComandasmesasComponent implements OnInit {
       
     }
      
+    verBoton(): void{
+      if(this.Mesas.cierre === "true"){
+        console.log ("Mesa cerrada");
+
+      }else{
+        console.log ("Mesa abierta");
+      }
+    }
 
       traerProductos(): void{
       this.sProductos.lista().subscribe(data => {this.producto = data;})
@@ -90,6 +109,7 @@ export class ComandasmesasComponent implements OnInit {
     abrirMesa(){
       this.Mesas.estado="abierta";
       this.Mesas.cierre = "true";
+      
     } 
 
     cerrarMesa(){

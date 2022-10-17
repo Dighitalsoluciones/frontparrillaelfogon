@@ -15,12 +15,12 @@ role="dialog"
     
     <div class="modal-footer">
       <input type="text" class="form-control" [(ngModel)]="Mesas.cierre" style="display: none;">
-      <button type="button" class="btn btn-success" (click)="abrirMesa()">
+      <button type="button" class="btn btn-success" (click)="verBotonAgregar()" >
           Abrir
         </button>
       <button type="button" class="btn btn-danger" 
               (click)="closePopup()">
-        Cerrar
+        Cancelar
       </button>
       
     </div>
@@ -38,8 +38,8 @@ role="dialog"
                     </div>
                     <div class="card-body">
                       <h5 class="card-title">Abrir mesa para comenzar a agregar articulos a la comanda</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <button class="btn btn-primary" (click)="openPopup()">ABRIR MESA</button>
+                     
+                      <button class="btn btn-primary" (click)="openPopup();abrirMesa()">ABRIR MESA</button>
                     </div>
                     <div class="card-footer text-muted">
                      <input type="text" class="form-control" [(ngModel)]="Mesas.estado" style="display: none;">
@@ -49,8 +49,8 @@ role="dialog"
                   <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()">
 
                   </mat-slide-toggle>
-                  <div *ngIf="cerrar">
-                    <button type="button" class="btn btn-success" (click)="mostrarComanda()">
+                  <div>
+                    <button type="button" class="btn btn-success" (click)="mostrarComanda()" [ngStyle]="{'display':botonAgregarArticulos}">
                         Agregar Articulos
                       </button>
                       
