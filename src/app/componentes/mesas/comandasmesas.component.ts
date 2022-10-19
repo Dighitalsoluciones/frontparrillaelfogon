@@ -47,6 +47,7 @@ export class ComandasmesasComponent implements OnInit {
   this.displayStyle = "none";
   }
 
+  DesapareceBoton = 0;
   
    
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
@@ -54,7 +55,8 @@ export class ComandasmesasComponent implements OnInit {
 
     ngOnInit(): void {
 
-        
+      this.DesapareceBoton = null;  
+      
       this.traerProductos();
       
 
@@ -70,12 +72,21 @@ export class ComandasmesasComponent implements OnInit {
       
     }
      
-    verBoton(): void{
+    verBoton(): any{
       if(this.Mesas.cierre === "true"){
-        console.log ("Mesa cerrada");
+        return false;
 
       }else{
-        console.log ("Mesa abierta");
+        return true;
+      }
+    }
+
+    verBotonAgrega(): any{
+      if(this.Mesas.cierre === "true"){
+        return true;
+
+      }else{
+        return false;
       }
     }
 
