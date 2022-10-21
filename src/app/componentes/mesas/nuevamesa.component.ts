@@ -11,7 +11,7 @@ import { Mesas1Service } from 'src/app/Service/mesas1.service';
 export class NuevamesaComponent implements OnInit {
   listaMesas: string[]=["https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664025153/APP%20PARRILLA%20EL%20FOGON/mesa_vertical_cguwnn.png", "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664023857/APP%20PARRILLA%20EL%20FOGON/mesas_jf2twc.png"];
 
-    estado: string = "libre";
+    estado: string = "Cerrada";
     comanda: string = "vacio";
     cierre: string = "false";
     liquidada: string = "false";

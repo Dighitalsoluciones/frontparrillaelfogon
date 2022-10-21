@@ -15,7 +15,7 @@ role="dialog"
     
     <div class="modal-footer">
       <input type="text" class="form-control" [(ngModel)]="Mesas.cierre" style="display: none;">
-      <button type="button" class="btn btn-success" (click)="verBotonAgregar()" >
+      <button type="button" class="btn btn-success" (click)="abrirMesa();verBotonAgregar()" >
           Abrir
         </button>
       <button type="button" class="btn btn-danger" 
@@ -40,55 +40,77 @@ role="dialog"
                     <div class="card-body">
                       <h5 class="card-title">Abrir mesa para comenzar a agregar articulos a la comanda</h5>
                      
-                      <button class="btn btn-primary" (click)="openPopup();abrirMesa()">ABRIR MESA</button>
+                      <button class="btn btn-primary" (click)="openPopup()">ABRIR MESA</button>
                     </div>
                   </ng-template>
-                    <div class="card-footer text-muted">
+
+                  <ng-template [ngIf]="verBoton()">
+                    <div class="card-footer text-muted" id="CardEstadoAbierta">
                      <input type="text" class="form-control" [(ngModel)]="Mesas.estado" style="display: none;">
                      <h3>ESTADO: {{Mesas.estado}}</h3>
                     </div>
-                  </div>
-                  <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()">
+                  </ng-template>
 
-                  </mat-slide-toggle>
+                  <ng-template [ngIf]="NoVerBoton()">
+                    <div class="card-footer text-muted" id="CardEstadoCerrada">
+                     <input type="text" class="form-control" [(ngModel)]="Mesas.estado" style="display: none;">
+                     <h3>ESTADO: {{Mesas.estado}}</h3>
+                    </div>
+                  </ng-template>
+
+                  </div>
+                  <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()"></mat-slide-toggle>
                   <ng-template [ngIf]="verBotonAgrega()">
-                  <div>
-                    <button type="button" class="btn btn-success" (click)="mostrarComanda()">
+                  <div class="d-flex justify-content-end">
+                    <button id="BtnAgregarArt" type="button" class="btn btn-success" (click)="mostrarComanda()">
                         Agregar Articulos
                       </button>
                       
                     </div> 
                   </ng-template> 
-                    <div class="card-body" id="comandaArt" [ngStyle]="{'display':verComanda}">
-                        <div class="table-responsive">
+         <div class="row"> 
+          <div class="col-sm-7">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            
+              <div class="card-body" id="comandaArt" [ngStyle]="{'display':verComanda}">
+                  <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                       
                                         <th>Imagen</th>
                                         <th>Nombre</th>
-                                        
-                                        
                                         <th>Precio</th>
-                                        
-                                        <th>Eliminar</th>
-                                        <th>Editar</th>
                                     </tr>
                                 </thead>
                     <tbody *ngFor="let Articulos of producto">
                         <tr>
                             <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
                             <td>{{Articulos.nombre}}</td>
-                            
                             <td>{{Articulos.precioventa}}</td>
                         
                         </tr>  
                         </tbody>
                         </table>  
-              </div>
+                   </div>
+             </div>
+            
           </div>
-                 
-                       
+        
+        </div>       
+             
+       
+        
+        
+      
+
                <button class="btn btn-success" id="botonAgregar" (click)="onUpdate()">
                     GUARDAR CAMBIOS
                 </button>

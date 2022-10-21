@@ -81,6 +81,15 @@ export class ComandasmesasComponent implements OnInit {
       }
     }
 
+    NoVerBoton(): any{
+      if(this.Mesas.cierre === "true"){
+        return true;
+
+      }else{
+        return false;
+      }
+    }
+
     verBotonAgrega(): any{
       if(this.Mesas.cierre === "true"){
         return true;
@@ -118,13 +127,13 @@ export class ComandasmesasComponent implements OnInit {
     
     
     abrirMesa(){
-      this.Mesas.estado="abierta";
+      this.Mesas.estado="Abierta";
       this.Mesas.cierre = "true";
       
     } 
 
     cerrarMesa(){
-      this.Mesas.estado="cerrada";
+      this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
     } 
     

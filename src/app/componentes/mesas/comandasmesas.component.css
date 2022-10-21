@@ -3,3 +3,15 @@
     vertical-align: middle;
     border-radius: 50px;
 }
+
+#BtnAgregarArt{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#CardEstadoCerrada{
+    background-color:lightgreen;
+}
+#CardEstadoAbierta{
+    background-color:tomato;
+}
