@@ -55,10 +55,11 @@ export class ComandasmesasComponent implements OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
-      this.producto.forEach(Articulos => {
+
+        this.producto.forEach(Articulos => {
         this.total += Articulos.cantidad * Articulos.precioventa
       })
-
+      
 
       this.DesapareceBoton = null;  
       
@@ -104,15 +105,35 @@ export class ComandasmesasComponent implements OnInit {
       }
     }
 
+    CantidadCero(Articulos: any){
+      if(Articulos.cantidad === 0){
+        return false;
+
+      }else{
+        return true;
+      }
+    }
+
     
       traerProductos(): void{
       this.sProductos.lista().subscribe(data => {this.producto = data;})
       }
 
-      AddItem(): void{
-        this.producto.forEach(Articulos =>{
-          Articulos.cantidad ++
-        })
+
+      AddItem(Articulos: any){
+        if (Articulos.cantidad == undefined){
+          Articulos.cantidad = 1;
+        } else if (Articulos.cantidad != undefined){
+          ++Articulos.cantidad;
+        }
+      }
+
+      DelItem(Articulos: any){
+        if (Articulos.cantidad == undefined){
+          Articulos.cantidad = 1;
+        } else if (Articulos.cantidad != undefined){
+          --Articulos.cantidad;
+        }
       }
   
     onUpdate(): void{
