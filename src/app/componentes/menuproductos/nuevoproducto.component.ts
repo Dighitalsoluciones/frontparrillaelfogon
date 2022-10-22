@@ -13,12 +13,13 @@ export class NuevoproductoComponent implements OnInit {
 
   nombre: string = '';
   familia: string = '';
-  stock: string = '';
-  puntorepo: string = '';
-  costo: string = '';
-  precioventa: string = '';
-  stockinicial: string = '';
+  stock: number = 0;
+  puntorepo: number = 0;
+  costo: number = 0;
+  precioventa: number = 0;
+  stockinicial: number = 0;
   imagen: string = '';
+  cantidad: number = 0;
 
   constructor(private sArticulos: ArticulosService, private router: Router) { }
 
@@ -26,7 +27,7 @@ export class NuevoproductoComponent implements OnInit {
   }
 
   onCreate(): void{
-    const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo, this.precioventa, this.stockinicial, this.imagen);
+    const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo, this.precioventa, this.stockinicial, this.imagen, this.cantidad);
     this.sArticulos.save(producto).subscribe(
       data=>{alert("✅ Articulo creado correctamente");
       this.router.navigate(['menuarticulos']);

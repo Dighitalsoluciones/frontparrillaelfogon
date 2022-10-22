@@ -12,8 +12,9 @@ import { Mesas1Service } from 'src/app/Service/mesas1.service';
 })
 export class ComandasmesasComponent implements OnInit {
   Mesas : Mesas1 = null;
-  
+  total: number = 0;
   producto: Articulos[] = [];
+
 
   displayStyle = "none";
 
@@ -54,6 +55,10 @@ export class ComandasmesasComponent implements OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
+      this.producto.forEach(Articulos => {
+        this.total += Articulos.cantidad * Articulos.precioventa
+      })
+
 
       this.DesapareceBoton = null;  
       
@@ -99,11 +104,16 @@ export class ComandasmesasComponent implements OnInit {
       }
     }
 
+    
       traerProductos(): void{
       this.sProductos.lista().subscribe(data => {this.producto = data;})
       }
 
-      
+      AddItem(): void{
+        this.producto.forEach(Articulos =>{
+          Articulos.cantidad ++
+        })
+      }
   
     onUpdate(): void{
       const id = this.activatedRouter.snapshot.params['id'];

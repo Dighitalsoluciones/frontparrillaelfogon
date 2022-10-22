@@ -133,8 +133,8 @@
                                             <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
                                             <td>{{Articulos.nombre}}</td>
                                             <td>{{Articulos.familia}}</td>
-                                            <td>{{Articulos.costo}}</td>
-                                            <td>{{Articulos.precioventa}}</td>
+                                            <td>{{Articulos.costo | currency: '$'}}</td>
+                                            <td>{{Articulos.precioventa | currency: '$'}}</td>
                                             <td>{{Articulos.stockinicial}}</td>
                                             <td>{{Articulos.stock}}</td>
                                             <td>{{Articulos.puntorepo}}</td>

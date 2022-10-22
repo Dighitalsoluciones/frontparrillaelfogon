@@ -72,8 +72,32 @@ role="dialog"
           <div class="col-sm-7">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title">Productos agregado a esta Mesa</h5>
+                <p>NADA PARA MOSTRAR</p>
+
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                          <tr>
+                              <th>Imagen</th>
+                              <th>Nombre</th>
+                              <th>Precio</th>
+                              <th>Cantidad</th>
+                          </tr>
+                      </thead>
+          <tbody *ngFor="let Articulos of producto">
+              <tr>
+                  <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
+                  <td>{{Articulos.nombre}}</td>
+                  <td>{{Articulos.precioventa | currency: '$'}}</td>
+                  <td>{{Articulos.cantidad}}</td>
+              
+              </tr>  
+              </tbody>
+              </table>  
+         </div>
+
+
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
@@ -88,13 +112,19 @@ role="dialog"
                                         <th>Imagen</th>
                                         <th>Nombre</th>
                                         <th>Precio</th>
+                                        <th>Agregar</th>
+                                        <th>Cantidad</th>
                                     </tr>
                                 </thead>
                     <tbody *ngFor="let Articulos of producto">
                         <tr>
                             <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
                             <td>{{Articulos.nombre}}</td>
-                            <td>{{Articulos.precioventa}}</td>
+                            <td>{{Articulos.precioventa | currency: '$'}}</td>
+                            <td><button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AddItem()">
+                              Agregar
+                            </button></td>
+                            <td>{{Articulos.cantidad}}</td>
                         
                         </tr>  
                         </tbody>
@@ -106,8 +136,7 @@ role="dialog"
         
         </div>       
              
-       
-        
+              
         
       
 
