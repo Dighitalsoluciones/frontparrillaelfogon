@@ -5,6 +5,7 @@ import { Mesas1 } from 'src/app/Model/mesas1';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { Mesas1Service } from 'src/app/Service/mesas1.service';
 
+
 @Component({
   selector: 'app-comandasmesas',
   templateUrl: './comandasmesas.component.html',
@@ -15,6 +16,7 @@ export class ComandasmesasComponent implements OnInit {
   total: number = 0;
   producto: Articulos[] = [];
 
+  
 
   displayStyle = "none";
 
@@ -50,21 +52,32 @@ export class ComandasmesasComponent implements OnInit {
 
   DesapareceBoton = 0;
   
-   
+  comandafinal = [];
+ 
+  unicos = [];
+  
+  sinceros = [];
+  
+  descomprimir = [];
+
+  demo = "";
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
     private router: Router) { }
 
     ngOnInit(): void {
-
+      
+      
         this.producto.forEach(Articulos => {
         this.total += Articulos.cantidad * Articulos.precioventa
       })
-      
+      this.demo = "";
+      this.descomprimir = [];
 
       this.DesapareceBoton = null;  
       
       this.traerProductos();
       
+      this.comandafinal = [];
 
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.details(id).subscribe(
@@ -125,6 +138,14 @@ export class ComandasmesasComponent implements OnInit {
           Articulos.cantidad = 1;
         } else if (Articulos.cantidad != undefined){
           ++Articulos.cantidad;
+          this.comandafinal.push(Articulos);
+          this.unicos = Array.from(new Set(this.comandafinal));
+          this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
+          this.Mesas.comanda = JSON.stringify(this.sinceros);
+          this.descomprimir = JSON.parse(this.Mesas.comanda);
+
+
+          
         }
       }
 
@@ -133,8 +154,22 @@ export class ComandasmesasComponent implements OnInit {
           Articulos.cantidad = 1;
         } else if (Articulos.cantidad != undefined){
           --Articulos.cantidad;
+          this.comandafinal.filter((Articulos) => Articulos !== Articulos);
+          this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
+          this.Mesas.comanda = JSON.stringify(this.sinceros);
+          this.descomprimir = JSON.parse(this.Mesas.comanda);
         }
       }
+      
+    guardarCambios(){
+      this.Mesas.comanda = JSON.stringify(this.sinceros);
+      console.log(this.Mesas.comanda);
+    }  
+
+    DevolverLista(){
+      this.descomprimir = JSON.parse(this.Mesas.comanda);
+      console.log(this.descomprimir);
+    }
   
     onUpdate(): void{
       const id = this.activatedRouter.snapshot.params['id'];
@@ -166,6 +201,8 @@ export class ComandasmesasComponent implements OnInit {
     cerrarMesa(){
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
+      this.Mesas.comanda = null;
     } 
+    
     
 }
