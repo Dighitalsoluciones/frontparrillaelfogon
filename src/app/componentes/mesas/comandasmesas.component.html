@@ -119,13 +119,9 @@ role="dialog"
                            
                           </tr>
                       </thead>
-          <tbody *ngFor="let art of demo">
+          <tbody>
               <tr>
-                  <td><img id="imgArticulo" [src]="[art.imagen]"></td>
-                  <td>{{art.nombre}}</td>
-                  <td>{{art.cantidad}}</td>
-                  <td>{{art.precioventa | currency: '$'}}</td>
-                
+                  
               </tr>  
               </tbody>
               </table>  
@@ -134,7 +130,6 @@ role="dialog"
 
                 <button class="btn btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
                 <button class="btn btn-primary" (click)="DevolverLista()">Guardar Cambios</button>
-                <button class="btn btn-primary" (click)="VerAlgoAnterior()">ver anterior</button>
               </div>
             </div>
 
@@ -162,12 +157,12 @@ role="dialog"
                             <td>{{Articulos.precioventa | currency: '$'}}</td>
                             <td>
                             <ng-template [ngIf]="CantidadCero(Articulos)">
-                            <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="SacarSinRepetir(Articulos)">
+                            <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="DelItem(Articulos)">
                               -
                             </button>
                           </ng-template> 
                           {{Articulos.cantidad}}
-                          <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AgregarSinRepetir(Articulos)">
+                          <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AddItem(Articulos)">
                             +
                           </button> 
                           </td>

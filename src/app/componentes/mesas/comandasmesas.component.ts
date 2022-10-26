@@ -60,7 +60,12 @@ export class ComandasmesasComponent implements OnInit {
   
   descomprimir = [];
 
-  demo = [];
+  devolverStorage = [];
+
+  verComandaDb = [];
+
+  comandaBd = [];
+
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
     private router: Router) {}
 
@@ -70,7 +75,7 @@ export class ComandasmesasComponent implements OnInit {
         this.producto.forEach(Articulos => {
         this.total += Articulos.cantidad * Articulos.precioventa
       })
-      this.demo = [];
+      
 
       this.descomprimir = [];
 
@@ -79,6 +84,8 @@ export class ComandasmesasComponent implements OnInit {
       this.traerProductos();
       
       this.comandafinal = [];
+
+      
 
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.details(id).subscribe(
@@ -214,15 +221,26 @@ console.log(localStorage.getItem('car'))
       
     guardarCambios(){
       
-      localStorage.setItem('comanda', JSON.stringify(this.sinceros));
-      console.log(this.sinceros);
+      this.Mesas.comanda = JSON.stringify(this.sinceros);
+      console.log(this.Mesas.comanda);
     }  
 
     DevolverLista(){
-     console.log(JSON.stringify(localStorage.getItem('comanda')));
-     console.log(JSON.parse(localStorage.getItem('comanda')));
-      
+     this.Mesas.comanda = JSON.parse(this.Mesas.comanda);
+     console.log(this.Mesas.comanda);
+     
     }
+
+   
+
+
+    TraerComandaGuarda(){
+     this.comandaBd = JSON.parse(this.Mesas.comanda);
+    
+     
+    }
+
+    
   
     onUpdate(): void{
       const id = this.activatedRouter.snapshot.params['id'];
