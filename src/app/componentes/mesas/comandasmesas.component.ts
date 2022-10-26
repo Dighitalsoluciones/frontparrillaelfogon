@@ -70,7 +70,8 @@ export class ComandasmesasComponent implements OnInit {
         this.producto.forEach(Articulos => {
         this.total += Articulos.cantidad * Articulos.precioventa
       })
-      
+      this.demo = [];
+
       this.descomprimir = [];
 
       this.DesapareceBoton = null;  
@@ -181,6 +182,24 @@ export class ComandasmesasComponent implements OnInit {
         }
       }
 
+      VerAlgoAnterior(){
+        let recoveredData = localStorage.getItem('comanda')
+if(recoveredData == null){
+    //No tenemos nada guardado, por lo cual vamos a guardar el carListFav
+  localStorage.setItem('comanda', JSON.stringify(this.sinceros))
+} else {
+    //Tenemos algo, por lo cual vamos a añadir un nuevo coche
+  let data = JSON.parse(recoveredData)
+  let newCar = {name:'car3', id:3}
+  //Asegurate que lo que guardes es realmente un array.
+  data.push(newCar)
+  localStorage.setItem('comanda', JSON.stringify(data))
+}
+
+//Check si se guardo bien
+console.log(localStorage.getItem('car'))
+      }
+
 
       DelItem(Articulos: any){
         if (Articulos.cantidad == undefined){
@@ -200,7 +219,8 @@ export class ComandasmesasComponent implements OnInit {
     }  
 
     DevolverLista(){
-      console.log(localStorage.getItem('comanda'));
+     console.log(JSON.stringify(localStorage.getItem('comanda')));
+     console.log(JSON.parse(localStorage.getItem('comanda')));
       
     }
   
