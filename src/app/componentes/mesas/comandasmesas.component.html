@@ -99,7 +99,7 @@ role="dialog"
 
 
                 <button class="btn btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
-                <button class="btn btn-primary" (click)="DevolverLista()">Guardar Cambios</button>
+                <button class="btn btn-primary" (click)="DevolverLista()">Traer lista</button>
               </div>
             </div>
 
@@ -119,7 +119,7 @@ role="dialog"
                            
                           </tr>
                       </thead>
-          <tbody *ngFor="let art of descomprimir">
+          <tbody *ngFor="let art of unicos">
               <tr>
                   <td><img id="imgArticulo" [src]="[art.imagen]"></td>
                   <td>{{art.nombre}}</td>
@@ -161,12 +161,12 @@ role="dialog"
                             <td>{{Articulos.precioventa | currency: '$'}}</td>
                             <td>
                             <ng-template [ngIf]="CantidadCero(Articulos)">
-                            <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="DelItem(Articulos)">
+                            <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="SacarSinRepetir(Articulos)">
                               -
                             </button>
                           </ng-template> 
                           {{Articulos.cantidad}}
-                          <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AddItem(Articulos)">
+                          <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AgregarSinRepetir(Articulos)">
                             +
                           </button> 
                           </td>

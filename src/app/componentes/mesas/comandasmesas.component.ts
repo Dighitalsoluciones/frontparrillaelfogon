@@ -60,9 +60,9 @@ export class ComandasmesasComponent implements OnInit {
   
   descomprimir = [];
 
-  demo = "";
+  demo = [];
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
-    private router: Router) { }
+    private router: Router) {}
 
     ngOnInit(): void {
       
@@ -70,7 +70,7 @@ export class ComandasmesasComponent implements OnInit {
         this.producto.forEach(Articulos => {
         this.total += Articulos.cantidad * Articulos.precioventa
       })
-      this.demo = "";
+      
       this.descomprimir = [];
 
       this.DesapareceBoton = null;  
@@ -141,13 +141,46 @@ export class ComandasmesasComponent implements OnInit {
           this.comandafinal.push(Articulos);
           this.unicos = Array.from(new Set(this.comandafinal));
           this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
-          this.Mesas.comanda = JSON.stringify(this.sinceros);
-          this.descomprimir = JSON.parse(this.Mesas.comanda);
+        }
+      }
 
+      AgregarSinRepetir(producto){
 
+        let repetido = false;
+        for(let i=0; i< this.sinceros.length; i++)
+        {
+          if(this.sinceros[i].id==producto.id)
+          {
+            this.sinceros[i].cantidad++
+            repetido=true;
+          }
+        }
+        if(repetido == false)
+        {
+          this.sinceros.push(producto);
+          
           
         }
       }
+
+      SacarSinRepetir(producto){
+
+        let repetido = false;
+        for(let i=0; i< this.sinceros.length; i++)
+        {
+          if(this.sinceros[i].id==producto.id)
+          {
+            this.sinceros[i].cantidad--
+            repetido=true;
+          }
+        }
+        if(repetido == false)
+        {
+          this.sinceros.push(producto);
+          
+        }
+      }
+
 
       DelItem(Articulos: any){
         if (Articulos.cantidad == undefined){
@@ -156,19 +189,19 @@ export class ComandasmesasComponent implements OnInit {
           --Articulos.cantidad;
           this.comandafinal.filter((Articulos) => Articulos !== Articulos);
           this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
-          this.Mesas.comanda = JSON.stringify(this.sinceros);
-          this.descomprimir = JSON.parse(this.Mesas.comanda);
+          
         }
       }
       
     guardarCambios(){
-      this.Mesas.comanda = JSON.stringify(this.sinceros);
-      console.log(this.Mesas.comanda);
+      
+      localStorage.setItem('comanda', JSON.stringify(this.sinceros));
+      console.log(this.sinceros);
     }  
 
     DevolverLista(){
-      this.descomprimir = JSON.parse(this.Mesas.comanda);
-      console.log(this.descomprimir);
+      console.log(localStorage.getItem('comanda'));
+      
     }
   
     onUpdate(): void{
@@ -201,7 +234,7 @@ export class ComandasmesasComponent implements OnInit {
     cerrarMesa(){
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
-      this.Mesas.comanda = null;
+      this.Mesas.comanda = "vacio";
     } 
     
     
