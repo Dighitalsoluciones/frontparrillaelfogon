@@ -122,7 +122,7 @@ role="dialog"
                       <tbody *ngFor="let art of traelo">
                         <tr>
                             <td><img id="imgArticulo" [src]="[art.imagen]"></td>
-                            <td>{{art["nombre"]}}</td>
+                            <td>{{art.nombre}}</td>
                             <td>{{art["cantidad"]}}</td>
                             <td>{{art["precioventa"] | currency: '$'}}</td>
                         </tr>  
@@ -164,10 +164,19 @@ role="dialog"
                               -
                             </button>
                           </ng-template> 
-                          {{Articulos.cantidad}}
+                          
+                          
                           <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AddItem(Articulos)">
                             +
                           </button> 
+                          <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AgregarSinRepetir(Articulos)">
+                            Pico
+                          </button> 
+                          
+                          <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="SacarSinRepetir(Articulos)">
+                            Pato
+                          </button> 
+                       
                           </td>
                             
                         

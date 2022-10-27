@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
 import { Mesas1 } from 'src/app/Model/mesas1';
@@ -11,12 +11,11 @@ import { Mesas1Service } from 'src/app/Service/mesas1.service';
   templateUrl: './comandasmesas.component.html',
   styleUrls: ['./comandasmesas.component.css']
 })
-export class ComandasmesasComponent implements OnInit {
+export class ComandasmesasComponent implements OnInit, OnChanges {
   Mesas : Mesas1 = null;
   total: number = 0;
   producto: Articulos[] = [];
 
-  
 
   displayStyle = "none";
 
@@ -67,6 +66,7 @@ export class ComandasmesasComponent implements OnInit {
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
     private router: Router) {
     }
+  ngOnChanges(changes: SimpleChanges): void {}
 
 
     ngOnInit(): void {
@@ -135,6 +135,15 @@ export class ComandasmesasComponent implements OnInit {
       }
     }
 
+    CantidadCeroTraelo(Articulos: any){
+      if(Articulos.cantidad === 0){
+        return false;
+
+      }else{
+        return true;
+      }
+    }
+
     
       traerProductos(): void{
       this.sProductos.lista().subscribe(data => {this.producto = data;})
@@ -164,39 +173,41 @@ export class ComandasmesasComponent implements OnInit {
       }
 
 
-      AgregarSinRepetir(producto){
+      AgregarSinRepetir(traelo){
 
         let repetido = false;
-        for(let i=0; i< this.sinceros.length; i++)
+        for(let i=0; i< this.traelo.length; i++)
         {
-          if(this.sinceros[i].id==producto.id)
+          if(this.traelo[i].id==traelo.id)
           {
-            this.sinceros[i].cantidad++
+            this.traelo[i].cantidad++
             repetido=true;
           }
         }
         if(repetido == false)
         {
-          this.sinceros.push(producto);
+          traelo.cantidad = 1;
+          this.traelo = this.traelo.filter((traelo) => traelo.cantidad !=0);
+          this.traelo.push(traelo);
           
           
         }
       }
 
-      SacarSinRepetir(producto){
+      SacarSinRepetir(traelo){
 
         let repetido = false;
-        for(let i=0; i< this.sinceros.length; i++)
+        for(let i=0; i< this.traelo.length; i++)
         {
-          if(this.sinceros[i].id==producto.id)
+          if(this.traelo[i].id==traelo.id)
           {
-            this.sinceros[i].cantidad--
+            this.traelo[i].cantidad--
             repetido=true;
           }
         }
         if(repetido == false)
         {
-          this.sinceros.push(producto);
+          this.sinceros.push(traelo);
           
         }
       }
@@ -229,7 +240,7 @@ console.log(localStorage.getItem('car'))
 
     guardarCambios(){
       
-      this.Mesas.comanda = JSON.stringify(this.sinceros, ['id','nombre','cantidad','precioventa','imagen'] );
+      this.Mesas.comanda = JSON.stringify(this.traelo, ['id','nombre','cantidad','precioventa','imagen'] );
       console.log(this.Mesas.comanda);
     }  
 
@@ -240,7 +251,7 @@ console.log(localStorage.getItem('car'))
     }
 
     TraeloDale(): any{
-     return Array.from(new Set(this.traelo));
+     return this.traelo;
     }
  
 
