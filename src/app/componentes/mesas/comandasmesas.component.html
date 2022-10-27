@@ -119,17 +119,20 @@ role="dialog"
                            
                           </tr>
                       </thead>
-          <tbody>
-              <tr>
-                  
-              </tr>  
-              </tbody>
+                      <tbody *ngFor="let art of traelo">
+                        <tr>
+                            <td><img id="imgArticulo" [src]="[art.imagen]"></td>
+                            <td>{{art["nombre"]}}</td>
+                            <td>{{art["cantidad"]}}</td>
+                            <td>{{art["precioventa"] | currency: '$'}}</td>
+                        </tr>  
+                        </tbody>
               </table>  
            </div>
 
-
                 <button class="btn btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
-                <button class="btn btn-primary" (click)="DevolverLista()">Guardar Cambios</button>
+                <button class="btn btn-primary" (click)="DevolverLista()">Traer listado</button>
+                <button class="btn btn-primary" (click)="TraeloDale()">Dale</button>
               </div>
             </div>
 

@@ -60,23 +60,23 @@ export class ComandasmesasComponent implements OnInit {
   
   descomprimir = [];
 
-  devolverStorage = [];
-
-  verComandaDb = [];
-
-  comandaBd = [];
+  traelo = [];
+  
+  estavezsi = [];
 
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
-    private router: Router) {}
+    private router: Router) {
+    }
+
 
     ngOnInit(): void {
-      
+    
       
         this.producto.forEach(Articulos => {
         this.total += Articulos.cantidad * Articulos.precioventa
       })
       
-
+      this.traelo = [];
       this.descomprimir = [];
 
       this.DesapareceBoton = null;  
@@ -85,7 +85,7 @@ export class ComandasmesasComponent implements OnInit {
       
       this.comandafinal = [];
 
-      
+      this.estavezsi = [];
 
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.details(id).subscribe(
@@ -152,6 +152,18 @@ export class ComandasmesasComponent implements OnInit {
         }
       }
 
+      DelItem(Articulos: any){
+        if (Articulos.cantidad == undefined){
+          Articulos.cantidad = 1;
+        } else if (Articulos.cantidad != undefined){
+          --Articulos.cantidad;
+          this.comandafinal.filter((Articulos) => Articulos !== Articulos);
+          this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
+          
+        }
+      }
+
+
       AgregarSinRepetir(producto){
 
         let repetido = false;
@@ -208,37 +220,29 @@ console.log(localStorage.getItem('car'))
       }
 
 
-      DelItem(Articulos: any){
-        if (Articulos.cantidad == undefined){
-          Articulos.cantidad = 1;
-        } else if (Articulos.cantidad != undefined){
-          --Articulos.cantidad;
-          this.comandafinal.filter((Articulos) => Articulos !== Articulos);
-          this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
-          
-        }
-      }
       
+      
+
+      returnZero() {
+        return 0
+      }
+
     guardarCambios(){
       
-      this.Mesas.comanda = JSON.stringify(this.sinceros);
+      this.Mesas.comanda = JSON.stringify(this.sinceros, ['id','nombre','cantidad','precioventa','imagen'] );
       console.log(this.Mesas.comanda);
     }  
 
     DevolverLista(){
-     this.Mesas.comanda = JSON.parse(this.Mesas.comanda);
-     console.log(this.Mesas.comanda);
+     this.traelo = JSON.parse(this.Mesas.comanda);
+     console.log(this.traelo);
      
     }
 
-   
-
-
-    TraerComandaGuarda(){
-     this.comandaBd = JSON.parse(this.Mesas.comanda);
-    
-     
+    TraeloDale(): any{
+     return Array.from(new Set(this.traelo));
     }
+ 
 
     
   
