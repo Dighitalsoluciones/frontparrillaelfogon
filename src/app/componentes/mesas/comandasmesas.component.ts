@@ -207,7 +207,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         }
         if(repetido == false)
         {
-          this.sinceros.push(traelo);
+          this.traelo.push(traelo);
           
         }
       }

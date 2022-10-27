@@ -62,15 +62,19 @@ role="dialog"
                   <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()"></mat-slide-toggle>
                   <ng-template [ngIf]="verBotonAgrega()">
                   <div class="d-flex justify-content-end">
-                    <button id="BtnAgregarArt" type="button" class="btn btn-success" (click)="mostrarComanda()">
+                    <button id="BtnAgregarArt" type="button" class="btn btn-success" (click)="mostrarComanda();DevolverLista()">
                         Agregar Articulos
                       </button>
                       
                     </div> 
                   </ng-template> 
-         <div class="row"> 
+         
+          
+          <div class="row"> 
           <div class="col-sm-7">
-            <div class="card">
+
+            <!--Sacar este recuadro
+              <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Productos agregado a esta Mesa</h5>
                 <p>NADA PARA MOSTRAR</p>
@@ -102,11 +106,13 @@ role="dialog"
                 <button class="btn btn-primary" (click)="DevolverLista()">Traer lista</button>
               </div>
             </div>
-
-            <div class="card">
+          -->
+          
+          <ng-template [ngIf]="verBotonAgrega()">
+            <div class="card" >
               <div class="card-body">
-                <h5 class="card-title">probando si aparece</h5>
-                <p>VAMOS A VER QUE ONDA</p>
+                <h5 class="card-title">PRODUCTOS AGREGADOS A ESTA MESA</h5>
+                <button class="btn btn-primary" (click)="DevolverLista()" style="margin-bottom: 10px;">VER PRODUCTOS DE ESTA MESA</button>
 
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -130,15 +136,16 @@ role="dialog"
               </table>  
            </div>
 
+           <!---
                 <button class="btn btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
-                <button class="btn btn-primary" (click)="DevolverLista()">Traer listado</button>
                 <button class="btn btn-primary" (click)="TraeloDale()">Dale</button>
+           --->
               </div>
             </div>
-
-
-
+          </ng-template>
           </div>
+        
+          
           <div class="col-sm-5">
             
               <div class="card-body" id="comandaArt" [ngStyle]="{'display':verComanda}">
@@ -159,7 +166,9 @@ role="dialog"
                             <td>{{Articulos.nombre}}</td>
                             <td>{{Articulos.precioventa | currency: '$'}}</td>
                             <td>
-                            <ng-template [ngIf]="CantidadCero(Articulos)">
+                            
+                              <!--
+                              <ng-template [ngIf]="CantidadCero(Articulos)">
                             <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="DelItem(Articulos)">
                               -
                             </button>
@@ -168,14 +177,17 @@ role="dialog"
                           
                           <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AddItem(Articulos)">
                             +
+                          </button>-->
+
+                          <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="SacarSinRepetir(Articulos)">
+                            -
                           </button> 
+                         
                           <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AgregarSinRepetir(Articulos)">
-                            Pico
+                            +
                           </button> 
                           
-                          <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="SacarSinRepetir(Articulos)">
-                            Pato
-                          </button> 
+                          
                        
                           </td>
                             
@@ -194,7 +206,7 @@ role="dialog"
         
       
 
-               <button class="btn btn-success" id="botonAgregar" (click)="onUpdate()">
+               <button class="btn btn-success" id="botonAgregar" (click)="guardarCambios();onUpdate()">
                     GUARDAR CAMBIOS
                 </button>
                 <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">

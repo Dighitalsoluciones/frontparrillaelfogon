@@ -15,3 +15,7 @@
 #CardEstadoAbierta{
     background-color:tomato;
 }
+
+#BtnAgregarItem{
+    margin-right: 8px;
+}
