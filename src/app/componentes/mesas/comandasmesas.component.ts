@@ -144,7 +144,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       }
     }
 
-    
+       
       traerProductos(): void{
       this.sProductos.lista().subscribe(data => {this.producto = data;})
       }
@@ -181,14 +181,17 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
           if(this.traelo[i].id==traelo.id)
           {
             this.traelo[i].cantidad++
+            this.traelo = this.traelo.filter(traelo => traelo.cantidad !=0);
             repetido=true;
           }
         }
         if(repetido == false)
         {
           traelo.cantidad = 1;
-          this.traelo = this.traelo.filter((traelo) => traelo.cantidad !=0);
+          this.traelo = this.traelo.filter(traelo => traelo.cantidad !=0);
           this.traelo.push(traelo);
+          
+
           
           
         }
@@ -202,6 +205,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
           if(this.traelo[i].id==traelo.id)
           {
             this.traelo[i].cantidad--
+            this.traelo = this.traelo.filter(traelo => traelo.cantidad !=0);
             repetido=true;
           }
         }
@@ -212,8 +216,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         }
       }
 
-      VerAlgoAnterior(){
-        let recoveredData = localStorage.getItem('comanda')
+ VerAlgoAnterior(){
+    let recoveredData = localStorage.getItem('comanda')
 if(recoveredData == null){
     //No tenemos nada guardado, por lo cual vamos a guardar el carListFav
   localStorage.setItem('comanda', JSON.stringify(this.sinceros))
@@ -260,7 +264,7 @@ console.log(localStorage.getItem('car'))
     onUpdate(): void{
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.update(id, this.Mesas).subscribe(
-        data => {alert("✅ Mesa modificada correctamente");
+        data => {alert("✅ Mesa Actualizada");
           this.router.navigate(['']);
         }, err =>{
           alert("⛔ Error al modificar la mesa ⛔");
@@ -281,13 +285,16 @@ console.log(localStorage.getItem('car'))
     abrirMesa(){
       this.Mesas.estado="Abierta";
       this.Mesas.cierre = "true";
+      this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesaocupadavertical_aot9zk.png";
       
     } 
 
     cerrarMesa(){
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
-      this.Mesas.comanda = "vacio";
+      this.Mesas.comanda = "";
+      this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesapendientecobrovertical_pyky9o.png";
+      this.traelo = [];
     } 
     
     
