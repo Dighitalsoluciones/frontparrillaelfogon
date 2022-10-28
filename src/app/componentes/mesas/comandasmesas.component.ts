@@ -70,10 +70,10 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
 
     ngOnInit(): void {
-    
+      const sumValues = (traelo) => Object.keys(traelo).reduce((acc, value) => acc + traelo[value], 0);
       
-        this.producto.forEach(Articulos => {
-        this.total += Articulos.cantidad * Articulos.precioventa
+        this.traelo.forEach(Articulos => {
+        this.total += Articulos.cantidad * Articulos.precioventa;
       })
       
       this.traelo = [];
@@ -297,5 +297,12 @@ console.log(localStorage.getItem('car'))
       this.traelo = [];
     } 
     
+    rendirDineroMesa(){
+      this.Mesas.estado="Cerrada";
+      this.Mesas.cierre="false";
+      this.Mesas.cierre="";
+      this.Mesas.imagen= "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png"
+    }
     
+
 }

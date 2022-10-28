@@ -122,7 +122,7 @@ role="dialog"
                               <th>Nombre</th>
                               <th>Cantidad</th>
                               <th>Precio</th>
-                           
+                              <th>Subtotal</th>
                           </tr>
                       </thead>
                       <tbody *ngFor="let art of traelo">
@@ -131,6 +131,7 @@ role="dialog"
                             <td>{{art.nombre}}</td>
                             <td>{{art["cantidad"]}}</td>
                             <td>{{art["precioventa"] | currency: '$'}}</td>
+                            <td>{{art.total}}</td>
                         </tr>  
                         </tbody>
               </table>  
@@ -206,6 +207,9 @@ role="dialog"
         <!--Puesto a modo de ejemplo-->
         <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="cerrarMesa()">
           CERRAR MESA
+        </button> 
+        <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="rendirDineroMesa()">
+          DINERO RENDIDO
         </button> 
 
                <button class="btn btn-success" id="botonAgregar" (click)="guardarCambios();onUpdate()">
