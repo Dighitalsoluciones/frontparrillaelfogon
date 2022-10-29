@@ -204,18 +204,23 @@ role="dialog"
         </div>       
              
               
-        <!--Puesto a modo de ejemplo-->
-        <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="cerrarMesa()">
-          CERRAR MESA
-        </button> 
-        <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="rendirDineroMesa()">
+        
+
+        <ng-template [ngIf]="NoVerBoton()">
+               <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate()">
+                    CONFIRMAR CAMBIOS
+                </button>
+                <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa()">
+                  CERRAR MESA
+                </button> 
+                <!--Puesto a modo de ejemplo-->
+        
+        <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="rendirDineroMesa()">
           DINERO RENDIDO
         </button> 
+              </ng-template>
 
-               <button class="btn btn-success" id="botonAgregar" (click)="guardarCambios();onUpdate()">
-                    GUARDAR CAMBIOS
-                </button>
-                <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
+                <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
                 </button>
                 
