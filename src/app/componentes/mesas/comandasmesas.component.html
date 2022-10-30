@@ -15,7 +15,7 @@ role="dialog"
     
     <div class="modal-footer">
       <input type="text" class="form-control" [(ngModel)]="Mesas.cierre" style="display: none;">
-      <button type="button" class="btn btn-success" (click)="abrirMesa();verBotonAgregar()" >
+      <button type="button" class="btn btn-success" (click)="abrirMesa();verBotonAgregar();verBotonGuardar();guardaYcontinua()" >
           Abrir
         </button>
       <button type="button" class="btn btn-danger" 
@@ -62,7 +62,7 @@ role="dialog"
                   <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()"></mat-slide-toggle>
                   <ng-template [ngIf]="verBotonAgrega()">
                   <div class="d-flex justify-content-end">
-                    <button id="BtnAgregarArt" type="button" class="btn btn-success" (click)="mostrarComanda();DevolverLista()">
+                    <button id="BtnAgregarArt" type="button" class="btn btn-success" (click)="mostrarComanda();DevolverLista();verBotonGuardar()">
                         Agregar Articulos
                       </button>
                       
@@ -116,7 +116,8 @@ role="dialog"
 
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
+                    <ng-template [ngIf]="filtroBarraTabla()">
+                    <thead>
                           <tr>
                               <th>Imagen</th>
                               <th>Nombre</th>
@@ -125,15 +126,19 @@ role="dialog"
                               <th>Subtotal</th>
                           </tr>
                       </thead>
+                    </ng-template>
                       <tbody *ngFor="let art of traelo">
                         <tr>
                             <td><img id="imgArticulo" [src]="[art.imagen]"></td>
                             <td>{{art.nombre}}</td>
                             <td>{{art["cantidad"]}}</td>
                             <td>{{art["precioventa"] | currency: '$'}}</td>
-                            <td>{{art.total}}</td>
+                            <td>{{art.cantidad * art.precioventa | currency: '$'}}</td>
                         </tr>  
                         </tbody>
+                        <p id="novertotal">Total Orden: {{TotalComanda() | currency: '$'}}</p>
+                        <h3>Total En Orden: {{Mesas.totalComanda | currency: '$'}}</h3>
+                       
               </table>  
            </div>
 
@@ -203,23 +208,24 @@ role="dialog"
         
         </div>       
              
-              
-        
 
+        <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate();" >
+          CONFIRMAR CAMBIOS
+      </button>
         <ng-template [ngIf]="NoVerBoton()">
-               <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate()">
-                    CONFIRMAR CAMBIOS
-                </button>
-                <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa()">
+               
+                <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa();verBotonGuardar()">
                   CERRAR MESA
                 </button> 
-                <!--Puesto a modo de ejemplo-->
-        
-        <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="rendirDineroMesa()">
-          DINERO RENDIDO
-        </button> 
               </ng-template>
-
+              
+                <!--Puesto a modo de ejemplo-->
+                <ng-template [ngIf]="templateRendirMesa()">
+                  <h3>Total a Cobrar: {{Mesas.totalComanda | currency: '$'}}</h3>
+              <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="rendirDineroMesa();verBotonGuardar()">
+                DINERO RENDIDO
+              </button> 
+            </ng-template>
                 <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
                 </button>

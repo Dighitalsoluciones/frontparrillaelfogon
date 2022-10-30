@@ -24,6 +24,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   verAbrirMesas = "none";
 
   verComanda = "none";
+
+  verGuardar = "none";
   
   cerrar = false;
 
@@ -49,6 +51,10 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   this.displayStyle = "none";
   }
 
+  verBotonGuardar(){
+  this.verGuardar = "block";
+  }
+
   DesapareceBoton = 0;
   
   comandafinal = [];
@@ -61,7 +67,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   traelo = [];
   
-  estavezsi = [];
+  
+  
 
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
     private router: Router) {
@@ -70,12 +77,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
 
     ngOnInit(): void {
-      const sumValues = (traelo) => Object.keys(traelo).reduce((acc, value) => acc + traelo[value], 0);
-      
-        this.traelo.forEach(Articulos => {
-        this.total += Articulos.cantidad * Articulos.precioventa;
-      })
-      
+    
       this.traelo = [];
       this.descomprimir = [];
 
@@ -85,7 +87,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       
       this.comandafinal = [];
 
-      this.estavezsi = [];
+      
 
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.details(id).subscribe(
@@ -126,6 +128,16 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       }
     }
 
+    templateRendirMesa(): any{
+      if(this.Mesas.liquidada === "true"){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+   
+
     CantidadCero(Articulos: any){
       if(Articulos.cantidad === 0){
         return false;
@@ -149,7 +161,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       this.sProductos.lista().subscribe(data => {this.producto = data;})
       }
 
-
+/* En deshuso
       AddItem(Articulos: any){
         if (Articulos.cantidad == undefined){
           Articulos.cantidad = 1;
@@ -172,6 +184,25 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         }
       }
 
+      VerAlgoAnterior(){
+    let recoveredData = localStorage.getItem('comanda')
+if(recoveredData == null){
+    //No tenemos nada guardado, por lo cual vamos a guardar el carListFav
+  localStorage.setItem('comanda', JSON.stringify(this.sinceros))
+} else {
+    //Tenemos algo, por lo cual vamos a añadir un nuevo coche
+  let data = JSON.parse(recoveredData)
+  let newCar = {name:'car3', id:3}
+  //Asegurate que lo que guardes es realmente un array.
+  data.push(newCar)
+  localStorage.setItem('comanda', JSON.stringify(data))
+}
+
+//Check si se guardo bien
+console.log(localStorage.getItem('car'))
+      }
+
+*/
 
       AgregarSinRepetir(traelo){
 
@@ -190,9 +221,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
           traelo.cantidad = 1;
           this.traelo = this.traelo.filter(traelo => traelo.cantidad !=0);
           this.traelo.push(traelo);
-          
-
-          
           
         }
       }
@@ -216,28 +244,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         }
       }
 
- VerAlgoAnterior(){
-    let recoveredData = localStorage.getItem('comanda')
-if(recoveredData == null){
-    //No tenemos nada guardado, por lo cual vamos a guardar el carListFav
-  localStorage.setItem('comanda', JSON.stringify(this.sinceros))
-} else {
-    //Tenemos algo, por lo cual vamos a añadir un nuevo coche
-  let data = JSON.parse(recoveredData)
-  let newCar = {name:'car3', id:3}
-  //Asegurate que lo que guardes es realmente un array.
-  data.push(newCar)
-  localStorage.setItem('comanda', JSON.stringify(data))
-}
-
-//Check si se guardo bien
-console.log(localStorage.getItem('car'))
-      }
-
-
-      
-      
-
       returnZero() {
         return 0
       }
@@ -257,8 +263,6 @@ console.log(localStorage.getItem('car'))
     TraeloDale(): any{
      return this.traelo;
     }
- 
-
     
   
     onUpdate(): void{
@@ -273,6 +277,19 @@ console.log(localStorage.getItem('car'))
       )
       
     }
+
+    guardaYcontinua(): void{
+      const id = this.activatedRouter.snapshot.params['id'];
+      this.sMesas.update(id, this.Mesas).subscribe(
+        data => {alert("✅ Mesa abierta");
+          
+        }, err =>{
+          alert("⛔ Error al modificar la mesa ⛔");
+          
+        }
+      )
+      
+    }
     
   
     cancelar(): void {
@@ -282,11 +299,12 @@ console.log(localStorage.getItem('car'))
     estado: string = ""; 
     
     
+    
     abrirMesa(){
       this.Mesas.estado="Abierta";
       this.Mesas.cierre = "true";
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesaocupadavertical_aot9zk.png";
-      
+      this.Mesas.liquidada = "false";
     } 
 
     cerrarMesa(){
@@ -295,14 +313,36 @@ console.log(localStorage.getItem('car'))
       this.Mesas.comanda = "";
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesapendientecobrovertical_pyky9o.png";
       this.traelo = [];
+      this.Mesas.liquidada = "true";
     } 
     
     rendirDineroMesa(){
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre="false";
       this.Mesas.cierre="";
-      this.Mesas.imagen= "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png"
+      this.Mesas.imagen= "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
+      this.Mesas.liquidada = "false";
+      this.Mesas.totalComanda = 0;
+      this.onUpdate();
     }
     
+    TotalComanda(){
+      this.total = 0;
+      this.traelo.forEach(Articulos => {
+      this.total += Articulos.cantidad * Articulos.precioventa;
+      this.Mesas.totalComanda = this.total;
+      
+    });
+    return this.total;
+  }
 
+  
+
+  filtroBarraTabla(): any{
+    if(this.total === 0){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }

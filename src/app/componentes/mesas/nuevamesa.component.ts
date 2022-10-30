@@ -17,6 +17,7 @@ export class NuevamesaComponent implements OnInit {
     liquidada: string = "false";
     imagen: string = '';
     numeroMesa: string = '';
+    totalComanda = 0;
 
   constructor(private sMesas1: Mesas1Service, private router: Router) { }
 
@@ -24,7 +25,7 @@ export class NuevamesaComponent implements OnInit {
   }
 
   onCreate(): void{
-    const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa);
+    const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa, this.totalComanda);
     this.sMesas1.save(mesas).subscribe(
       data=>{alert("✅ Mesa creada correctamente");
       this.router.navigate(['menumesas']);
