@@ -16,6 +16,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   total: number = 0;
   producto: Articulos[] = [];
 
+  verabrirdespuesdelcierre = "true";
 
   displayStyle = "none";
 
@@ -53,6 +54,10 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   verBotonGuardar(){
   this.verGuardar = "block";
+  }
+
+  nomostrardespuesdelcierre(){
+    this.verabrirdespuesdelcierre = "none";
   }
 
   DesapareceBoton = 0;
@@ -281,7 +286,7 @@ console.log(localStorage.getItem('car'))
     guardaYcontinua(): void{
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.update(id, this.Mesas).subscribe(
-        data => {alert("✅ Mesa abierta");
+        data => {alert("✅ Mesa modificada");
           
         }, err =>{
           alert("⛔ Error al modificar la mesa ⛔");
@@ -305,6 +310,7 @@ console.log(localStorage.getItem('car'))
       this.Mesas.cierre = "true";
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesaocupadavertical_aot9zk.png";
       this.Mesas.liquidada = "false";
+      this.Mesas.totalComanda = 0;
     } 
 
     cerrarMesa(){

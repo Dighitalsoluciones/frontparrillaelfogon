@@ -38,9 +38,9 @@ role="dialog"
                     </div>
                     <ng-template [ngIf]="verBoton()">
                     <div class="card-body">
-                      <h5 class="card-title">Abrir mesa para comenzar a agregar articulos a la comanda</h5>
+                      <h5 class="card-title" [ngStyle]="{'display':verabrirdespuesdelcierre}">Abrir mesa para comenzar a agregar articulos a la comanda</h5>
                      
-                      <button class="btn btn-primary" (click)="openPopup()">ABRIR MESA</button>
+                      <button class="btn btn-primary" (click)="openPopup()" [ngStyle]="{'display':verabrirdespuesdelcierre}">ABRIR MESA</button>
                     </div>
                   </ng-template>
 
@@ -214,7 +214,7 @@ role="dialog"
       </button>
         <ng-template [ngIf]="NoVerBoton()">
                
-                <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa();verBotonGuardar();guardaYcontinua()">
+                <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa();verBotonGuardar();guardaYcontinua();nomostrardespuesdelcierre()">
                   CERRAR MESA
                 </button> 
               </ng-template>
