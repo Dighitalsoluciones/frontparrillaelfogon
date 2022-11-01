@@ -17,6 +17,7 @@ import { MenumesasComponent } from './componentes/mesas/menumesas.component';
 import { FiltrarmesasPipe } from './pipes/filtrarmesas.pipe';
 import { EditarmesasComponent } from './componentes/mesas/editarmesas.component';
 import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.component';
+import { CajaComponent } from './componentes/caja/caja.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.compon
     FiltrarmesasPipe,
     EditarmesasComponent,
     ComandasmesasComponent,
+    CajaComponent,
    
     
   ],
