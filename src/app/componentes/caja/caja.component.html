@@ -120,9 +120,12 @@
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let Articulos of caja">
+                                    <tbody *ngFor="let movimientos of Mesas">
                                         <tr>
-                                            <td>{{Articulos}}</td>
+                                            <td>{{movimientos.id}}</td>
+                                            <td>{{movimientos.estado}}</td>
+                                            <td>{{movimientos.comanda}}</td>
+                                            <td>{{movimientos.totalComanda}}</td>
                                            
                                           <!--  <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" </button>(click)="delete(Articulos.id)" *ngIf="isLogged" title="Eliminar"> -->
                                            <!--    <i class="fas fa-trash-alt"></i></button></td> --> 
