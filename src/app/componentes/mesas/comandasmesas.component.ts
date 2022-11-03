@@ -2,8 +2,10 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
 import { Mesas1 } from 'src/app/Model/mesas1';
+import { Ticket } from 'src/app/Model/ticket';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { Mesas1Service } from 'src/app/Service/mesas1.service';
+import { TicketService } from 'src/app/Service/ticket.service';
 
 
 @Component({
@@ -15,7 +17,9 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   Mesas : Mesas1 = null;
   total: number = 0;
   producto: Articulos[] = [];
+  Ticket: Ticket = null;
 
+ 
   verabrirdespuesdelcierre = "true";
 
   displayStyle = "none";
@@ -75,7 +79,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   
   
 
-  constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private activatedRouter: ActivatedRoute, 
+  constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private activatedRouter: ActivatedRoute, 
     private router: Router) {
     }
   ngOnChanges(changes: SimpleChanges): void {}
@@ -268,12 +272,53 @@ console.log(localStorage.getItem('car'))
     TraeloDale(): any{
      return this.traelo;
     }
+
     
+    
+  listadoArticulos: string = '';
+  importe: number = 0;
+  observacion: string = '';
+  fecha: number = Date.now();
+
+  GrabarValoresTicketNuevo(){
+    this.Ticket.listadoArticulos = this.Mesas.comanda;
+    this.Ticket.importe = this.Mesas.totalComanda;
+    this.Ticket.fecha = Date.now();
+  }
+
+    NuevoTicket(): void{
+      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha);
+      this.sTicket.save(ticket).subscribe(
+        data=>{alert("✅ Ticket creado correctamente");
+      
+      }, err =>{
+        alert("⛔Fallo en la creación del ticket⛔");
+        this.router.navigate(['menuarticulos'])
+      }
+      )
+      this.GrabarValoresTicketNuevo();
+      console.log(ticket);
+    }
   
+
+
     onUpdate(): void{
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.update(id, this.Mesas).subscribe(
         data => {alert("✅ Mesa Actualizada");
+          this.router.navigate(['']);
+        }, err =>{
+          alert("⛔ Error al modificar la mesa ⛔");
+          this.router.navigate(['']);
+        }
+      )
+      
+    }
+
+    ActualizarValoresTicket(): void{
+      const id = this.activatedRouter.snapshot.params['id'];
+      this.sTicket.update(id, this.Ticket).subscribe(
+        data => {alert("✅ Ticket Actualizado");
           this.router.navigate(['']);
         }, err =>{
           alert("⛔ Error al modificar la mesa ⛔");
@@ -303,7 +348,11 @@ console.log(localStorage.getItem('car'))
     
     estado: string = ""; 
     
-    
+    guardarTicket(){
+      const Ticket = [...this.traelo];
+      console.log(Ticket);
+
+    }
     
     abrirMesa(){
       this.Mesas.estado="Abierta";
@@ -341,8 +390,6 @@ console.log(localStorage.getItem('car'))
     });
     return this.total;
   }
-
-  
 
   filtroBarraTabla(): any{
     if(this.total === 0){

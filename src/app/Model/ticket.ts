@@ -3,9 +3,9 @@ export class Ticket {
     listadoArticulos: string;
     importe: number;
     observacion: string;
-    fecha: string;
+    fecha: number;
 
-    constructor(listadoArticulos: string, importe: number, observacion: string, fecha: string){
+    constructor(listadoArticulos: string, importe: number, observacion: string, fecha: number){
         this.listadoArticulos = listadoArticulos;
         this.importe = importe;
         this.observacion = observacion;
