@@ -1,3 +1,4 @@
+import { formatDate, getLocaleDateFormat } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
@@ -86,6 +87,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
 
     ngOnInit(): void {
+      
     
       this.traelo = [];
       this.descomprimir = [];
@@ -273,21 +275,26 @@ console.log(localStorage.getItem('car'))
      return this.traelo;
     }
 
+    VerNumero(){
+      console.log(this.Mesas.numeroMesa);
+    }
     
     
   listadoArticulos: string = '';
   importe: number = 0;
   observacion: string = '';
-  fecha: number = Date.now();
+  fecha: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
+  numerodeMesa: string = '';
 
   GrabarValoresTicketNuevo(){
     this.Ticket.listadoArticulos = this.Mesas.comanda;
     this.Ticket.importe = this.Mesas.totalComanda;
-    this.Ticket.fecha = Date.now();
+    this.Ticket.fecha = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
+    this.Ticket.numerodeMesa = this.Mesas.numeroMesa;
   }
 
     NuevoTicket(): void{
-      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha);
+      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa);
       this.sTicket.save(ticket).subscribe(
         data=>{alert("✅ Ticket creado correctamente");
       

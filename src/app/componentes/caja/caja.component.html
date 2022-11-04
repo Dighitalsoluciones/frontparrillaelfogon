@@ -113,18 +113,24 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Codigo</th>
-                                            <th>Imagen</th>
-                                            <th>Eliminar</th>
+                                            <th>N° de Ticket</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Importe Total</th>
+                                            <th>Mesa Cerrada</th>
                                             <th>Editar</th>
+                                            <th>Eliminar</th>
+                                            <th>Reimprimir</th>
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let movimientos of caja">
+                                    <tbody *ngFor="let movimientos of ticket">
                                         <tr>
                                             <td>{{movimientos.id}}</td>
-                                            <td>{{movimientos.nombre}}</td>
-                                            <td>{{movimientos.cantidad}}</td>
+                                            <td>{{movimientos.fecha}}</td>
+                                            <td>{{movimientos.importe | currency: '$'}}</td>
+                                            <td>{{movimientos.numerodeMesa}}</td>
+                                            
+                                            
                                            
                                            
                                           <!--  <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" </button>(click)="delete(Articulos.id)" *ngIf="isLogged" title="Eliminar"> -->

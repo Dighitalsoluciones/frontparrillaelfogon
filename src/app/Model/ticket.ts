@@ -3,12 +3,14 @@ export class Ticket {
     listadoArticulos: string;
     importe: number;
     observacion: string;
-    fecha: number;
+    fecha: string;
+    numerodeMesa: string;
 
-    constructor(listadoArticulos: string, importe: number, observacion: string, fecha: number){
+    constructor(listadoArticulos: string, importe: number, observacion: string, fecha: string, numerodeMesa: string){
         this.listadoArticulos = listadoArticulos;
         this.importe = importe;
         this.observacion = observacion;
         this.fecha = fecha;
+        this.numerodeMesa = numerodeMesa;
     }
 }
