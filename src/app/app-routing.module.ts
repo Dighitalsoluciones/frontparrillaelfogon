@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CajaComponent } from './componentes/caja/caja.component';
+import { EditarticketComponent } from './componentes/caja/editarticket.component';
 import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
 import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
 import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'nuevamesa', component: NuevamesaComponent},
   {path: 'editarmesa/:id', component: EditarmesasComponent},
   {path: 'agregarcomanda/:id', component: ComandasmesasComponent},
-  {path: 'caja', component: CajaComponent}
+  {path: 'caja', component: CajaComponent},
+  {path: 'editarticket/:id', component: EditarticketComponent}
   
 ];
 

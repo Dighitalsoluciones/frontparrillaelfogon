@@ -117,9 +117,8 @@
                                             <th>Fecha y Hora</th>
                                             <th>Importe Total</th>
                                             <th>Mesa Cerrada</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
-                                            <th>Reimprimir</th>
+                                            <th>Acciones Disponibles</th>
+                                            
                                         </tr>
                                     </thead>
                                
@@ -129,6 +128,8 @@
                                             <td>{{movimientos.fecha}}</td>
                                             <td>{{movimientos.importe | currency: '$'}}</td>
                                             <td>{{movimientos.numerodeMesa}}</td>
+                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticket/{{movimientos.id}}" title="Editar">
+                                                <i class="far fa-edit"></i></button></td>
                                             
                                             
                                            
