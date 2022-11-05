@@ -18,6 +18,12 @@ export class CajaComponent implements OnInit {
 
   isLogged = false;
 
+  verTickets = "none";
+
+  verTicketsTablas(){
+    this.verTickets = "block";
+    
+  }
 
   ngOnInit(): void {
     this.traerTickets();
@@ -34,6 +40,18 @@ export class CajaComponent implements OnInit {
   
   cancelar(): void {
     this.router.navigate(['caja']);
+  }
+
+  delete(id?: number){
+    if(id != undefined){
+      this.sTicket.delete(id).subscribe(
+        data =>{alert("✅ Ticket borrado correctamente");
+          this.traerTickets();
+        }, err =>{
+          alert("No se pudo borrar el articulo");
+        }
+      )
+    }
   }
 
 }

@@ -108,6 +108,7 @@
                            <!-- <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink="/nuevoarticulo" *ngIf="isLogged" title="Agregar Nuevo Articulo"><i class="fas fa-plus"> Nuevo</i> 
                             </button> -->
                         </div>
+                        
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -128,8 +129,16 @@
                                             <td>{{movimientos.fecha}}</td>
                                             <td>{{movimientos.importe | currency: '$'}}</td>
                                             <td>{{movimientos.numerodeMesa}}</td>
-                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticket/{{movimientos.id}}" title="Editar">
-                                                <i class="far fa-edit"></i></button></td>
+                                            <td>
+                                                <button class="btn btn-outline-dark rounded float-end espaciado-botones" (click)="delete(movimientos.id)" *ngIf="isLogged" title="Eliminar">
+                                                <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticket/{{movimientos.id}}" title="Editar">
+                                                <i class="far fa-edit"></i>
+                                                </button>
+                                                
+                                            </td>
+                                                
                                             
                                             
                                            

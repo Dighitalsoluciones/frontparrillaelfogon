@@ -297,14 +297,13 @@ console.log(localStorage.getItem('car'))
       const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa);
       this.sTicket.save(ticket).subscribe(
         data=>{alert("✅ Ticket creado correctamente");
-      
       }, err =>{
         alert("⛔Fallo en la creación del ticket⛔");
         this.router.navigate(['menuarticulos'])
       }
       )
       this.GrabarValoresTicketNuevo();
-      console.log(ticket);
+ 
     }
   
 
@@ -370,12 +369,14 @@ console.log(localStorage.getItem('car'))
     } 
 
     cerrarMesa(){
+      
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
-      this.Mesas.comanda = "";
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesapendientecobrovertical_pyky9o.png";
       this.traelo = [];
       this.Mesas.liquidada = "true";
+      this.NuevoTicket();
+      
     } 
     
     rendirDineroMesa(){
@@ -385,6 +386,7 @@ console.log(localStorage.getItem('car'))
       this.Mesas.imagen= "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
       this.Mesas.liquidada = "false";
       this.Mesas.totalComanda = 0;
+      this.Mesas.comanda = "";
       this.onUpdate();
     }
     

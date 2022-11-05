@@ -137,7 +137,7 @@ role="dialog"
                         </tr>  
                         </tbody>
                         <p id="novertotal">Total Orden: {{TotalComanda() | currency: '$'}}</p>
-                        <h3>Total En Orden: {{Mesas.totalComanda | currency: '$'}}</h3>
+                        <h3 style="text-align: end;">Total En Orden: {{Mesas.totalComanda | currency: '$'}}</h3>
                        
               </table>  
            </div>
@@ -233,9 +233,7 @@ role="dialog"
                 <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="NuevoTicket()">
                   PROBAR GRABAR TICKET
                 </button> 
-                <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="VerNumero()">
-                 ver mesa
-                </button>
+                
 
             </form>
           
