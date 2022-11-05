@@ -25,9 +25,9 @@
                 
                 <div class="form-group">
                     <label for="listadoArticulos"> Detalle de Productos 👉</label>
-                    <p class="btn btn-primary" id="btnmostrarlistado" (click)="DevolverListado()"> VER ARTICULOS DEL TICKET</p>
+                    <p class="btn btn-primary" id="btnmostrarlistado" (click)="DevolverListado();verTablaArticulos()"> VER ARTICULOS DEL TICKET</p>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" [ngStyle]="{'display':verTablaArt}">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             
                           <thead>

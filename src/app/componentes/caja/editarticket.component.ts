@@ -14,6 +14,13 @@ export class EditarticketComponent implements OnInit {
 
   traelo = [];
 
+  verTablaArt = "none";
+
+  verTablaArticulos(){
+    this.verTablaArt = "block";
+    console.log(this.verTablaArt)
+  }
+
   constructor(private sTicket: TicketService, private activatedRouter: ActivatedRoute, 
     private router: Router) { }
 
