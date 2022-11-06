@@ -1,5 +1,5 @@
 import { formatDate, getLocaleDateFormat } from '@angular/common';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
 import { Mesas1 } from 'src/app/Model/mesas1';
@@ -15,6 +15,8 @@ import { TicketService } from 'src/app/Service/ticket.service';
   styleUrls: ['./comandasmesas.component.css']
 })
 export class ComandasmesasComponent implements OnInit, OnChanges {
+
+
   Mesas : Mesas1 = null;
   total: number = 0;
   producto: Articulos[] = [];
@@ -81,7 +83,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   
 
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private activatedRouter: ActivatedRoute, 
-    private router: Router) {
+    private router: Router, renderer2: Renderer2) {
     }
   ngOnChanges(changes: SimpleChanges): void {}
 
@@ -293,6 +295,9 @@ console.log(localStorage.getItem('car'))
     this.Ticket.numerodeMesa = this.Mesas.numeroMesa;
   }
 
+  numeroTicket: number = 0;
+  fechaTicket: string = '';
+
     NuevoTicket(): void{
       const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa);
       this.sTicket.save(ticket).subscribe(
@@ -303,6 +308,8 @@ console.log(localStorage.getItem('car'))
       }
       )
       this.GrabarValoresTicketNuevo();
+      this.numeroTicket = ticket.id;
+      this.fechaTicket = ticket.fecha;
  
     }
   
@@ -366,6 +373,8 @@ console.log(localStorage.getItem('car'))
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesaocupadavertical_aot9zk.png";
       this.Mesas.liquidada = "false";
       this.Mesas.totalComanda = 0;
+      this.traelo = [];
+      this.Mesas.comanda = "";
     } 
 
     cerrarMesa(){
@@ -373,9 +382,12 @@ console.log(localStorage.getItem('car'))
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesapendientecobrovertical_pyky9o.png";
-      this.traelo = [];
+      
       this.Mesas.liquidada = "true";
+      this.nomostrardespuesdelcierre();
+      this.guardaYcontinua();
       this.NuevoTicket();
+      
       
     } 
     
@@ -386,7 +398,6 @@ console.log(localStorage.getItem('car'))
       this.Mesas.imagen= "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
       this.Mesas.liquidada = "false";
       this.Mesas.totalComanda = 0;
-      this.Mesas.comanda = "";
       this.onUpdate();
     }
     
@@ -407,4 +418,7 @@ console.log(localStorage.getItem('car'))
       return true;
     }
   }
+
+FechaTicket: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
+ 
 }

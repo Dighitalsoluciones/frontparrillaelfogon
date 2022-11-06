@@ -19,6 +19,7 @@ import { EditarmesasComponent } from './componentes/mesas/editarmesas.component'
 import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.component';
 import { CajaComponent } from './componentes/caja/caja.component';
 import { EditarticketComponent } from './componentes/caja/editarticket.component';
+import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { EditarticketComponent } from './componentes/caja/editarticket.component
     ComandasmesasComponent,
     CajaComponent,
     EditarticketComponent,
+    VistaimpresionComponent,
    
     
   ],
