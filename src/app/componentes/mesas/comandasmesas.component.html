@@ -240,7 +240,7 @@ role="dialog"
     <p class="centrado">Comanda de Mesa N°{{Mesas.numeroMesa}}
         <br>{{FechaTicket}}
         
-    <table>
+    <table id="tableticket">
         <thead>
             <tr>
                 <th class="cantidad">CANT</th>
@@ -256,6 +256,7 @@ role="dialog"
             </tr>
         </tbody>
         <tr>
+          
           <td class="cantidad"></td>
           <td class="producto"><strong>TOTAL  $</strong></td>
           <td class="precio">{{Mesas.totalComanda}}</td>

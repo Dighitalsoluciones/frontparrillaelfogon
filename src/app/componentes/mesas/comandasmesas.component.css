@@ -34,10 +34,8 @@
     font-family: 'Times New Roman';
 }
 
-td,
-th,
-tr,
-table {
+
+#tableticket {
     border-top: 1px solid black;
     border-collapse: collapse;
 }

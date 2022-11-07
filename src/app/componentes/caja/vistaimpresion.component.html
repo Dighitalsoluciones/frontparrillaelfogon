@@ -1,0 +1,40 @@
+<div class="vistaimprimir">
+    <div class="ticket">
+      <img
+          src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          alt="Logotipo">
+      <p class="centrado">Comanda de Mesa N°12
+          <br>{{FechaTicket}}
+          
+      <table id="tableticket">
+          <thead>
+              <tr>
+                  <th class="cantidad">CANT</th>
+                  <th class="producto">PRODUCTO</th>
+                  <th class="precio">SUBT</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="cantidad">6</td>
+                  <td class="producto">CHORIZO}</td>
+                  <td class="precio">5000</td>
+              </tr>
+              <tr>
+                <td class="cantidad">4</td>
+                <td class="producto">VACIO}</td>
+                <td class="precio">3000</td>
+            </tr>
+          </tbody>
+          <tr>
+            
+            <td class="cantidad"></td>
+            <td class="producto"><strong>TOTAL  $</strong></td>
+            <td class="precio">$9000</td>
+        </tr>
+      </table>
+      <p class="centrado">¡GRACIAS POR SU COMPRA!
+          <br>PARRILLA EL FOGON</p>
+  </div>
+  </div>
+  <button (click)="imprimir()"></button>
