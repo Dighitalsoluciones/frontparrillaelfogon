@@ -74,3 +74,9 @@ img {
     max-width: inherit;
     width: inherit;
 }
+
+@media print{
+    .oculto-impresion, .oculto-impresion *{
+      display: none !important;
+    }
+  }

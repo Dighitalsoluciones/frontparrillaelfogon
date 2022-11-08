@@ -25,11 +25,12 @@ role="dialog"
       
     </div>
   </div>
+ </div>
 </div>
-</div>
+
 <div class="container fondoEdit">
     <div class="row" id="textosColor">
-        <div>
+        <div [ngStyle]="{'display':VistaNormal}">
             <form novalidate #f="ngForm">
                 
                 <div class="card text-center">
@@ -225,6 +226,9 @@ role="dialog"
               <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="rendirDineroMesa();verBotonGuardar()">
                 DINERO RENDIDO
               </button> 
+              <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="MostrarVistaImpresion()">
+                IMPRIMIR TICKET
+              </button> 
             </ng-template>
                 <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
@@ -232,7 +236,8 @@ role="dialog"
             </form>
           
 </div>
-<div class="vistaimprimir">
+<div class="col align-self-start">
+<div class="vistaimprimir" [ngStyle]="{'display':verSoloImpresion}">
   <div class="ticket">
     <img
         src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
@@ -264,5 +269,13 @@ role="dialog"
     </table>
     <p class="centrado">¡GRACIAS POR SU COMPRA!
         <br>PARRILLA EL FOGON</p>
+</div>
+<button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn oculto-impresion" (click)="ImprimirTicket()">
+  CONFIRMAR
+</button>
+<button class="btn btn-danger espacio-btn oculto-impresion" id="botonAgregar" (click)="cancelar()">
+  CANCELAR
+</button>
+
 </div>
 </div>

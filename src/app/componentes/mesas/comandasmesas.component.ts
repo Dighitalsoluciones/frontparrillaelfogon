@@ -34,6 +34,10 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   verComanda = "none";
 
   verGuardar = "none";
+
+  verSoloImpresion = "none";
+
+  VistaNormal = "true";
   
   cerrar = false;
 
@@ -66,6 +70,15 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   nomostrardespuesdelcierre(){
     this.verabrirdespuesdelcierre = "none";
   }
+
+  MostrarVistaImpresion(){
+    this.verSoloImpresion = "block";
+    this.DevolverLista();
+    this.VistaNormal = "none";
+    
+  }
+
+ 
 
   DesapareceBoton = 0;
   
@@ -420,5 +433,9 @@ console.log(localStorage.getItem('car'))
   }
 
 FechaTicket: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
- 
+
+ImprimirTicket(){
+  window.print();
+}
+
 }
