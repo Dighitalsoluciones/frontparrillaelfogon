@@ -213,6 +213,7 @@ role="dialog"
         <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate();" >
           CONFIRMAR CAMBIOS
       </button>
+
         <ng-template [ngIf]="NoVerBoton()">
                
                 <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa();verBotonGuardar();">
@@ -236,6 +237,7 @@ role="dialog"
             </form>
           
 </div>
+
 <div class="col align-self-start">
 <div class="vistaimprimir" [ngStyle]="{'display':verSoloImpresion}">
   <div class="ticket">
@@ -244,6 +246,7 @@ role="dialog"
         alt="Logotipo">
     <p class="centrado">Comanda de Mesa N°{{Mesas.numeroMesa}}
         <br>{{FechaTicket}}
+        
         
     <table id="tableticket">
         <thead>
@@ -274,7 +277,7 @@ role="dialog"
   CONFIRMAR
 </button>
 <button class="btn btn-danger espacio-btn oculto-impresion" id="botonAgregar" (click)="cancelar()">
-  CANCELAR
+  CANCELAR O VOLVER
 </button>
 
 </div>

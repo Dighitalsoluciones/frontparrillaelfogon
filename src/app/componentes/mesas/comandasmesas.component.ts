@@ -15,7 +15,7 @@ import { TicketService } from 'src/app/Service/ticket.service';
   styleUrls: ['./comandasmesas.component.css']
 })
 export class ComandasmesasComponent implements OnInit, OnChanges {
-
+ 
 
   Mesas : Mesas1 = null;
   total: number = 0;
@@ -72,9 +72,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   }
 
   MostrarVistaImpresion(){
+    
     this.verSoloImpresion = "block";
     this.DevolverLista();
     this.VistaNormal = "none";
+    this.NuevoTicket();
+
     
   }
 
@@ -300,19 +303,21 @@ console.log(localStorage.getItem('car'))
   observacion: string = '';
   fecha: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
   numerodeMesa: string = '';
+  formadepago: string = '';
 
   GrabarValoresTicketNuevo(){
     this.Ticket.listadoArticulos = this.Mesas.comanda;
     this.Ticket.importe = this.Mesas.totalComanda;
     this.Ticket.fecha = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
     this.Ticket.numerodeMesa = this.Mesas.numeroMesa;
+    this.Ticket.formadepago = this.formadepago;
   }
 
   numeroTicket: number = 0;
   fechaTicket: string = '';
 
     NuevoTicket(): void{
-      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa);
+      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago);
       this.sTicket.save(ticket).subscribe(
         data=>{alert("✅ Ticket creado correctamente");
       }, err =>{
@@ -399,7 +404,7 @@ console.log(localStorage.getItem('car'))
       this.Mesas.liquidada = "true";
       this.nomostrardespuesdelcierre();
       this.guardaYcontinua();
-      this.NuevoTicket();
+      
       
       
     } 

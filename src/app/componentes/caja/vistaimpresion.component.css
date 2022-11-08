@@ -44,3 +44,14 @@ img {
     max-width: inherit;
     width: inherit;
 }
+
+@media print{
+    .oculto-impresion, .oculto-impresion *{
+      display: none !important;
+    }
+  }
+
+.btn-espacio{
+    margin-top: 10px;
+    margin-left: 5px;
+}

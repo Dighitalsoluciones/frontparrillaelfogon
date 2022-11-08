@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'agregarcomanda/:id', component: ComandasmesasComponent},
   {path: 'caja', component: CajaComponent},
   {path: 'editarticket/:id', component: EditarticketComponent},
-  {path: 'vistaticket', component: VistaimpresionComponent}
+  {path: 'vistaticket/:id', component: VistaimpresionComponent}
   
 ];
 
