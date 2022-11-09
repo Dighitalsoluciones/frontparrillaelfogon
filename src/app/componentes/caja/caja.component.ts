@@ -13,6 +13,12 @@ export class CajaComponent implements OnInit {
   
   ticket: Ticket[] = [];
 
+  VerTicketsGenerados = "none";
+
+  MostrarTickets(){
+    this.VerTicketsGenerados = "block";
+  }
+
  
   constructor(private sTicket: TicketService, private router: Router, private activatedRouter: ActivatedRoute, private tokenService: TokenService) { }
 
