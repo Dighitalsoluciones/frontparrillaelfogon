@@ -1,11 +1,13 @@
-import { formatDate, getLocaleDateFormat } from '@angular/common';
-import { Component, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
 import { Mesas1 } from 'src/app/Model/mesas1';
+import { Recibos } from 'src/app/Model/recibos';
 import { Ticket } from 'src/app/Model/ticket';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { Mesas1Service } from 'src/app/Service/mesas1.service';
+import { RecibosService } from 'src/app/Service/recibos.service';
 import { TicketService } from 'src/app/Service/ticket.service';
 
 
@@ -98,8 +100,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   
   
 
-  constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private activatedRouter: ActivatedRoute, 
-    private router: Router, renderer2: Renderer2) {
+  constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private sRecibos: RecibosService, private activatedRouter: ActivatedRoute, 
+    private router: Router) {
     }
   ngOnChanges(changes: SimpleChanges): void {}
 
@@ -297,7 +299,8 @@ console.log(localStorage.getItem('car'))
       console.log(this.Mesas.numeroMesa);
     }
     
-    
+  //para crear Tickets
+
   listadoArticulos: string = '';
   importe: number = 0;
   observacion: string = '';
@@ -443,4 +446,19 @@ ImprimirTicket(){
   window.print();
 }
 
+//para crear recibos
+NuevoRecibo(): void{
+  const recibos = new Recibos(this.fecha, this.Ticket.id, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago);
+  this.sRecibos.save(recibos).subscribe(
+    data=>{alert("✅ Recibo generado correctamente");
+  }, err =>{
+    alert("⛔Fallo en la creación del recibo⛔");
+    this.router.navigate(['menuarticulos'])
+  }
+  )}
+  
+  ConfirmarObs(){
+  const inputObservacion = document.getElementById('datos') ;
+ 
+  }
 }
