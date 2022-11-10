@@ -35,7 +35,7 @@ export class CajaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.TotalEnCaja();
+    this.SumaTotalRecibos();
     this.traerTickets();
     if(this.tokenService.getToken()){
       this.isLogged = true;
@@ -91,6 +91,13 @@ export class CajaComponent implements OnInit {
     
   });
   return this.totalCaja;
+}
+
+
+
+SumaTotalRecibos(){
+ const sumartotal = this.recibos.map(item => item.importe).reduce((prev, curr) => prev + curr, 0);
+ return sumartotal;
 }
 
 
