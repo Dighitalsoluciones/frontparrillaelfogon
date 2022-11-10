@@ -18,7 +18,7 @@ import { TicketService } from 'src/app/Service/ticket.service';
 })
 export class ComandasmesasComponent implements OnInit, OnChanges {
  
-
+   
   Mesas : Mesas1 = null;
   total: number = 0;
   producto: Articulos[] = [];
@@ -407,17 +407,30 @@ console.log(localStorage.getItem('car'))
       this.Mesas.liquidada = "true";
       this.nomostrardespuesdelcierre();
       this.guardaYcontinua();
-      
-      
-      
     } 
     
+    //para crear recibos
+corresTicket: number = 0;
+
+
+NuevoRecibo(): void{
+  const recibos = new Recibos(this.fecha, this.corresTicket, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago);
+  this.sRecibos.save(recibos).subscribe(
+    data=>{alert("✅ Recibo generado correctamente");
+  }, err =>{
+    alert("⛔Fallo en la creación del recibo⛔");
+    this.router.navigate(['caja'])
+  }
+  )}
+
+
     rendirDineroMesa(){
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre="false";
       this.Mesas.cierre="";
       this.Mesas.imagen= "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
       this.Mesas.liquidada = "false";
+      this.NuevoRecibo();
       this.Mesas.totalComanda = 0;
       this.onUpdate();
     }
@@ -446,19 +459,6 @@ ImprimirTicket(){
   window.print();
 }
 
-//para crear recibos
-NuevoRecibo(): void{
-  const recibos = new Recibos(this.fecha, this.Ticket.id, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago);
-  this.sRecibos.save(recibos).subscribe(
-    data=>{alert("✅ Recibo generado correctamente");
-  }, err =>{
-    alert("⛔Fallo en la creación del recibo⛔");
-    this.router.navigate(['menuarticulos'])
-  }
-  )}
-  
-  ConfirmarObs(){
-  const inputObservacion = document.getElementById('datos') ;
- 
-  }
+
+
 }
