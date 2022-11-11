@@ -189,7 +189,6 @@ role="dialog"
                           <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="SacarSinRepetir(Articulos)">
                             -
                           </button> 
-                         
                           <button id="BtnAgregarItem" type="button" class="btn btn-success" (click)="AgregarSinRepetir(Articulos)">
                             +
                           </button> 
@@ -259,7 +258,7 @@ role="dialog"
         </thead>
         <tbody *ngFor="let articulos of traelo">
             <tr>
-                <td class="cantidad">{{articulos["cantidad"]}}</td>
+                <td class="cantidad centrado">{{articulos["cantidad"]}}</td>
                 <td class="producto">{{articulos.nombre}}</td>
                 <td class="precio">{{articulos.cantidad * articulos.precioventa}}</td>
             </tr>
@@ -267,10 +266,11 @@ role="dialog"
         <tr>
           
           <td class="cantidad"></td>
-          <td class="producto"><strong>TOTAL  $</strong></td>
+          <td class="cantidad"><strong>TOTAL   $</strong></td>
           <td class="precio">{{Mesas.totalComanda}}</td>
       </tr>
     </table>
+    <p class="precio centrado">-------------------------------------</p>
     <p class="centrado">¡GRACIAS POR SU COMPRA!
         <br>PARRILLA EL FOGON</p>
 </div>

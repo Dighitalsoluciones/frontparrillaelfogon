@@ -57,7 +57,7 @@
 
                     <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" (click)="MostrarTickets()">VER TICKETS GENERADOS</button>
 
-                    <!-- Topbar Search -->
+                    <!-- Topbar Search 
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -67,7 +67,7 @@
                                 
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -113,6 +113,7 @@
                         
                         <div class="card-body" *ngIf="isLogged">
                             <div class="table-responsive">
+                                <h1 id="tituloTicket">Recibos de Hoy</h1>
                                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -135,7 +136,7 @@
                                                 <button class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="deleteRec(mov.id)" *ngIf="isLogged" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                                 </button>
-                                                                                             
+                                                                                            
                                             </td>
                                                 
                                             
@@ -150,7 +151,7 @@
                                         
                                     </tbody>
                                 </table>
-                                <h3>Total en Caja {{totalCaja | currency: '$'}}</h3>
+                                <h3>Total en Caja {{TotalDeRec() | currency: '$'}}</h3>
                             </div>
                         </div>
 

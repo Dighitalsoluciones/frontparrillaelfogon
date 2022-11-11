@@ -16,6 +16,7 @@ export class CajaComponent implements OnInit {
   ticket: Ticket[] = [];
   recibos: Recibos[]= [];
 
+  totalR: number = 0;
   VerTicketsGenerados = "none";
 
   MostrarTickets(){
@@ -35,7 +36,7 @@ export class CajaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.SumaTotalRecibos();
+    this.TotalDeRec();
     this.traerTickets();
     if(this.tokenService.getToken()){
       this.isLogged = true;
@@ -87,18 +88,28 @@ export class CajaComponent implements OnInit {
     this.totalCaja = 0;
     this.recibos.forEach(Recibos => {
     this.totalCaja += Recibos.importe;
-    
+    console.log(Recibos.importe);
     
   });
   return this.totalCaja;
 }
 
+TotalDeRec(){
+  this.totalR = 0;
+  this.recibos.forEach(recibos => {
+  this.totalR += recibos.importe;
+ 
+  
+});
+return this.totalR;
+}
 
+/* SumarTotal : number = 0;
 
 SumaTotalRecibos(){
- const sumartotal = this.recibos.map(item => item.importe).reduce((prev, curr) => prev + curr, 0);
- return sumartotal;
-}
+ this.SumarTotal = this.recibos.map(recibos => recibos.importe).reduce((prev, curr) => prev + curr, 0);
+ console.log(this.SumarTotal);} */
+
 
 
 }

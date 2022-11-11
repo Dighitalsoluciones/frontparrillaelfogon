@@ -4,34 +4,38 @@
           src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
           alt="Logotipo">
       <p class="centrado">Comanda de Mesa N°{{ticket.numerodeMesa}}</p>
-          <br class="centrado">{{ticket.fecha}}
-          
+      <p class="precio centrado">---------------------------------------</p>
+          <p class="centrado">{{ticket.fecha}}</p> 
+             
       <table id="tableticket">
           <thead>
               <tr>
-                  <th class="cantidad">CANT</th>
+                  <th class="cantidad centrado">CANT</th>
                   <th class="producto">PRODUCTO</th>
-                  <th class="precio">S</th>
+                  <th class="precio">SUB</th>
               </tr>
           </thead>
           <tbody *ngFor="let art of traelo">
               <tr>
-                  <td class="cantidad">{{art["cantidad"]}}</td>
+                  <td class="cantidad centrado">{{art["cantidad"]}}</td>
                   <td class="producto">{{art.nombre}}</td>
                   <td class="precio">{{art.precioventa * art.cantidad}}</td>
               </tr>
               
           </tbody>
-          <td class="producto"><strong>TOTAL  $</strong></td>
+          
+          <td class="producto centrado"><strong>TOTAL</strong></td>
+          <p class="precio centrado">--------------$</p>
               <td class="precio">{{ticket.importe}}</td>
          
       </table>
+      <p class="precio centrado">---------------------------------------</p>
       <p class="centrado">¡GRACIAS POR SU COMPRA!
           <br>PARRILLA EL FOGON</p>
   </div>
   </div>
   <div>
-    <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="DevolverListado()">VER TICKET COMPLETO</button>
+    <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="DevolverListado()">CARGAR VALORES DEL TICKET</button>
   </div>
   <div>
   <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="ImprimirTicket()">IMPRIMIR</button>
