@@ -235,6 +235,19 @@ role="dialog"
                 </button>
             </form>
           
+            <input
+  #identificador    
+  type="text"
+  placeholder="Para testear"          
+  autocomplete="off"    
+/>
+<button  
+  type="button"  
+  (click)="getInputValue(identificador.value)"
+>
+TEST
+</button>
+
 
 </div>
 
@@ -267,14 +280,14 @@ role="dialog"
           
           <td class="cantidad"></td>
           <td class="cantidad"><strong>TOTAL   $</strong></td>
-          <td class="precio">{{Mesas.totalComanda}}</td>
+          <td class="precio"><strong>{{Mesas.totalComanda}}</strong></td>
       </tr>
     </table>
     <p class="precio centrado">-------------------------------------</p>
     <p class="centrado">¡GRACIAS POR SU COMPRA!
         <br>PARRILLA EL FOGON</p>
 </div>
-<button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn oculto-impresion" (click)="ImprimirTicket()">
+<button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn oculto-impresion" (click)="ImprimirTicket();cancelar()">
   CONFIRMAR
 </button>
 <button class="btn btn-danger espacio-btn oculto-impresion" id="botonAgregar" (click)="cancelar()">

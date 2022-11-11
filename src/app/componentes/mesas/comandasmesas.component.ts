@@ -97,12 +97,19 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   traelo = [];
   
-  
+  inputValue: string = '';
   
 
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private sRecibos: RecibosService, private activatedRouter: ActivatedRoute, 
     private router: Router) {
     }
+
+    public getInputValue(inputValue:string){
+    console.log(inputValue);
+    
+  }
+
+ 
   ngOnChanges(changes: SimpleChanges): void {}
 
 
@@ -334,6 +341,7 @@ console.log(localStorage.getItem('car'))
  
     }
   
+    
 
 
     onUpdate(): void{

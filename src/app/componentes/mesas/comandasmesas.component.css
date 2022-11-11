@@ -30,8 +30,8 @@
 
 /* El Css del Ticket */
 .vistaimprimir {
-    font-size: 12px;
-    font-family: 'Times New Roman';
+    font-size: 14px;
+    font-family: Arial;
 }
 
 
@@ -42,21 +42,21 @@
 
 td.producto,
 th.producto {
-    width: 75px;
-    max-width: 75px;
+    width: 130px;
+    max-width: 130px;
 }
 
 td.cantidad,
 th.cantidad {
-    width: 40px;
-    max-width: 40px;
+    width: 50px;
+    max-width: 50px;
     word-break: break-all;
 }
 
 td.precio,
 th.precio {
-    width: 40px;
-    max-width: 40px;
+    width: 70px;
+    max-width: 70px;
     word-break: break-all;
 }
 
@@ -66,8 +66,8 @@ th.precio {
 }
 
 .ticket {
-    width: 155px;
-    max-width: 155px;
+    width: 220px;
+    max-width: 220px;
 }
 
 img {
