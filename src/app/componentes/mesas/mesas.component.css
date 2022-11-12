@@ -18,7 +18,7 @@ h2{
     padding-top: 10px;   
     padding-bottom: 10px;
     background-color: steelblue;
-    width: 97%;
+    width: 100%;
     color: white;
 }
 
@@ -44,15 +44,50 @@ h2{
     height: auto;
 }
 
-#imgHor{
-    width: 52px; 
-    height: 102px;
+.imgHor{
+    width: 43px; 
+    height: 92px;
     margin: 10px 10px;
 }
 
-#posicionId{
-    margin-left: 30px;
+.posicionId{
+    margin-left: 26px;
     color: red;
     font-size: 16px;
     font-family: Impact;
+}
+
+#idfila1{
+    margin-left: 45px;
+}
+#idfila2{
+    margin-left: -10px;
+    margin-top: -290px;
+}
+
+#parrillaybarra{
+    margin-top: 10px;
+    width: 200px; 
+    height: 200px;
+}
+#fila1A{
+    margin-top: -50px;
+    margin-left: 30px;
+}
+#fila2A{
+    margin-top: -660px;
+    margin-left: -25px;
+    margin-right: 70px;
+}
+#linea1{
+    width: 450px;
+    height: 100px; 
+    margin-left: -15px;
+    margin-bottom: 300px;
+}
+#linea2{
+    width: 100px;
+    height: 285px; 
+    margin-left: -60px;
+    margin-top: -550px;
 }

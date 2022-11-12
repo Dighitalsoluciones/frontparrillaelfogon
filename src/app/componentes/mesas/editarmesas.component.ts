@@ -21,7 +21,7 @@ export class EditarmesasComponent implements OnInit {
         data =>{
           this.Mesas = data;
         }, err =>{
-          alert("Error al modificar la mesa");
+          alert("Error al modificar la mesas");
           this.router.navigate(['menumesas']);
         }
       )
