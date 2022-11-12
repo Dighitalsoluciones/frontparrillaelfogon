@@ -41,6 +41,7 @@ import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.compo
     CajaComponent,
     EditarticketComponent,
     VistaimpresionComponent,
+    
    
     
   ],
