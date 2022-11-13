@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Mesas1 } from 'src/app/Model/mesas1';
 import { Mesas1Service } from 'src/app/Service/mesas1.service';
 import { TokenService } from 'src/app/Service/token.service';
+import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-mesas',
@@ -40,5 +41,6 @@ export class MesasComponent implements OnInit {
     }
   }
 
+ 
 
 }

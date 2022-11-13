@@ -20,6 +20,7 @@ import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.compon
 import { CajaComponent } from './componentes/caja/caja.component';
 import { EditarticketComponent } from './componentes/caja/editarticket.component';
 import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -49,7 +50,9 @@ import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DragDropModule,
+
 
     
 
