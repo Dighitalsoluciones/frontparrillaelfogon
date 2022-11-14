@@ -5,10 +5,17 @@
             
 <div>
     <div>
+        <button (click)="GuardarPosiciones()">GRABAR</button>
+        <button (click)="TraerPosiciones()">TRAER</button>
         <img id="parrillaybarra" src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668219584/APP%20PARRILLA%20EL%20FOGON/parrilla_y_barra_kzmscj.png">
-        <div cdkDrag [cdkDragData]="mesas1">
+        <div cdkDrag [cdkDragData]="mesas1" (cdkDragDropped)="dropOnList($event)">
             <tr *ngFor="let Mesas1 of mesas1.slice(0,2)" class="d-inline p-2">
                 <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="fila1A" style="cursor: grab;"> <h6 class="posicionId" id="idfila1">{{Mesas1.numeroMesa}}</h6></td>
+            </tr>
+        </div>
+        <div>
+            <tr *ngFor="let Mesis of PosicionesGuardadas.slice(0,2)" class="d-inline p-2">
+                <td><img [src]="[Mesis.imagen]" routerLink="agregarcomanda/{{Mesis.id}}" class="imgHor" style="cursor: grab;"> <h6 class="posicionId" >{{Mesis.numeroMesa}}</h6></td>
             </tr>
         </div>
         

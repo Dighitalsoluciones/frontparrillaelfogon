@@ -12,12 +12,18 @@ import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angul
 export class MesasComponent implements OnInit {
   mesas1: Mesas1[] = [];
 
+  InicioPosicion: string;
+  PosicionesGuardadas = [];
+  
+
+
   constructor(private sMesas1: Mesas1Service, private tokenService: TokenService) { }
 
   
   isLogged = false;
 
   ngOnInit(): void {
+    this.InicioPosicion = "";
     this.traerMesas1();
     if(this.tokenService.getToken()){
       this.isLogged = true;
@@ -41,6 +47,30 @@ export class MesasComponent implements OnInit {
     }
   }
 
+  dropOnList(event: CdkDragDrop<Mesas1[]>){
+    const element = (event.previousContainer.data as Array<Mesas1>)[event.previousIndex];
+    moveItemInArray(
+      
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    )
+
+  }
  
+  GuardarPosiciones(){
+    localStorage.setItem('mesas', JSON.stringify(this.mesas1));
+    console.log(this.mesas1);
+    
+  }
+
+
+  TraerPosiciones(){
+    this.InicioPosicion = localStorage.getItem('mesas');
+    this.PosicionesGuardadas = JSON.parse(this.InicioPosicion);
+    console.log(this.InicioPosicion);
+    
+
+  }
 
 }
