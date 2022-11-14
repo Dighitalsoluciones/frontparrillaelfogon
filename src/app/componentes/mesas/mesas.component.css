@@ -61,12 +61,16 @@ h2{
     margin-left: 45px;
 }
 #idfila2{
-    margin-left: -11px;
-    margin-top: -310px;
+    margin-left: -22px;
+    margin-top: -385px;
 }
 #idfila3{
-    margin-left: 15px;
-    margin-top: -180px;
+    margin-left: 18px;
+    margin-top: -260px;
+}
+#idfila4{
+    margin-left: -28px;
+    margin-top: -110px;
 }
 
 #parrillaybarra{
@@ -79,26 +83,37 @@ h2{
     margin-left: 30px;
 }
 #fila2A{
-    margin-top: -700px;
-    margin-left: -25px;
+    margin-top: -850px;
+    margin-left: -35px;
     margin-right: 70px;
 }
 #fila3A{
-    margin-top: -430px;
-    margin-left: 0px;
-    margin-right: -20px;
+    margin-top: -600px;
+    margin-left: 10px;
+    margin-right: -50px;
+}
+#fila4A{
+    margin-top: -300px;
+    margin-left: -40px;
+    margin-right: 80px;
 }
 #linea1{
     width: 450px;
     height: 100px; 
     margin-left: -15px;
-    margin-bottom: 300px;
+    margin-bottom: 450px;
 }
 #linea2{
     width: 100px;
-    height: 285px; 
+    height: 450px; 
     margin-left: -60px;
     margin-top: -550px;
+}
+#linea3{
+    width: 450px;
+    height: 100px; 
+    margin-left: -15px;
+    margin-top: -725px;
 }
 
 #contenedor3{
