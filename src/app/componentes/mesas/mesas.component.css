@@ -133,6 +133,12 @@ h2{
     margin-left: -150px;
     margin-top: -1000px;
 }
+#linea6{
+    width: 100px;
+    height: 230px; 
+    margin-left: -100px;
+    margin-top: -355px;
+}
 #contenedor3{
     margin-left: -135px;
     
@@ -292,3 +298,42 @@ h2{
     margin-top: -225px;
  } 
  
+#barradelfondo{
+    margin-top: -160px;
+    margin-left: -520px;
+    width: 400px; 
+    height: 100px;   
+    position: absolute;
+}
+#mesa21{
+    margin-left: 160px;
+    margin-top: -240px;
+}
+#idmesa21{
+    margin-left: 165px;
+    margin-top: -95px;
+}
+#mesa22{
+    margin-left: -100px;
+    margin-top: -240px;
+}
+#idmesa22{
+    margin-left: -95px;
+    margin-top: -95px;
+}
+#mesa23{
+    margin-left: -175px;
+    margin-top: -240px;
+}
+#idmesa23{
+    margin-left: -170px;
+    margin-top: -95px;
+}
+#mesa24{
+    margin-left: -250px;
+    margin-top: -240px;
+}
+#idmesa24{
+    margin-left: -245px;
+    margin-top: -95px;
+}
