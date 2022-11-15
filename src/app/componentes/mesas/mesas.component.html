@@ -7,7 +7,7 @@
     <div>
         
         <img id="parrillaybarra" src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668219584/APP%20PARRILLA%20EL%20FOGON/parrilla_y_barra_kzmscj.png">
-        
+        <!--mesas 14 y 15-->
             <tr *ngFor="let Mesas1 of mesas1.slice(0,2)" class="d-inline p-2">
                 <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="fila1A" style="cursor: grab;"> <h6 class="posicionId" id="idfila1">{{Mesas1.numeroMesa}}</h6></td>
             </tr>
@@ -16,29 +16,80 @@
     </div>
     <div>
     <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664027112/APP%20PARRILLA%20EL%20FOGON/barra_separadora_iieqg8.png" id="linea1">
+    </div>
+    <div>
     <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664206592/APP%20PARRILLA%20EL%20FOGON/barra_vertical_abbmaz.png" id="linea2">
+    <!--mesas 18 y 21-->
     <tr *ngFor="let Mesas1 of mesas1.slice(2,4)" class="d-inline p-2">
         <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="fila2A" style="cursor: grab;"> <h6 class="posicionId" id="idfila2">{{Mesas1.numeroMesa}}</h6></td>
     </tr>
-    
-    <tr *ngFor="let Mesas1 of mesas1.slice(4,6)" class="d-inline p-2" id="contenedor3">
-        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="fila3A" style="cursor: grab;"> <h6 class="posicionId" id="idfila3">{{Mesas1.numeroMesa}}</h6></td>
+    <!--mesa 17 -->
+    <tr *ngFor="let Mesas1 of mesas1.slice(4,5)" class="d-inline p-2">
+        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa5" style="cursor: grab;"> <h6 class="posicionId" id="idmesa5">{{Mesas1.numeroMesa}}</h6></td>
     </tr>
-
-    <tr *ngFor="let Mesas1 of mesas1.slice(6,8)" class="d-inline p-2" id="contenedor4">
-        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="fila4A" style="cursor: grab;"> <h6 class="posicionId" id="idfila4">{{Mesas1.numeroMesa}}</h6></td>
+        <!--mesa 20 -->
+    <tr *ngFor="let Mesas1 of mesas1.slice(5,6)" class="d-inline p-2">
+        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa6" style="cursor: grab;"> <h6 class="posicionId" id="idmesa6">{{Mesas1.numeroMesa}}</h6></td>
     </tr>
-    <div>
-        <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664027112/APP%20PARRILLA%20EL%20FOGON/barra_separadora_iieqg8.png" id="linea3">
+<!--mesa 16 -->
+    <tr *ngFor="let Mesas1 of mesas1.slice(6,7)" class="d-inline p-2">
+        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa7" style="cursor: grab;"> <h6 class="posicionId" id="idmesa7">{{Mesas1.numeroMesa}}</h6></td>
+    </tr>
+    <!--mesa 19 -->
+    <tr *ngFor="let Mesas1 of mesas1.slice(7,8)" class="d-inline p-2">
+        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa8" style="cursor: grab;"> <h6 class="posicionId" id="idmesa8">{{Mesas1.numeroMesa}}</h6></td>
+    </tr>
+    <!--mesa 11 -->
         <tr *ngFor="let Mesas1 of mesas1.slice(8,9)" class="d-inline p-2" id="contenedor4">
-            <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="fila4A" style="cursor: grab;"> <h6 class="posicionId" id="idfila4">{{Mesas1.numeroMesa}}</h6></td>
+            <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa9" style="cursor: grab;"> <h6 class="posicionId" id="idmesa9">{{Mesas1.numeroMesa}}</h6></td>
         </tr>
-    </div>
-    <table>
-    <tr *ngFor="let Mesas1 of mesas1.slice(0,5)" class="d-inline p-2">
-        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" style="cursor: grab;"> <h6 class="posicionId">{{Mesas1.numeroMesa}}</h6></td>
+        <!--mesa 12 -->
+        <tr *ngFor="let Mesas1 of mesas1.slice(9,10)" class="d-inline p-2" id="contenedor4">
+            <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa10" style="cursor: grab;"> <h6 class="posicionId" id="idmesa10">{{Mesas1.numeroMesa}}</h6></td>
+        </tr>
+        <!--mesa 6 -->
+        <tr *ngFor="let Mesas1 of mesas1.slice(10,11)" class="d-inline p-2">
+            <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa11" style="cursor: grab;"> <h6 class="posicionId" id="idmesa11">{{Mesas1.numeroMesa}}</h6></td>
+        </tr>
+        <!--mesa 7 -->
+        <tr *ngFor="let Mesas1 of mesas1.slice(11,12)" class="d-inline p-2">
+            <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa12" style="cursor: grab;"> <h6 class="posicionId" id="idmesa12">{{Mesas1.numeroMesa}}</h6></td>
+        </tr>
+        <!--mesa 8 -->
+        <tr *ngFor="let Mesas1 of mesas1.slice(12,13)" class="d-inline p-2">
+            <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa13" style="cursor: grab;"> <h6 class="posicionId" id="idmesa13">{{Mesas1.numeroMesa}}</h6></td>
+        </tr>
+     <!--mesa 9 -->
+     <tr *ngFor="let Mesas1 of mesas1.slice(13,14)" class="d-inline p-2">
+        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa14" style="cursor: grab;"> <h6 class="posicionId" id="idmesa14">{{Mesas1.numeroMesa}}</h6></td>
     </tr>
-</table>
+    <!--mesa 10 -->
+    <tr *ngFor="let Mesas1 of mesas1.slice(14,15)" class="d-inline p-2">
+        <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa15" style="cursor: grab;"> <h6 class="posicionId" id="idmesa15">{{Mesas1.numeroMesa}}</h6></td>
+    </tr>
+    <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664027112/APP%20PARRILLA%20EL%20FOGON/barra_separadora_iieqg8.png" id="linea4">
+ <!--mesa 1 -->
+ <tr *ngFor="let Mesas1 of mesas1.slice(15,16)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa16" style="cursor: grab;"> <h6 class="posicionId" id="idmesa16">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<!--mesa 2-->
+<tr *ngFor="let Mesas1 of mesas1.slice(16,17)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa17" style="cursor: grab;"> <h6 class="posicionId" id="idmesa17">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<!--mesa 3-->
+<tr *ngFor="let Mesas1 of mesas1.slice(17,18)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa18" style="cursor: grab;"> <h6 class="posicionId" id="idmesa18">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<!--mesa 4-->
+<tr *ngFor="let Mesas1 of mesas1.slice(18,19)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa19" style="cursor: grab;"> <h6 class="posicionId" id="idmesa19">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<!--mesa 5-->
+<tr *ngFor="let Mesas1 of mesas1.slice(19,20)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa20" style="cursor: grab;"> <h6 class="posicionId" id="idmesa20">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664206592/APP%20PARRILLA%20EL%20FOGON/barra_vertical_abbmaz.png" id="linea5">
+
     
  </div>  
  <img class="d-inline p-2" src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664027112/APP%20PARRILLA%20EL%20FOGON/barra_separadora_iieqg8.png" width="500px">
