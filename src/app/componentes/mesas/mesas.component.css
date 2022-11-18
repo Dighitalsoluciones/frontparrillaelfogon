@@ -394,8 +394,44 @@ h2{
     margin-top: -420px;
 }
 #linea7{
-    width: 250px;
-    height: 100px; 
-    margin-left: -100px;
-    margin-top: -355px;
+    width: 330px;
+    height: 180px; 
+    margin-left: -435px;
+    margin-top: -1320px;
+}
+#linea8{
+    width: 100px;
+    height: 580px; 
+    margin-left: -70px;
+    margin-top: -680px;
+}
+#mesa32{
+    margin-left: -130px;
+    margin-top: -1200px;
+    transform:rotate(110deg);
+}
+#idmesa32{
+    margin-left: -130px;
+    margin-top: -595px;
+    
+}
+#mesa33{
+    margin-left: -130px;
+    margin-top: -1200px;
+    transform:rotate(110deg);
+}
+#idmesa33{
+    margin-left: -130px;
+    margin-top: -595px;
+    
+}
+#mesa34{
+    margin-left: -190px;
+    margin-top: -1200px;
+    transform:rotate(110deg);
+}
+#idmesa34{
+    margin-left: -190px;
+    margin-top: -595px;
+    
 }
