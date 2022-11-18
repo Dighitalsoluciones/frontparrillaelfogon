@@ -15,7 +15,7 @@ export class NuevamesaComponent implements OnInit {
     comanda: string = "vacio";
     cierre: string = "false";
     liquidada: string = "false";
-    imagen: string = '';
+    imagen: string = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
     numeroMesa: string = '';
     totalComanda = 0;
 
