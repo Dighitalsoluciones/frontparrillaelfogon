@@ -15,12 +15,12 @@ export class MesasComponent implements OnInit {
   InicioPosicion: string;
   PosicionesGuardadas = [];
   
-
+  isLogged = false;
 
   constructor(private sMesas1: Mesas1Service, private tokenService: TokenService) { }
 
   
-  isLogged = false;
+  
 
   ngOnInit(): void {
     this.InicioPosicion = "";
