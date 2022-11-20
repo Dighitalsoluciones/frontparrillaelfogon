@@ -98,11 +98,22 @@ TotalDeRec(){
   this.totalR = 0;
   this.recibos.forEach(recibos => {
   this.totalR += recibos.importe;
- 
-  
 });
+
 return this.totalR;
 }
+
+/* para sumar recibos y egresos
+TotalDeRec(){
+  this.totalR = 0;
+  this.recibos.forEach(recibos => {
+  this.totalR += recibos.importe;
+});
+this.ticket.forEach(ticket =>{
+  this.totalR += ticket.importe;
+})
+return this.totalR;
+} */
 
 /* SumarTotal : number = 0;
 

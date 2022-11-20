@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CajaComponent } from './componentes/caja/caja.component';
 import { EditarticketComponent } from './componentes/caja/editarticket.component';
+import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
 import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.component';
 import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
 import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'agregarcomanda/:id', component: ComandasmesasComponent},
   {path: 'caja', component: CajaComponent},
   {path: 'editarticket/:id', component: EditarticketComponent},
-  {path: 'vistaticket/:id', component: VistaimpresionComponent}
+  {path: 'vistaticket/:id', component: VistaimpresionComponent},
+  {path: 'nuevoegreso', component: NuevoegresoComponent}
   
 ];
 

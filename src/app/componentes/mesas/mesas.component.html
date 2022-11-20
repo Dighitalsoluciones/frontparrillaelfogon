@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="isLogged">
         <h2 style="text-align: center;">Distribucion de las mesas</h2>
         <div class="col-12">
             <div class="title">Plano</div>
@@ -185,10 +185,20 @@
 <tr *ngFor="let Mesas1 of mesas1.slice(42,43)" class="d-inline p-2">
     <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa43" style="cursor: grab;"> <h6 class="posicionId" id="idmesa43">{{Mesas1.numeroMesa}}</h6></td>
 </tr>
-<!--mesa 46-->
+<!--mesa 45-->
 <tr *ngFor="let Mesas1 of mesas1.slice(43,44)" class="d-inline p-2">
     <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa44" style="cursor: grab;"> <h6 class="posicionId" id="idmesa44">{{Mesas1.numeroMesa}}</h6></td>
 </tr>
+<!--mesa 46-->
+<tr *ngFor="let Mesas1 of mesas1.slice(44,45)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa45" style="cursor: grab;"> <h6 class="posicionId" id="idmesa45">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<!--mesa 47-->
+<tr *ngFor="let Mesas1 of mesas1.slice(45,46)" class="d-inline p-2">
+    <td><img [src]="[Mesas1.imagen]" routerLink="agregarcomanda/{{Mesas1.id}}" class="imgHor" id="mesa46" style="cursor: grab;"> <h6 class="posicionId" id="idmesa46">{{Mesas1.numeroMesa}}</h6></td>
+</tr>
+<img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668957880/APP%20PARRILLA%20EL%20FOGON/recuadroplanofino_fxrsen.png" id="recuadrofinal">
+
  </div>  
     </div>
         </div>
