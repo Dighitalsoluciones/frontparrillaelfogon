@@ -139,15 +139,42 @@
                                                 </button>
                                                                                             
                                             </td>
-                                                
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                <h3>Total en Caja {{TotalDeRec() | currency: '$'}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="card-body" *ngIf="isLogged">
+                            <div class="table-responsive">
+                                <h1 id="tituloTicket">Egresos de Hoy</h1>
+                                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>N° de Egreso</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Importe Total</th>
+                                            <th>Realiza Por</th>
+                                            <th>Observaciones</th>
                                             
-                                            
-                                           
-                                           
-                                          <!--  <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" </button>(click)="delete(Articulos.id)" *ngIf="isLogged" title="Eliminar"> -->
-                                           <!--    <i class="fas fa-trash-alt"></i></button></td> --> 
-                                          <!--  <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticulo/{{Articulos.id}}" title="Editar"> -->
-                                         <!--           <i class="far fa-edit"></i></button></td> -->
+                                        </tr>
+                                    </thead>
+                               
+                                    <tbody *ngFor="let mov of egresos">
+                                        <tr>
+                                            <td>{{mov.id}}</td>
+                                            <td>{{mov.fecha}}</td>
+                                            <td>{{mov.importe * -1 | currency: '$'}}</td>
+                                            <td>{{mov.realizadopor}}</td>
+                                            <td>{{mov.observacion}}</td>
+                                            <td>
+                                                <button class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="deleteEgreso(mov.id)" *ngIf="isLogged" title="Eliminar">
+                                                <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                                                            
+                                            </td>
                                         </tr>
                                         
                                     </tbody>

@@ -115,6 +115,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Número de Mesa</th>
+                                            <th>Comensales</th>
                                             <th>Imagen</th>
                                             <th>Eliminar</th>
                                             <th>Editar</th>
@@ -126,6 +127,7 @@
                                         <tr>
                                             <td>{{Mesas.id}}</td>
                                             <td>{{Mesas.numeroMesa}}</td>
+                                            <td>{{Mesas.comensales}}</td>
                                             <td><img id="imgArticulo" [src]="[Mesas.imagen]"></td>
                                             <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" (click)="delete(Mesas.id)" *ngIf="isLogged" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i></button></td>

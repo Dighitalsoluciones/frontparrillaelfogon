@@ -36,6 +36,8 @@ role="dialog"
                 <div class="card text-center">
                     <div class="card-header">
                         <h3>MESA N°: {{Mesas.numeroMesa}}</h3>
+                        <h2>Cupo de comensales en esta mesa: {{Mesas.comensales}}</h2>
+
                     </div>
                     <ng-template [ngIf]="verBoton()">
                     <div class="card-body">
@@ -247,6 +249,8 @@ role="dialog"
         src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668959703/APP%20PARRILLA%20EL%20FOGON/logoticket_m09xl7.png"
         alt="Logotipo">
     <p class="centrado">Comanda de Mesa N°{{Mesas.numeroMesa}}
+      
+
         <br>{{FechaTicket}}
         
         

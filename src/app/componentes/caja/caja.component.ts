@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Egresos } from 'src/app/Model/egresos';
 import { Recibos } from 'src/app/Model/recibos';
 import { Ticket } from 'src/app/Model/ticket';
+import { EgresosService } from 'src/app/Service/egresos.service';
 import { RecibosService } from 'src/app/Service/recibos.service';
 import { TicketService } from 'src/app/Service/ticket.service';
 import { TokenService } from 'src/app/Service/token.service';
@@ -15,6 +17,7 @@ export class CajaComponent implements OnInit {
   
   ticket: Ticket[] = [];
   recibos: Recibos[]= [];
+  egresos: Egresos[]= [];
 
   totalR: number = 0;
   VerTicketsGenerados = "none";
@@ -24,7 +27,7 @@ export class CajaComponent implements OnInit {
   }
 
  
-  constructor(private sTicket: TicketService, private sRecibos: RecibosService ,private router: Router, private activatedRouter: ActivatedRoute, private tokenService: TokenService) { }
+  constructor(private sTicket: TicketService, private sEgresos: EgresosService ,private sRecibos: RecibosService ,private router: Router, private activatedRouter: ActivatedRoute, private tokenService: TokenService) { }
 
   isLogged = false;
 
@@ -38,6 +41,7 @@ export class CajaComponent implements OnInit {
   ngOnInit(): void {
     this.TotalDeRec();
     this.traerTickets();
+    this.traerEgresos();
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -48,6 +52,9 @@ export class CajaComponent implements OnInit {
 
   traerTickets(): void{
     this.sTicket.lista().subscribe(data => {this.ticket = data;})
+  }
+  traerEgresos(): void{
+    this.sEgresos.lista().subscribe(data => {this.egresos = data;})
   }
   
   traerRecibos(): void{
@@ -77,6 +84,17 @@ export class CajaComponent implements OnInit {
           this.traerRecibos();
         }, err =>{
           alert("No se pudo borrar el recibo");
+        }
+      )
+    }
+  }
+  deleteEgreso(id?: number){
+    if(id != undefined){
+      this.sEgresos.delete(id).subscribe(
+        data =>{alert("✅ Egreso borrado correctamente");
+          this.traerEgresos();
+        }, err =>{
+          alert("No se pudo borrar el Egreso");
         }
       )
     }

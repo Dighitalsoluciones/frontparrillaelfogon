@@ -18,6 +18,7 @@ export class NuevamesaComponent implements OnInit {
     imagen: string = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
     numeroMesa: string = '';
     totalComanda = 0;
+    comensales = 0;
 
   constructor(private sMesas1: Mesas1Service, private router: Router) { }
 
@@ -25,7 +26,7 @@ export class NuevamesaComponent implements OnInit {
   }
 
   onCreate(): void{
-    const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa, this.totalComanda);
+    const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa, this.totalComanda, this.comensales);
     this.sMesas1.save(mesas).subscribe(
       data=>{alert("✅ Mesa creada correctamente");
       this.router.navigate(['menumesas']);

@@ -7,8 +7,9 @@ export class Mesas1 {
     imagen: string;
     numeroMesa: string;
     totalComanda: number;
+    comensales: number;
     
-    constructor(estado: string, comanda: string,  cierre: string, liquidada: string, imagen: string, numeroMesa: string, totalComanda: number){
+    constructor(estado: string, comanda: string,  cierre: string, liquidada: string, imagen: string, numeroMesa: string, totalComanda: number, comensales: number){
         this.estado = estado;
         this.comanda = comanda;
         this.cierre = cierre;
@@ -16,5 +17,6 @@ export class Mesas1 {
         this.imagen = imagen;
         this.numeroMesa = numeroMesa;
         this.totalComanda = totalComanda;
+        this.comensales = comensales;
     }
 }
