@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Egresos } from 'src/app/Model/egresos';
@@ -20,7 +21,10 @@ export class CajaComponent implements OnInit {
   egresos: Egresos[]= [];
 
   totalR: number = 0;
+  totalE: number = 0;
+  totalG: number = 0;
   VerTicketsGenerados = "none";
+  recibosDeHoy = [];
 
   MostrarTickets(){
     this.VerTicketsGenerados = "block";
@@ -40,8 +44,12 @@ export class CajaComponent implements OnInit {
 
   ngOnInit(): void {
     this.TotalDeRec();
+    this.TotalDeEgresos();
+    this.TotalDeCaja();
     this.traerTickets();
     this.traerEgresos();
+    this.FiltrarHoy();
+    
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -120,18 +128,31 @@ TotalDeRec(){
 
 return this.totalR;
 }
-
-/* para sumar recibos y egresos
-TotalDeRec(){
-  this.totalR = 0;
-  this.recibos.forEach(recibos => {
-  this.totalR += recibos.importe;
+TotalDeEgresos(){
+  this.totalE = 0;
+  this.egresos.forEach(egresos => {
+  this.totalE += egresos.importe;
 });
-this.ticket.forEach(ticket =>{
-  this.totalR += ticket.importe;
+
+return this.totalE;
+}
+
+
+TotalDeCaja(){
+  this.totalG = 0;
+  this.recibos.forEach(recibos => {
+  this.totalG += recibos.importe;
+});
+this.egresos.forEach(egresos =>{
+  this.totalG -= egresos.importe;
 })
-return this.totalR;
-} */
+return this.totalG;
+}
+
+FiltrarHoy(){
+  this.recibosDeHoy = this.egresos.filter(egresos => egresos.mostrar === "true");
+  return this.recibosDeHoy;
+}
 
 /* SumarTotal : number = 0;
 

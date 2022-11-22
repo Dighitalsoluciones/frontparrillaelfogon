@@ -114,7 +114,7 @@
                         
                         <div class="card-body" *ngIf="isLogged">
                             <div class="table-responsive">
-                                <h1 id="tituloTicket">Recibos de Hoy</h1>
+                                <h1 id="tituloTicket2">Recibos de Hoy</h1>
                                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -156,9 +156,10 @@
                                             <th>N° de Egreso</th>
                                             <th>Fecha y Hora</th>
                                             <th>Importe Total</th>
-                                            <th>Realiza Por</th>
+                                            <th>Tipo de Gasto</th>
+                                            <th>Realizado Por</th>
                                             <th>Observaciones</th>
-                                            
+                                            <th>Acciones Disponibles</th>
                                         </tr>
                                     </thead>
                                
@@ -167,6 +168,7 @@
                                             <td>{{mov.id}}</td>
                                             <td>{{mov.fecha}}</td>
                                             <td>{{mov.importe * -1 | currency: '$'}}</td>
+                                            <td>{{mov.tipodegasto}}</td>
                                             <td>{{mov.realizadopor}}</td>
                                             <td>{{mov.observacion}}</td>
                                             <td>
@@ -179,13 +181,16 @@
                                         
                                     </tbody>
                                 </table>
-                                <h3>Total en Caja {{TotalDeRec() | currency: '$'}}</h3>
+                                <h3>Total de Egresos {{TotalDeEgresos() * -1| currency: '$'}}</h3>
+                                <button (click)="FiltrarHoy()">Ver Hoy</button>
                             </div>
+                            <h2 id="diferencia">Diferencia {{TotalDeCaja() | currency: '$'}}</h2>
+
                         </div>
 
                         <div class="card-body" [ngStyle]="{'display':VerTicketsGenerados}">
                             <div class="table-responsive">
-                                <h1 id="tituloTicket">Tickets Generados</h1>
+                                <h2 id="tituloTicket3">Tickets Generados</h2>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>

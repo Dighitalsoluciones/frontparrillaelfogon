@@ -6,4 +6,23 @@
     text-align: center;
     color: red;
     font-family: impact;
+    background: tomato;
+}
+#tituloTicket2{
+    text-align: center;
+    color: darkgreen;
+    font-family: impact;
+    background: limegreen;
+}
+#diferencia{
+    text-align: center;
+    color: blue;
+    font-family: impact;
+    background: #889ccf;
+}
+#tituloTicket3{
+    text-align: center;
+    color: chocolate;
+    font-family: impact;
+    background: yellow;
 }
