@@ -55,7 +55,7 @@
                         </button>
                     </form>
 
-                    <!-- <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" (click)="MostrarTickets()">VER TICKETS GENERADOS</button> -->
+                    <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" (click)="MostrarDatosHoy();MostrarTickets()">VER MOVIMIENTOS DE HOY</button>
                     <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" routerLink="/nuevoegreso">NUEVO EGRESO</button>
 
                     <!-- Topbar Search 
@@ -104,7 +104,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" [ngStyle]="{'display':VerTicketsGenerados}">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -114,7 +114,7 @@
                         
                         <div class="card-body" *ngIf="isLogged">
                             <div class="table-responsive">
-                                <h1 id="tituloTicket2">Recibos Generados</h1>
+                                <h1 id="tituloTicket2">Recibos de Hoy</h1>
                                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -127,7 +127,7 @@
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let mov of recibos">
+                                    <tbody *ngFor="let mov of recibosDeHoy">
                                         <tr>
                                             <td>{{mov.id}}</td>
                                             <td>{{mov.fecha}}</td>
@@ -143,13 +143,13 @@
                                         
                                     </tbody>
                                 </table>
-                                <h3>Total Cobrado {{TotalDeRec() | currency: '$'}}</h3>
+                                <h3>Total en Caja {{TotalDeRec() | currency: '$'}}</h3>
                             </div>
                         </div>
 
                         <div class="card-body" *ngIf="isLogged">
                             <div class="table-responsive">
-                                <h1 id="tituloTicket">Egresos Generados</h1>
+                                <h1 id="tituloTicket">Egresos de Hoy</h1>
                                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -163,7 +163,7 @@
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let mov of egresos">
+                                    <tbody *ngFor="let mov of egresosDeHoy">
                                         <tr>
                                             <td>{{mov.id}}</td>
                                             <td>{{mov.fecha}}</td>
@@ -181,7 +181,7 @@
                                         
                                     </tbody>
                                 </table>
-                                <h3>Total Egresado {{TotalDeEgresos() * -1| currency: '$'}}</h3>
+                                <h3>Total de Egresos {{TotalDeEgresos() * -1| currency: '$'}}</h3>
                                 
                             </div>
                             <h2 id="diferencia">Diferencia {{TotalDeCaja() | currency: '$'}}</h2>
@@ -204,7 +204,7 @@
                                         </tr>
                                     </thead>
                                
-                                    <tbody *ngFor="let movimientos of ticket">
+                                    <tbody *ngFor="let movimientos of ticketsDeHoy">
                                         <tr>
                                             <td>{{movimientos.id}}</td>
                                             <td>{{movimientos.fecha}}</td>
@@ -235,7 +235,6 @@
                                         
                                     </tbody>
                                 </table>
-                                <h3>Total Facturado {{TotalFacturado() | currency: '$'}}</h3>
                             </div>
                         </div>
                     </div>
@@ -262,10 +261,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+    
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

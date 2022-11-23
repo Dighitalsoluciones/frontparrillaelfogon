@@ -22,6 +22,7 @@ import { EditarticketComponent } from './componentes/caja/editarticket.component
 import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
+import { CajadiariaComponent } from './componentes/cajadiaria/cajadiaria.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
     EditarticketComponent,
     VistaimpresionComponent,
     NuevoegresoComponent,
+    CajadiariaComponent,
     
    
     

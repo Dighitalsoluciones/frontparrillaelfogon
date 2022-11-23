@@ -27,10 +27,10 @@ export class NuevoegresoComponent implements OnInit {
     const egresos = new Egresos(this.fecha, this.importe, this.tipodegasto, this.realizadopor, this.observacion, this.mostrar);
     this.sEgresos.save(egresos).subscribe(
       data=>{alert("✅ Egresos realizado correctamente");
-      this.router.navigate(['caja']);
+      history.go(-1);
     }, err =>{
       alert("⛔Fallo en la creación del egreso, debes completar todos los campos⛔");
-      this.router.navigate(['caja'])
+      history.go(-1)
     }
     )
   }

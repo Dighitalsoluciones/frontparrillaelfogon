@@ -10,12 +10,11 @@ import { TicketService } from 'src/app/Service/ticket.service';
 import { TokenService } from 'src/app/Service/token.service';
 
 @Component({
-  selector: 'app-caja',
-  templateUrl: './caja.component.html',
-  styleUrls: ['./caja.component.css']
+  selector: 'app-cajadiaria',
+  templateUrl: './cajadiaria.component.html',
+  styleUrls: ['./cajadiaria.component.css']
 })
-export class CajaComponent implements OnInit {
-  
+export class CajadiariaComponent implements OnInit {
   ticket: Ticket[] = [];
   recibos: Recibos[]= [];
   egresos: Egresos[]= [];
@@ -27,6 +26,8 @@ export class CajaComponent implements OnInit {
 
   VerTicketsGenerados = "none";
   recibosDeHoy = [];
+  egresosDeHoy = [];
+  ticketsDeHoy = [];
 
   MostrarTickets(){
     this.VerTicketsGenerados = "block";
@@ -45,12 +46,12 @@ export class CajaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.FiltrarHoyEgresos();
     this.TotalDeRec();
     this.TotalDeEgresos();
     this.TotalDeCaja();
     this.traerTickets();
     this.traerEgresos();
-    this.FiltrarHoy();
     this.TotalFacturado();
     
     if(this.tokenService.getToken()){
@@ -111,21 +112,34 @@ export class CajaComponent implements OnInit {
     }
   }
 
+  FiltrarHoyEgresos(){
+    this.egresosDeHoy = this.egresos.filter(egresos => egresos.fecha.substring(0,10) === formatDate(Date.now(), 'dd/MM/yyyy', 'en-US'));
+    return this.egresosDeHoy;
+  }
+  
+  FiltrarHoyRecibos(){
+    this.recibosDeHoy = this.recibos.filter(recibos => recibos.fecha.substring(0,10) === formatDate(Date.now(), 'dd/MM/yyyy', 'en-US'));
+    return this.recibosDeHoy;
+  }
+  
+  FiltrarHoyTickets(){
+    this.ticketsDeHoy = this.ticket.filter(tickets => tickets.fecha.substring(0,10) === formatDate(Date.now(), 'dd/MM/yyyy', 'en-US'));
+    return this.ticketsDeHoy;
+  }
+
+  MostrarDatosHoy(){
+    this.FiltrarHoyRecibos();
+    this.FiltrarHoyEgresos();
+    this.FiltrarHoyTickets();
+  }
+
   totalCaja: number = 0;
 
-  TotalEnCaja(){
-    this.totalCaja = 0;
-    this.recibos.forEach(Recibos => {
-    this.totalCaja += Recibos.importe;
-    console.log(Recibos.importe);
-    
-  });
-  return this.totalCaja;
-}
+
 
 TotalDeRec(){
   this.totalR = 0;
-  this.recibos.forEach(recibos => {
+  this.recibosDeHoy.forEach(recibos => {
   this.totalR += recibos.importe;
 });
 
@@ -133,7 +147,7 @@ return this.totalR;
 }
 TotalDeEgresos(){
   this.totalE = 0;
-  this.egresos.forEach(egresos => {
+  this.egresosDeHoy.forEach(egresos => {
   this.totalE += egresos.importe;
 });
 
@@ -142,35 +156,23 @@ return this.totalE;
 
 TotalFacturado(){
   this.totalT = 0;
-  this.ticket.forEach(ticket => {
+  this.ticketsDeHoy.forEach(ticket => {
   this.totalT += ticket.importe;
 });
 
 return this.totalT;
 }
 
-
 TotalDeCaja(){
   this.totalG = 0;
-  this.recibos.forEach(recibos => {
+  this.recibosDeHoy.forEach(recibos => {
   this.totalG += recibos.importe;
 });
-this.egresos.forEach(egresos =>{
+this.egresosDeHoy.forEach(egresos =>{
   this.totalG -= egresos.importe;
 })
 return this.totalG;
 }
-
-FiltrarHoy(){
-  this.recibosDeHoy = this.egresos.filter(egresos => egresos.fecha.substring(0,10) === formatDate(Date.now(), 'dd/MM/yyyy', 'en-US'));
-  return this.recibosDeHoy;
-}
-
-/* SumarTotal : number = 0;
-
-SumaTotalRecibos(){
- this.SumarTotal = this.recibos.map(recibos => recibos.importe).reduce((prev, curr) => prev + curr, 0);
- console.log(this.SumarTotal);} */
 
 
 
