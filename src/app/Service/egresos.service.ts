@@ -7,7 +7,7 @@ import { Egresos } from '../Model/egresos';
   providedIn: 'root'
 })
 export class EgresosService {
-  egresosURL = 'http://localhost:8080/egresos/'
+  egresosURL = 'https://bkparrillaelfogon.herokuapp.com/egresos/'
 
   constructor(private httpClient: HttpClient) { }
 

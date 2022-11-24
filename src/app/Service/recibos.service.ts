@@ -7,7 +7,7 @@ import { Recibos } from '../Model/recibos';
   providedIn: 'root'
 })
 export class RecibosService {
-  recibosURL = 'http://localhost:8080/recibos/'
+  recibosURL = 'https://bkparrillaelfogon.herokuapp.com/recibos/'
 
   constructor(private httpClient: HttpClient) { }
 
