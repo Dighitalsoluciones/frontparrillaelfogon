@@ -23,6 +23,7 @@ import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.compo
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
 import { CajadiariaComponent } from './componentes/cajadiaria/cajadiaria.component';
+import { Mesas2Component } from './componentes/mesas/mesas2.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { CajadiariaComponent } from './componentes/cajadiaria/cajadiaria.compone
     VistaimpresionComponent,
     NuevoegresoComponent,
     CajadiariaComponent,
+    Mesas2Component,
     
    
     
