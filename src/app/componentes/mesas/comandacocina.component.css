@@ -1,0 +1,57 @@
+/* El Css del Ticket */
+.vistaimprimir {
+    font-size: 14px;
+    font-family: Arial;
+}
+
+
+#tableticket {
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+td.producto,
+th.producto {
+    width: 130px;
+    max-width: 130px;
+}
+
+td.cantidad,
+th.cantidad {
+    width: 45px;
+    max-width: 45px;
+    word-break: break-all;
+}
+
+td.precio,
+th.precio {
+    width: 70px;
+    max-width: 70px;
+    word-break: break-all;
+}
+
+.centrado {
+    text-align: center;
+    align-content: center;
+}
+
+.ticket {
+    width: 220px;
+    max-width: 220px;
+}
+
+img {
+    max-width: inherit;
+    width: inherit;
+}
+
+@media print{
+    .oculto-impresion, .oculto-impresion *{
+      display: none !important;
+    }
+  }
+
+.btn-espacio{
+    margin-top: 10px;
+    margin-left: 5px;
+}

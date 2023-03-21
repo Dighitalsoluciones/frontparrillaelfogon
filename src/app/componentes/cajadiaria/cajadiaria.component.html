@@ -4,7 +4,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" [ngStyle]="{'display':VistaNormal}">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -57,7 +57,7 @@
 
                     <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" (click)="MostrarDatosHoy();MostrarTickets()">VER MOVIMIENTOS DE HOY</button>
                     <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" routerLink="/nuevoegreso">NUEVO EGRESO</button>
-
+                    <button class="btn btn-outline-dark rounded float-start" style="margin-left: 10px" (click)="ResumenZ()">CIERRE DIARIO</button>
                     <!-- Topbar Search 
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -121,6 +121,7 @@
                                             <th>N° de Recibo</th>
                                             <th>Fecha y Hora</th>
                                             <th>Importe Total</th>
+                                            <th>Forma de Pago</th>
                                             <th>Mesa Cerrada</th>
                                             <th>Acciones Disponibles</th>
                                             
@@ -132,11 +133,14 @@
                                             <td>{{mov.id}}</td>
                                             <td>{{mov.fecha}}</td>
                                             <td>{{mov.importe | currency: '$'}}</td>
+                                            <td>{{mov.formadepago}}</td>
                                             <td>{{mov.numerodeMesa}}</td>
-                                            <td>
+                                            <td style="display: flex ;">
                                                 <button class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="deleteRec(mov.id)" *ngIf="isLogged" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                                 </button>
+                                                <button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/formadepago/{{mov.id}}" title="Editar Forma de Pago">
+                                                    <i class="fa-solid fa-money-bill-transfer"></i></button>
                                                                                             
                                             </td>
                                         </tr>
@@ -302,3 +306,73 @@
 
 </body>
 
+<!--Impresion de cierre Z-->
+<div class="vistaimprimir" [ngStyle]="{'display':VistaCierreZ}">
+  <div class="ticket">
+    <p class="centrado">RESUMEN DE CAJA</p>
+    <p class="precio centrado">---------------------------------------</p>
+    <p class="centrado">FECHA Y HORA DE EMISION</p>
+        <p class="centrado">{{fecha}}</p> 
+        <p class="centrado">INGRESOS</p>   
+    <table class="centrado" id="tableticket">
+        <thead class="centrado">
+            <tr>
+                <th class="cantidad centrado">ME N°</th>
+                <th class="producto">IMPORTE</th>
+                <th class="precio">F.P.</th> 
+                
+            </tr>
+        </thead>
+        <tbody class="centrado" *ngFor="let mov of recibosDeHoy">
+            <tr>
+                <td class="cantidad centrado">{{mov.numerodeMesa}}</td>
+                <td class="producto">{{mov.importe | currency: '$'}}</td>
+                <td class="precio">{{mov.formadepago}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <p class="precio centrado">---------------------------------------</p>
+    <p class="centrado">EGRESOS</p>   
+    <table class="centrado" id="tableticket">
+        <thead class="centrado">
+            <tr>
+                <th class="cantidad centrado">EGR N°</th>
+                <th class="producto">IMPORTE</th>
+                
+            </tr>
+        </thead>
+        <tbody class="centrado" *ngFor="let mov of egresosDeHoy">
+            <tr>
+                <td class="cantidad centrado">{{mov.id}}</td>
+                <td class="producto">{{mov.importe * -1 | currency: '$'}}</td>
+                
+            </tr>
+            
+        </tbody>
+        
+                 
+    </table>
+    <p class="precio centrado">---------------------------------------</p>
+    <p class="centrado">TOTALES:
+        <br>TOTAL EFECTIVO: {{TotalDeRec() | currency: '$'}} 
+        <br>TOTAL MP: {{TotalDeRecMP() | currency: '$'}}
+        <br>SUBTOTAL GENERAL: {{TotalDeRec() + TotalDeRecMP() | currency: '$'}}
+        <br>TOTAL EGRESOS: {{TotalDeEgresos() *-1 | currency: '$'}}</p>
+        <p class="precio centrado">===================================</p>
+        <p class="precio centrado">TOTAL GENERAL</p>
+        <p class="precio centrado">===================================</p>
+        <p class="precio centrado">{{TotalDeRec() + TotalDeRecMP() - TotalDeEgresos() | currency: '$'}}</p>
+        <p class="precio centrado">===================================</p>
+</div>
+
+<div>
+    <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" style="margin-bottom: 5px;" (click)="MostrarDatosHoy();MostrarTickets()">CARGAR DATOS</button>
+    </div>
+<div>
+<button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" style="margin-bottom: 5px;" (click)="ImprimirResumen()">IMPRIMIR</button>
+</div>
+<div>
+<button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" routerLink="">VOLVER</button>
+</div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container fondoEdit">
+    <div class="row" id="textosColor">
+        <div>
+            <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+
+
+           
+                <div class="form-group" style="margin-top: 15px; margin-bottom: 10px;">
+                    <label for="formadepago"> FORMA DE PAGO</label>
+                    <select name="formadepago" style="margin-left: 10px;" [(ngModel)]="recibos.formadepago">
+                        <option [value]="item" *ngFor="let item of formadepago">{{item}}</option>
+                        </select>
+                </div>
+               
+                
+                
+                
+                <button class="btn btn-success" id="botonAgregar">
+                    ACTUALIZAR FORMA DE PAGO
+                </button>
+                <button class="btn btn-danger" id="botonAgregar" (click)="cancelar()">
+                    CANCELAR
+                </button>
+                
+            </form>
+        </div>
+    </div>
+</div>

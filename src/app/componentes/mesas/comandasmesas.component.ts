@@ -17,14 +17,17 @@ import { TicketService } from 'src/app/Service/ticket.service';
   styleUrls: ['./comandasmesas.component.css']
 })
 export class ComandasmesasComponent implements OnInit, OnChanges {
- 
-   
+ /*agregado del spinner loading y cargado*/
+  loading = true;
+  cargado = false; 
+
   Mesas : Mesas1 = null;
   total: number = 0;
   producto: Articulos[] = [];
   Ticket: Ticket = null;
 
- 
+  TicketCocina = "none";
+
   verabrirdespuesdelcierre = "true";
 
   displayStyle = "none";
@@ -44,6 +47,14 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   cerrar = false;
 
   condicionIf = false;
+
+  comandaCocina(){
+    this.guardarCambios();
+    this.guardaYcontinua();
+    this.TicketCocina = "block";
+    this.VistaNormal = "none";
+    this.DevolverLista();
+  }
 
   openPopup() {
     this.displayStyle = "block";
@@ -74,16 +85,17 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   }
 
   MostrarVistaImpresion(){
+    this.guardarCambios();
+    this.guardaYcontinua();
     
     this.verSoloImpresion = "block";
     this.DevolverLista();
     this.VistaNormal = "none";
+    this.Mesas.impresion = "true";
+    this.guardaYcontinua2();
     this.NuevoTicket();
-
     
   }
-
- 
 
   DesapareceBoton = 0;
   
@@ -103,6 +115,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private sRecibos: RecibosService, private activatedRouter: ActivatedRoute, 
     private router: Router) {
     }
+    filtrarArticulos = [];
 
     public getInputValue(inputValue:string){
     console.log(inputValue);
@@ -114,7 +127,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
 
     ngOnInit(): void {
-      
+      /*agregado del spinner funcion de setTimeout 131 a 134*/ 
+      setTimeout(() => {
+      this.loading = false;
+      this.cargado = true;
+    }, 1500);
+  
     
       this.traelo = [];
       this.descomprimir = [];
@@ -168,6 +186,15 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
     templateRendirMesa(): any{
       if(this.Mesas.liquidada === "true"){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+/* Agregado 6/12/22 */
+    templateImprimir(): any{
+      if(this.Mesas.impresion === "false"){
         return true;
       }else{
         return false;
@@ -313,7 +340,7 @@ console.log(localStorage.getItem('car'))
   observacion: string = '';
   fecha: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
   numerodeMesa: string = '';
-  formadepago: string = '';
+  formadepago: string = 'EFECTIV';
 
   GrabarValoresTicketNuevo(){
     this.Ticket.listadoArticulos = this.Mesas.comanda;
@@ -326,20 +353,24 @@ console.log(localStorage.getItem('car'))
   numeroTicket: number = 0;
   fechaTicket: string = '';
 
-    NuevoTicket(): void{
-      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago);
-      this.sTicket.save(ticket).subscribe(
-        data=>{alert("✅ Ticket creado correctamente");
-      }, err =>{
-        alert("⛔Fallo en la creación del ticket⛔");
-        this.router.navigate(['menuarticulos'])
-      }
-      )
-      this.GrabarValoresTicketNuevo();
-      this.numeroTicket = ticket.id;
-      this.fechaTicket = ticket.fecha;
- 
+  NuevoTicket(): void{
+    if (this.Mesas.totalComanda != 0){
+    const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago);
+    this.sTicket.save(ticket).subscribe(
+      data=>{alert("✅ Ticket creado correctamente");
+    }, err =>{
+      alert("⛔Fallo en la creación del ticket⛔");
+      this.router.navigate(['menuarticulos'])
     }
+    )
+    this.GrabarValoresTicketNuevo();
+    this.numeroTicket = ticket.id;
+    this.fechaTicket = ticket.fecha;
+  }else{
+    this.cancelar();
+  }
+
+  }
   
     
 
@@ -347,7 +378,7 @@ console.log(localStorage.getItem('car'))
     onUpdate(): void{
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.update(id, this.Mesas).subscribe(
-        data => {alert("✅ Mesa Actualizada");
+        data => {;
           this.router.navigate(['']);
         }, err =>{
           alert("⛔ Error al modificar la mesa ⛔");
@@ -373,7 +404,20 @@ console.log(localStorage.getItem('car'))
     guardaYcontinua(): void{
       const id = this.activatedRouter.snapshot.params['id'];
       this.sMesas.update(id, this.Mesas).subscribe(
-        data => {alert("✅ Mesa modificada");
+        data => {;
+          
+        }, err =>{
+          alert("⛔ Error al modificar la mesa ⛔");
+          
+        }
+      )
+      
+    }
+
+    guardaYcontinua2(): void{
+      const id = this.activatedRouter.snapshot.params['id'];
+      this.sMesas.update(id, this.Mesas).subscribe(
+        data => {;
           
         }, err =>{
           alert("⛔ Error al modificar la mesa ⛔");
@@ -404,9 +448,12 @@ console.log(localStorage.getItem('car'))
       this.Mesas.totalComanda = 0;
       this.traelo = [];
       this.Mesas.comanda = "";
+      this.Mesas.impresion = "false";
     } 
 
     cerrarMesa(){
+      this.verComanda = "none";
+      this.guardaYcontinua();
       
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre = "false";
@@ -415,6 +462,7 @@ console.log(localStorage.getItem('car'))
       this.Mesas.liquidada = "true";
       this.nomostrardespuesdelcierre();
       this.guardaYcontinua();
+      this.DevolverLista();
     } 
     
     //para crear recibos
@@ -422,14 +470,20 @@ corresTicket: number = 0;
 
 
 NuevoRecibo(): void{
+  if (this.Mesas.totalComanda != 0){
   const recibos = new Recibos(this.fecha, this.corresTicket, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago);
   this.sRecibos.save(recibos).subscribe(
     data=>{alert("✅ Recibo generado correctamente");
+    this.Mesas.impresion = "true";
   }, err =>{
     alert("⛔Fallo en la creación del recibo⛔");
     this.router.navigate(['caja'])
   }
-  )}
+  )}else{
+    this.rendirDineroMesa();
+    this.cancelar();
+  }
+}
 
 
     rendirDineroMesa(){
@@ -441,6 +495,10 @@ NuevoRecibo(): void{
       this.NuevoRecibo();
       this.Mesas.totalComanda = 0;
       this.onUpdate();
+      this.Mesas.impresion = "false";
+      this.onUpdate();
+      this.router.navigate(['']);
+      alert("Presiona Enter para continuar");
     }
     
     TotalComanda(){
@@ -464,9 +522,17 @@ NuevoRecibo(): void{
 FechaTicket: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
 
 ImprimirTicket(){
+  this.Mesas.impresion = "true";
+  this.guardaYcontinua2();
+  window.print();
+}
+ImprimirCocina(){
+  this.guardaYcontinua2();
   window.print();
 }
 
-
+volverAtras(){
+  location.reload();
+}
 
 }

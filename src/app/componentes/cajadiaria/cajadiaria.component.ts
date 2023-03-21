@@ -23,16 +23,25 @@ export class CajadiariaComponent implements OnInit {
   totalE: number = 0;
   totalG: number = 0;
   totalT: number = 0;
+  totalRMP: number = 0;
 
   VerTicketsGenerados = "none";
   recibosDeHoy = [];
   egresosDeHoy = [];
   ticketsDeHoy = [];
+  recibosDeHoyMP = [];
+
+  VistaCierreZ = "none";
+  VistaNormal = "block";
 
   MostrarTickets(){
     this.VerTicketsGenerados = "block";
   }
 
+  ResumenZ(){
+    this.VistaCierreZ = "block";
+    this.VistaNormal = "none";
+  }
  
   constructor(private sTicket: TicketService, private sEgresos: EgresosService ,private sRecibos: RecibosService ,private router: Router, private activatedRouter: ActivatedRoute, private tokenService: TokenService) { }
 
@@ -48,6 +57,7 @@ export class CajadiariaComponent implements OnInit {
   ngOnInit(): void {
     this.FiltrarHoyEgresos();
     this.TotalDeRec();
+    this.TotalDeRecMP;
     this.TotalDeEgresos();
     this.TotalDeCaja();
     this.traerTickets();
@@ -62,6 +72,8 @@ export class CajadiariaComponent implements OnInit {
     this.traerRecibos();
   }
 
+  fecha: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
+  
   traerTickets(): void{
     this.sTicket.lista().subscribe(data => {this.ticket = data;})
   }
@@ -74,7 +86,7 @@ export class CajadiariaComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['caja']);
+    this.router.navigate(['cajadiaria']);
   }
 
   delete(id?: number){
@@ -131,6 +143,7 @@ export class CajadiariaComponent implements OnInit {
     this.FiltrarHoyRecibos();
     this.FiltrarHoyEgresos();
     this.FiltrarHoyTickets();
+    this.FiltrarHoyRecibosMP();
   }
 
   totalCaja: number = 0;
@@ -174,6 +187,21 @@ this.egresosDeHoy.forEach(egresos =>{
 return this.totalG;
 }
 
+ImprimirResumen(){
+  window.print();
+}
 
+FiltrarHoyRecibosMP(){
+  this.recibosDeHoyMP = this.recibosDeHoy.filter(recibos => recibos.formadepago === "MP");
+  return this.recibosDeHoyMP;
+}
+
+TotalDeRecMP(){
+  this.totalRMP = 0;
+  this.recibosDeHoyMP.forEach(recibos => {
+  this.totalRMP += recibos.importe;
+});
+  return this.totalRMP;
+}
 
 }

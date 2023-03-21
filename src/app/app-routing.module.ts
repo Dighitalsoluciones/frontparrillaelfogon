@@ -5,9 +5,11 @@ import { EditarticketComponent } from './componentes/caja/editarticket.component
 import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
 import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.component';
 import { CajadiariaComponent } from './componentes/cajadiaria/cajadiaria.component';
+import { CajadiariaeditarComponent } from './componentes/cajadiaria/cajadiariaeditar.component';
 import { EditarproductoComponent } from './componentes/menuproductos/editarproducto.component';
 import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
 import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
+import { ComandacocinaComponent } from './componentes/mesas/comandacocina.component';
 import { ComandasmesasComponent } from './componentes/mesas/comandasmesas.component';
 import { EditarmesasComponent } from './componentes/mesas/editarmesas.component';
 import { MenumesasComponent } from './componentes/mesas/menumesas.component';
@@ -29,7 +31,9 @@ const routes: Routes = [
   {path: 'editarticket/:id', component: EditarticketComponent},
   {path: 'vistaticket/:id', component: VistaimpresionComponent},
   {path: 'nuevoegreso', component: NuevoegresoComponent},
-  {path: 'cajadiaria', component: CajadiariaComponent}
+  {path: 'cajadiaria', component: CajadiariaComponent},
+  {path: 'formadepago/:id', component: CajadiariaeditarComponent},
+  {path: 'comandacocina/:id', component: ComandacocinaComponent},
   
 ];
 

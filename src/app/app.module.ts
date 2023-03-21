@@ -23,7 +23,8 @@ import { VistaimpresionComponent } from './componentes/caja/vistaimpresion.compo
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
 import { CajadiariaComponent } from './componentes/cajadiaria/cajadiaria.component';
-import { Mesas2Component } from './componentes/mesas/mesas2.component';
+import { CajadiariaeditarComponent } from './componentes/cajadiaria/cajadiariaeditar.component';
+import { ComandacocinaComponent } from './componentes/mesas/comandacocina.component';
 
 
 @NgModule({
@@ -47,7 +48,9 @@ import { Mesas2Component } from './componentes/mesas/mesas2.component';
     VistaimpresionComponent,
     NuevoegresoComponent,
     CajadiariaComponent,
-    Mesas2Component,
+    CajadiariaeditarComponent,
+    ComandacocinaComponent,
+  
     
    
     

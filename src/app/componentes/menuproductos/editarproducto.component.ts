@@ -10,7 +10,7 @@ import { ArticulosService } from 'src/app/Service/articulos.service';
 })
 export class EditarproductoComponent implements OnInit {
   producto : Articulos = null;
-  lista: string[]=["COMIDAS", "BEBIDAS" , "POSTRES"];
+  lista: string[]=["COCINA", "PARRILLA" , "BEBIDAS"];
 
   constructor(private sArticulos: ArticulosService, private activatedRouter: ActivatedRoute, 
     private router: Router) { }

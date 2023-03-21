@@ -121,6 +121,7 @@
                                             <th>N° de Recibo</th>
                                             <th>Fecha y Hora</th>
                                             <th>Importe Total</th>
+                                            <th>Forma de Pago</th>
                                             <th>Mesa Cerrada</th>
                                             <th>Acciones Disponibles</th>
                                             
@@ -132,6 +133,7 @@
                                             <td>{{mov.id}}</td>
                                             <td>{{mov.fecha}}</td>
                                             <td>{{mov.importe | currency: '$'}}</td>
+                                            <td>{{mov.formadepago}}</td>
                                             <td>{{mov.numerodeMesa}}</td>
                                             <td>
                                                 <button class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="deleteRec(mov.id)" *ngIf="isLogged" title="Eliminar">

@@ -1,0 +1,41 @@
+<div class="vistaimprimir">
+    <div class="ticket">
+      <p class="centrado">COMANDA PARA COCINA</p>
+          <p class="centrado">N°{{ticket.id}}</p>
+      <p class="centrado">Comanda de Mesa N°{{ticket.numerodeMesa}}</p>
+      <p class="precio centrado">---------------------------------------</p>
+          <p class="centrado">{{ticket.fecha}}</p> 
+             
+      <table class="centrado" id="tableticket">
+          <thead class="centrado">
+              <tr>
+                  <th class="cantidad centrado">CANT</th>
+                  <th class="producto">PRODUCTO</th>
+                  
+              </tr>
+          </thead>
+          <tbody class="centrado" *ngFor="let art of traelo">
+              <tr>
+                  <td class="cantidad centrado">{{art["cantidad"]}}</td>
+                  <td class="producto">{{art.nombre}}</td>
+                  
+              </tr>
+              
+          </tbody>
+          
+                   
+      </table>
+      <p class="precio centrado">---------------------------------------</p>
+      <p class="centrado">¡GRACIAS POR SU COMPRA!
+          <br>PARRILLA EL FOGON</p>
+  </div>
+  </div>
+  <div>
+    <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="DevolverListado()">CARGAR VALORES DEL TICKET</button>
+  </div>
+  <div>
+  <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="ImprimirTicket()">IMPRIMIR</button>
+ </div>
+ <div>
+ <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" routerLink="">VOLVER</button>
+</div>

@@ -12,6 +12,8 @@ import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angul
 export class MesasComponent implements OnInit {
   mesas1: Mesas1[] = [];
 
+  loading = true;
+  cargado = false;
   InicioPosicion: string;
   PosicionesGuardadas = [];
   
@@ -23,6 +25,12 @@ export class MesasComponent implements OnInit {
   
 
   ngOnInit(): void {
+    /*agregado del spinner funcion de setTimeout 131 a 134*/ 
+    setTimeout(() => {
+      this.loading = false;
+      this.cargado = true;
+    }, 1200);
+
     this.InicioPosicion = "";
     this.traerMesas1();
     if(this.tokenService.getToken()){
