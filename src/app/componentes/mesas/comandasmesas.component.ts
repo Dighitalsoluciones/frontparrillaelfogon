@@ -32,6 +32,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   displayStyle = "none";
 
+  modalRendirCaja = "none";
+
   botonAgregarArticulos = "none"
   
   verAbrirMesas = "none";
@@ -61,6 +63,13 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   }
   closePopup() {
     this.displayStyle = "none";
+  }
+
+  openPopupRendirMesa() {
+    this.modalRendirCaja = "block";
+  }
+  closePopupRendirMesa() {
+    this.modalRendirCaja = "none";
   }
 
   mostrarComanda(){
@@ -487,6 +496,9 @@ NuevoRecibo(): void{
 
 
     rendirDineroMesa(){
+      if(this.Mesas.impresion === "false"){
+        this.openPopupRendirMesa();
+      }else{
       this.Mesas.estado="Cerrada";
       this.Mesas.cierre="false";
       this.Mesas.cierre="";
@@ -499,6 +511,29 @@ NuevoRecibo(): void{
       this.onUpdate();
       this.router.navigate(['']);
       alert("Presiona Enter para continuar");
+      }
+    }
+
+    desbloqueoDeRendirDinero(){
+      this.Mesas.impresion = "true";
+      this.guardaYcontinua();
+    }
+
+    abarcativaRendirMesa(){
+      if (this.Mesas.totalComanda != 0){
+      this.desbloqueoDeRendirDinero();
+      this.rendirDineroMesa();
+      this.verBotonGuardar();
+      this.Mesas.liquidada === "true";
+      this.guardaYcontinua();
+      this.router.navigate(['']);
+      }else{
+        this.closePopupRendirMesa();
+        this.desbloqueoDeRendirDinero();
+        this.rendirDineroMesa();
+        this.verBotonGuardar();
+      }
+     
     }
     
     TotalComanda(){

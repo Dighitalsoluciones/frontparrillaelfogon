@@ -31,6 +31,39 @@ role="dialog"
  </div>
 </div>
 
+<!-- El modal de cerrar la caja sin imprimir ticket-->
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':modalRendirCaja}">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">ATENCIÓN</h4>
+    </div>
+    <div class="modal-body">
+      <h3>Deseas Rendir Dinero sin haber impreso el ticket?</h3>
+
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="abarcativaRendirMesa()">
+          Confirmar
+        </button>
+      <button type="button" class="btn btn-danger" 
+              (click)="closePopupRendirMesa()">
+        Cancelar
+      </button>
+      
+    </div>
+  </div>
+ </div>
+</div>
+
+
+
+
 <div class="container fondoEdit">
     <div class="row" id="textosColor">
         <div class="oculto-impresion" [ngStyle]="{'display':VistaNormal}">
@@ -78,7 +111,39 @@ role="dialog"
           
           <div class="row"> 
           <div class="col-sm-6">
-
+            <div>
+              <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate();" >
+                CONFIRMAR CAMBIOS
+            </button>
+      
+              <ng-template [ngIf]="NoVerBoton()">
+                     
+                      <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa();verBotonGuardar();DevolverLista()">
+                        CERRAR MESA
+                      </button> 
+                      <button style="margin-top: 5px" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="comandaCocina()" title="Imprimir comanda">
+                        <i class="fa-sharp fa-solid fa-print"></i>
+                        </button>
+                    </ng-template>
+                    
+                      
+                      <ng-template [ngIf]="templateRendirMesa()">
+                        <h3>Total a Cobrar: {{Mesas.totalComanda | currency: '$'}}</h3>
+                    <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="rendirDineroMesa();verBotonGuardar()">
+                      DINERO RENDIDO
+                    </button> 
+                    
+                    <ng-template [ngIf]=" templateImprimir()">
+                    <button id="BtnAgregarItem" type="button" class="btn btn-dark espacio-btn" (click)="MostrarVistaImpresion()">
+                      IMPRIMIR TICKET
+                    </button> 
+                  </ng-template>
+      
+                  </ng-template>
+                      <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
+                          CANCELAR
+                      </button>
+                    </div>
             <!--Sacar este recuadro
               <div class="card">
               <div class="card-body">
@@ -171,6 +236,8 @@ role="dialog"
                            </div>
                        </div>
                    </form>
+
+                   
                   <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -223,7 +290,7 @@ role="dialog"
         
         </div>       
              
-
+<!-- sacarlo por un rato <div>
         <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate();" >
           CONFIRMAR CAMBIOS
       </button>
@@ -246,7 +313,7 @@ role="dialog"
               </button> 
               
               <ng-template [ngIf]=" templateImprimir()">
-              <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn" (click)="MostrarVistaImpresion()">
+              <button id="BtnAgregarItem" type="button" class="btn btn-dark espacio-btn" (click)="MostrarVistaImpresion()">
                 IMPRIMIR TICKET
               </button> 
             </ng-template>
@@ -255,6 +322,7 @@ role="dialog"
                 <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
                     CANCELAR
                 </button>
+              </div> -->
             </form>
           
 
