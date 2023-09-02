@@ -20,6 +20,7 @@ export class NuevoproductoComponent implements OnInit {
   stockinicial: number = 0;
   imagen: string = '';
   cantidad: number = 0;
+  checkEdit: string = "false";
 
   constructor(private sArticulos: ArticulosService, private router: Router) { }
 
@@ -27,7 +28,7 @@ export class NuevoproductoComponent implements OnInit {
   }
 
   onCreate(): void{
-    const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo, this.precioventa, this.stockinicial, this.imagen, this.cantidad);
+    const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo, this.precioventa, this.stockinicial, this.imagen, this.cantidad, this.checkEdit);
     this.sArticulos.save(producto).subscribe(
       data=>{alert("✅ Articulo creado correctamente");
       this.router.navigate(['menuarticulos']);

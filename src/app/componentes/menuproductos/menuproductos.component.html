@@ -134,7 +134,8 @@
                                             <td>{{Articulos.nombre}}</td>
                                             <td>{{Articulos.familia}}</td>
                                             <td>{{Articulos.costo | currency: '$'}}</td>
-                                            <td>{{Articulos.precioventa | currency: '$'}}</td>
+                                            <td *ngIf="Articulos.checkEdit">{{Articulos.precioventa | currency: '$'}} <i class="far fa-edit" (click)="Articulos.checkEdit = false"></i></td>
+                                            <td *ngIf="!Articulos.checkEdit"><input type="text" [(ngModel)]="Articulos.precioventa"> <i class="fa-solid fa-xmark" style="color: #ff0000;" (click)="Articulos.checkEdit = true"></i> <i class="fa-solid fa-check" style="color: #1d8724;" (click)="confirmarPrecio(Articulos.id, this.Articulos); Articulos.checkEdit = true"> Confirmar</i></td>
                                             <td>{{Articulos.stockinicial}}</td>
                                             <td>{{Articulos.stock}}</td>
                                             <td>{{Articulos.puntorepo}}</td>

@@ -112,10 +112,11 @@ role="dialog"
           <div class="row"> 
           <div class="col-sm-6">
             <div>
-              <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();onUpdate();" >
+              <div *ngIf="modificaciones()">
+              <button class="btn btn-success espacio-btn" id="botonAgregar" (click)="guardarCambios();guardaYcontinua3();" >
                 CONFIRMAR CAMBIOS
             </button>
-      
+          </div>
               <ng-template [ngIf]="NoVerBoton()">
                      
                       <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn" (click)="cerrarMesa();verBotonGuardar();DevolverLista()">
@@ -141,7 +142,7 @@ role="dialog"
       
                   </ng-template>
                       <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
-                          CANCELAR
+                          VOLVER
                       </button>
                     </div>
             <!--Sacar este recuadro

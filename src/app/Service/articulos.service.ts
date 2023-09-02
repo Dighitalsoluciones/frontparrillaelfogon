@@ -30,4 +30,8 @@ export class ArticulosService {
   public delete(id: number): Observable<any>{
     return this.httpClient.delete<any>(this.artURL + `delete/${id}`);
   }
+
+  public actualizarPrecio(id: number, precioVenta: number): Observable<any>{
+    return this.httpClient.put<any>(this.artURL + `newprecio/${id}`, precioVenta);
+  }
 }

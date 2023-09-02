@@ -570,4 +570,25 @@ volverAtras(){
   location.reload();
 }
 
+modificaciones(){
+  if(this.TotalComanda() === this.Mesas.totalComanda){
+return true;
+  }else{
+    return false;
+  }
+}
+
+guardaYcontinua3(): void{
+  const id = this.activatedRouter.snapshot.params['id'];
+  this.sMesas.update(id, this.Mesas).subscribe(
+    data => {alert("✅ Cambios Guardados");;
+      
+    }, err =>{
+      alert("⛔ Error al modificar la mesa ⛔");
+      
+    }
+  )
+  
+}
+
 }

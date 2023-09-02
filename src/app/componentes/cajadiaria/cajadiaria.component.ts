@@ -24,15 +24,18 @@ export class CajadiariaComponent implements OnInit {
   totalG: number = 0;
   totalT: number = 0;
   totalRMP: number = 0;
+  totalREFE: number = 0;
 
   VerTicketsGenerados = "none";
   recibosDeHoy = [];
   egresosDeHoy = [];
   ticketsDeHoy = [];
   recibosDeHoyMP = [];
+  recibosDeHoyEFE = [];
 
   VistaCierreZ = "none";
   VistaNormal = "block";
+  autorizacion: string = "";
 
   MostrarTickets(){
     this.VerTicketsGenerados = "block";
@@ -42,6 +45,9 @@ export class CajadiariaComponent implements OnInit {
     this.VistaCierreZ = "block";
     this.VistaNormal = "none";
   }
+
+  verCodigoAutorizacion: boolean = false;
+  noVerOtrosBotones: boolean = true;
  
   constructor(private sTicket: TicketService, private sEgresos: EgresosService ,private sRecibos: RecibosService ,private router: Router, private activatedRouter: ActivatedRoute, private tokenService: TokenService) { }
 
@@ -58,6 +64,7 @@ export class CajadiariaComponent implements OnInit {
     this.FiltrarHoyEgresos();
     this.TotalDeRec();
     this.TotalDeRecMP;
+    this.TotalDeRecEFE;
     this.TotalDeEgresos();
     this.TotalDeCaja();
     this.traerTickets();
@@ -89,39 +96,67 @@ export class CajadiariaComponent implements OnInit {
     this.router.navigate(['cajadiaria']);
   }
 
+  habilitarCodigoAutorizacion(){
+    this.verCodigoAutorizacion = true;
+    this.noVerOtrosBotones = false;
+  }
+
+  deshabilitarCodigoAutorizacion(){
+    this.verCodigoAutorizacion = false;
+    this.noVerOtrosBotones = true;
+  }
+
   delete(id?: number){
     if(id != undefined){
+      if(this.autorizacion == "autorizado"){
       this.sTicket.delete(id).subscribe(
         data =>{alert("✅ Ticket borrado correctamente");
           this.traerTickets();
+          this.autorizacion = "";
         }, err =>{
           alert("No se pudo borrar el articulo");
         }
       )
+    }else{
+      alert("⛔ Contraseña incorrecta");
+      this.autorizacion = "";
     }
+   }
   }
 
   deleteRec(id?: number){
     if(id != undefined){
+      if(this.autorizacion == "autorizado"){
       this.sRecibos.delete(id).subscribe(
         data =>{alert("✅ Recibo borrado correctamente");
           this.traerRecibos();
+          this.autorizacion = "";
         }, err =>{
           alert("No se pudo borrar el recibo");
         }
       )
+    }else{
+      alert("⛔ Contraseña incorrecta");
+      this.autorizacion = "";
     }
+  }
   }
   deleteEgreso(id?: number){
     if(id != undefined){
+      if(this.autorizacion == "autorizado"){
       this.sEgresos.delete(id).subscribe(
         data =>{alert("✅ Egreso borrado correctamente");
           this.traerEgresos();
+          this.autorizacion = "";
         }, err =>{
           alert("No se pudo borrar el Egreso");
         }
       )
+    }else{
+      alert("⛔ Contraseña incorrecta");
+      this.autorizacion = "";
     }
+  }
   }
 
   FiltrarHoyEgresos(){
@@ -144,6 +179,7 @@ export class CajadiariaComponent implements OnInit {
     this.FiltrarHoyEgresos();
     this.FiltrarHoyTickets();
     this.FiltrarHoyRecibosMP();
+    this.FiltrarHoyRecibosEFE();
   }
 
   totalCaja: number = 0;
@@ -203,5 +239,20 @@ TotalDeRecMP(){
 });
   return this.totalRMP;
 }
+
+//agregado filtro de recibos solo efectivo
+FiltrarHoyRecibosEFE(){
+ this.recibosDeHoyEFE = this.recibosDeHoy.filter(recibos => recibos.formadepago === "EFECTIV");
+ return this.recibosDeHoyEFE; 
+}
+TotalDeRecEFE(){
+  this.totalREFE = 0;
+  this.recibosDeHoyEFE.forEach(recibos => {
+    this.totalREFE += recibos.importe;
+  });
+  return this.totalREFE;
+
+}
+
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { TokenService } from 'src/app/Service/token.service';
@@ -10,7 +11,9 @@ import { TokenService } from 'src/app/Service/token.service';
 })
 export class MenuproductosComponent implements OnInit {
   producto: Articulos[] = [];
-  constructor(private sProductos: ArticulosService, private tokenService: TokenService ) { }
+  productos : Articulos = null;
+
+  constructor(private sProductos: ArticulosService, private tokenService: TokenService, private activatedRouter: ActivatedRoute ) { }
   
   filtrarArticulos = [];
 
@@ -18,6 +21,11 @@ export class MenuproductosComponent implements OnInit {
 
   ngOnInit(): void {
     this.traerProductos();
+    const id = this.activatedRouter.snapshot.params['id'];
+    if(id != null){
+    this.sProductos.details(id).subscribe(
+      data =>{
+        this.productos = data});}
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -39,5 +47,13 @@ export class MenuproductosComponent implements OnInit {
       )
     }
   }
+
+
+  confirmarPrecio(id, producto){
+    this.sProductos.update(id, producto).subscribe(
+      data => {alert("✅ Articulo modificado correctamente");
+  });
+}
+
 
 }

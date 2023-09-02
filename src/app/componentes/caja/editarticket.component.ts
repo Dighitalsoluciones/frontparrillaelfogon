@@ -40,17 +40,17 @@ export class EditarticketComponent implements OnInit {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sTicket.update(id, this.ticket).subscribe(
       data => {alert("✅ Ticket modificado correctamente");
-        this.router.navigate(['caja']);
+        this.router.navigate(['cajadiaria']);
       }, err =>{
         alert("⛔ Error al modificar el ticket⛔");
-        this.router.navigate(['caja']);
+        this.router.navigate(['cajadiaria']);
       }
     )
     
   }
 
   cancelar(): void {
-    this.router.navigate(['caja']);
+    this.router.navigate(['cajadiaria']);
   }
 
   DevolverListado(){
