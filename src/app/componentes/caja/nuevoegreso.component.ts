@@ -18,13 +18,14 @@ export class NuevoegresoComponent implements OnInit {
   realizadopor: string = '';
   observacion: string = '';
   mostrar: string = "true";
+  checkEd: string = "false";
 
   constructor(private sEgresos: EgresosService, private router: Router) { }
 
   ngOnInit(): void {
   }
   onCreate(): void{
-    const egresos = new Egresos(this.fecha, this.importe, this.tipodegasto, this.realizadopor, this.observacion, this.mostrar);
+    const egresos = new Egresos(this.fecha, this.importe, this.tipodegasto, this.realizadopor, this.observacion, this.mostrar, this.checkEd);
     this.sEgresos.save(egresos).subscribe(
       data=>{alert("✅ Egresos realizado correctamente");
       history.go(-1);

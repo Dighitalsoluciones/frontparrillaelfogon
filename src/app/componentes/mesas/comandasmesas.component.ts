@@ -357,14 +357,16 @@ console.log(localStorage.getItem('car'))
     this.Ticket.fecha = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
     this.Ticket.numerodeMesa = this.Mesas.numeroMesa;
     this.Ticket.formadepago = this.formadepago;
+    this.Ticket.check = "false";
   }
 
   numeroTicket: number = 0;
   fechaTicket: string = '';
+  check: string = "";
 
   NuevoTicket(): void{
     if (this.Mesas.totalComanda != 0){
-    const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago);
+    const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago, this.check);
     this.sTicket.save(ticket).subscribe(
       data=>{alert("✅ Ticket creado correctamente");
     }, err =>{
@@ -476,11 +478,11 @@ console.log(localStorage.getItem('car'))
     
     //para crear recibos
 corresTicket: number = 0;
-
+checkEdR: string = "false";
 
 NuevoRecibo(): void{
   if (this.Mesas.totalComanda != 0){
-  const recibos = new Recibos(this.fecha, this.corresTicket, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago);
+  const recibos = new Recibos(this.fecha, this.corresTicket, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago, this.checkEdR);
   this.sRecibos.save(recibos).subscribe(
     data=>{alert("✅ Recibo generado correctamente");
     this.Mesas.impresion = "true";

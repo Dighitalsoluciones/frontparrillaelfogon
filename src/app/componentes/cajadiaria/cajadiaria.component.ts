@@ -45,9 +45,6 @@ export class CajadiariaComponent implements OnInit {
     this.VistaCierreZ = "block";
     this.VistaNormal = "none";
   }
-
-  verCodigoAutorizacion: boolean = false;
-  noVerOtrosBotones: boolean = true;
  
   constructor(private sTicket: TicketService, private sEgresos: EgresosService ,private sRecibos: RecibosService ,private router: Router, private activatedRouter: ActivatedRoute, private tokenService: TokenService) { }
 
@@ -96,23 +93,13 @@ export class CajadiariaComponent implements OnInit {
     this.router.navigate(['cajadiaria']);
   }
 
-  habilitarCodigoAutorizacion(){
-    this.verCodigoAutorizacion = true;
-    this.noVerOtrosBotones = false;
-  }
-
-  deshabilitarCodigoAutorizacion(){
-    this.verCodigoAutorizacion = false;
-    this.noVerOtrosBotones = true;
-  }
-
   delete(id?: number){
     if(id != undefined){
       if(this.autorizacion == "autorizado"){
       this.sTicket.delete(id).subscribe(
         data =>{alert("✅ Ticket borrado correctamente");
-          this.traerTickets();
           this.autorizacion = "";
+          location.reload();
         }, err =>{
           alert("No se pudo borrar el articulo");
         }
@@ -129,8 +116,8 @@ export class CajadiariaComponent implements OnInit {
       if(this.autorizacion == "autorizado"){
       this.sRecibos.delete(id).subscribe(
         data =>{alert("✅ Recibo borrado correctamente");
-          this.traerRecibos();
           this.autorizacion = "";
+          location.reload();
         }, err =>{
           alert("No se pudo borrar el recibo");
         }
@@ -146,8 +133,8 @@ export class CajadiariaComponent implements OnInit {
       if(this.autorizacion == "autorizado"){
       this.sEgresos.delete(id).subscribe(
         data =>{alert("✅ Egreso borrado correctamente");
-          this.traerEgresos();
           this.autorizacion = "";
+          location.reload();
         }, err =>{
           alert("No se pudo borrar el Egreso");
         }

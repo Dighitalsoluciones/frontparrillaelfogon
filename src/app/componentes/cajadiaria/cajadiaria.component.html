@@ -136,13 +136,14 @@
                                             <td>{{mov.formadepago}}</td>
                                             <td>{{mov.numerodeMesa}}</td>
                                             <td style="display: flex ;">
-                                                <button *ngIf="noVerOtrosBotones" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="habilitarCodigoAutorizacion()" title="Eliminar">
+                                                <button *ngIf="!mov.checkEdR" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="mov.checkEdR = true" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                                 </button>
                                                 <!--Se agregó un input y boton para verificar contraseña para autorizar la eliminacion-->
-                                                <button *ngIf="verCodigoAutorizacion" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="deleteRec(mov.id); deshabilitarCodigoAutorizacion()">CONFIRMAR</button>
-                                                <input *ngIf="verCodigoAutorizacion" class="form-outline mb-4" placeholder="Codigo autorizacion" type="password" [(ngModel)]="autorizacion">
-                                                <button *ngIf="noVerOtrosBotones" class="btn btn-outline-dark rounded float-end espaciado-botones" routerLink="/formadepago/{{mov.id}}" title="Editar Forma de Pago">
+                                                <button *ngIf="mov.checkEdR" class="btn btn-outline-dark rounded float-start espaciado-botones btn-sm" (click)="deleteRec(mov.id)">CONFIRMAR</button>
+                                                <button *ngIf="mov.checkEdR" class="btn btn-outline-danger rounded float-start espaciado-botones btn-sm" (click)="mov.checkEdR = false">CANCELAR</button>
+                                                <input *ngIf="mov.checkEdR" class="form-outline mb-4" placeholder="Codigo autorizacion" type="password" [(ngModel)]="autorizacion">              
+                                                <button *ngIf="!mov.checkEdR" class="btn btn-outline-dark rounded float-end espaciado-botones" routerLink="/formadepago/{{mov.id}}" title="Editar Forma de Pago">
                                                     <i class="fa-solid fa-money-bill-transfer"></i></button>
                                                                                             
                                             </td>
@@ -179,13 +180,13 @@
                                             <td>{{mov.realizadopor}}</td>
                                             <td>{{mov.observacion}}</td>
                                             <td>
-                                                <button *ngIf="noVerOtrosBotones" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="habilitarCodigoAutorizacion()" title="Eliminar">
+                                                <button *ngIf="!mov.check" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="mov.check = true" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                                 </button>
                                                  <!--Se agregó un input y boton para verificar contraseña para autorizar la eliminacion-->
-                                                 <button *ngIf="verCodigoAutorizacion" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="deleteEgreso(mov.id); deshabilitarCodigoAutorizacion()">CONFIRMAR</button>
-                                                 <input *ngIf="verCodigoAutorizacion" class="form-outline mb-4" placeholder="Codigo autorizacion" type="password" [(ngModel)]="autorizacion">
-                                                                                            
+                                                 <button *ngIf="mov.check" class="btn btn-outline-dark rounded float-start espaciado-botones btn-sm" (click)="deleteEgreso(mov.id)">CONFIRMAR</button>
+                                                 <input *ngIf="mov.check" class="form-outline mb-4" placeholder="Codigo autorizacion" type="password" [(ngModel)]="autorizacion">
+                                                 <button *ngIf="mov.check" class="btn btn-outline-danger rounded float-start espaciado-botones btn-sm" (click)="mov.check = false">CANCELAR</button>                                           
                                             </td>
                                         </tr>
                                         
@@ -221,17 +222,18 @@
                                             <td>{{movimientos.importe | currency: '$'}}</td>
                                             <td>{{movimientos.numerodeMesa}}</td>
                                             <td>
-                                                <button *ngIf="noVerOtrosBotones" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="habilitarCodigoAutorizacion()" title="Eliminar">
+                                                <button *ngIf="!movimientos.check" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="movimientos.check = true" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                                 </button>
                                                 <!--Se agregó un input y boton para verificar contraseña para autorizar la eliminacion-->
-                                                <button *ngIf="verCodigoAutorizacion" class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="delete(movimientos.id); deshabilitarCodigoAutorizacion()">CONFIRMAR</button>
-                                                <input *ngIf="verCodigoAutorizacion" class="form-outline mb-4" placeholder="Codigo autorizacion" type="password" [(ngModel)]="autorizacion">
+                                                <button *ngIf="movimientos.check" class="btn btn-outline-dark rounded float-start espaciado-botones btn-sm" (click)="delete(movimientos.id)">CONFIRMAR</button>
+                                                <input *ngIf="movimientos.check" class="form-outline mb-4" placeholder="Codigo autorizacion" type="password" [(ngModel)]="autorizacion">
+                                                <button *ngIf="movimientos.check" class="btn btn-outline-danger rounded float-start espaciado-botones btn-sm" (click)="movimientos.check = false">CANCELAR</button>
                                                 <!--Vamos a deshabilitar la opcion de editar el ticket-->
                                                <!-- <button *ngIf="noVerOtrosBotones" class="btn btn-outline-dark rounded float-start espaciado-botones" routerLink="/editarticket/{{movimientos.id}}" title="Editar">
                                                 <i class="far fa-edit"></i>
                                                 </button> -->
-                                                <button *ngIf="noVerOtrosBotones" class="btn btn-outline-dark rounded float-start espaciado-botones" routerLink="/vistaticket/{{movimientos.id}}" title="Reimprimir">
+                                                <button *ngIf="!movimientos.check" class="btn btn-outline-dark rounded float-start espaciado-botones" routerLink="/vistaticket/{{movimientos.id}}" title="Reimprimir">
                                                     <i class="fa-sharp fa-solid fa-print"></i>
                                                     </button>
                                                 
