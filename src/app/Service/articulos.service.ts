@@ -7,7 +7,7 @@ import { Articulos } from '../Model/articulos';
   providedIn: 'root'
 })
 export class ArticulosService {
-  artURL = 'http://localhost:8080/articulos/'
+  artURL = 'https://bkparrillaelfogon-5526d4bf3ec2.herokuapp.com/articulos/'
 
   constructor(private httpClient: HttpClient) { }
 

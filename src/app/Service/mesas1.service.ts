@@ -7,7 +7,7 @@ import { Mesas1 } from '../Model/mesas1';
   providedIn: 'root'
 })
 export class Mesas1Service {
-  mesasURL = 'http://localhost:8080/mesas1/'
+  mesasURL = 'https://bkparrillaelfogon-5526d4bf3ec2.herokuapp.com/mesas1/'
 
   constructor(private httpClient: HttpClient) { }
 

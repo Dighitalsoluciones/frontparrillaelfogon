@@ -7,7 +7,7 @@ import { Ticket } from '../Model/ticket';
   providedIn: 'root'
 })
 export class TicketService {
-  ticketURL = 'http://localhost:8080/ticket/'
+  ticketURL = 'https://bkparrillaelfogon-5526d4bf3ec2.herokuapp.com/ticket/'
 
   constructor(private httpClient: HttpClient) { }
 
