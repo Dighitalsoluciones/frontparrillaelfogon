@@ -12,8 +12,8 @@ export class NuevamesaComponent implements OnInit {
   listaMesas: string[]=["https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png", "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664023857/APP%20PARRILLA%20EL%20FOGON/mesas_jf2twc.png"];
 
     estado: string = "Cerrada";
-    comanda: string = "vacio";
-    cierre: string = "false";
+    comanda: string = "";
+    cierre: string = "";
     liquidada: string = "false";
     imagen: string = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
     numeroMesa: string = '';
