@@ -1,0 +1,33 @@
+<div class="modal" id="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo objeto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body justify-content-center text-center">
+                <form (ngSubmit)="creacionSegunSeleccion()">
+                    <div class="form-group" style="margin-top: 15px; margin-bottom: 10px;">
+                        <label for="tipoObjeto"> Tipo de Objeto</label>
+                        <select name="tipoObjeto" style="margin-left: 10px;" [(ngModel)]="comboTipoObjeto">
+                            <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group" *ngIf="comboTipoObjeto === 'TEXTO'">
+                        <label for="numeroMesa"> Escribe el texto aqui </label>
+                        <input type="text" class="form-control" id="numeroMesa" name="texto" [(ngModel)]="texto"
+                            (input)="texto = texto.toUpperCase()" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px; margin-bottom: 10px;"
+                        *ngIf="comboTipoObjeto === 'TEXTO'">
+                        <label for="color"> Color de letra</label>
+                        <select name="color" style="margin-left: 10px;" [(ngModel)]="colorElegido">
+                            <option [value]="item" *ngFor="let item of listaColores">{{item}}</option>
+                        </select>
+                    </div>
+                    <button style="margin-top: 10px;" type="submit" class="btn btn-primary" *ngIf="comboTipoObjeto">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div>
+    <nav class="navbar navbar-light justify-content-start" style="background-color: #e3f2fd;">
+        <button class="btn btn-primary" id="btn-space" (click)="llamarGrabarEnBd()">
+            GRABAR
+        </button>
+        <button class="btn btn-secondary" id="btn-space" (click)="llamarHabilitarEdicion()"
+            *ngIf="permiteEditar != true">
+            EDITAR
+        </button>
+        <button class="btn btn-success" id="btn-space" (click)="llamarDeshabilitarEdicion()"
+            *ngIf="permiteEditar == true">
+            ACEPTAR
+        </button>
+        <button class="btn btn-warning" id="btn-space" (click)="atras()">
+            VOLVER
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-space" data-bs-toggle="modal" data-bs-target="#modal">
+            NUEVO OBJETO
+        </button>
+    </nav>
+</div>
+<div>
+    <app-plano [noMostrarLink]="noMostrarLink"></app-plano>
+    <app-modal-new-objeto></app-modal-new-objeto>
+</div>

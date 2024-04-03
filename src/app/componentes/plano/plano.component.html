@@ -1,0 +1,50 @@
+<div class="container">
+    <!-- <button (click)="grabarEnBd()">
+        GRABAR
+    </button>
+    <button (click)="habilitarEdicion()" *ngIf="permiteEditar != true">
+        EDITAR
+    </button>
+    <button (click)="deshabilitarEdicion()" *ngIf="permiteEditar == true">
+        ACEPTAR
+    </button> -->
+    <div *ngFor="let mesa of mesas" (click)="seleccionarMesas(mesa)">
+        <figure class="vacioDrag" cdkDrag (cdkDragEnded)="onDragEnded($event, mesa)"
+            [style.transform]="'translate3d(' + mesa.x + 'px, ' + mesa.y + 'px, 0)'"
+            [cdkDragDisabled]="bloquearArrastre">
+            <img [src]="mesa.imagen" class="imgHor" style="cursor: grab; user-select: none;" cdkDragHandle
+                [style.transform]="'rotate(' + mesa.rotacion + 'deg)'"
+                [routerLink]="noMostrarLink ? null : ['/agregarcomanda', mesa.id]">
+            <h6 [routerLink]="noMostrarLink ? null : ['/agregarcomanda', mesa.id]" class="numeroMesa"
+                style="cursor: grab; user-select: none;" cdkDragHandle>{{mesa.numeroMesa}}</h6>
+            <button id="btnEditar" class="btn btn-warning" *ngIf="permiteEditar && mesa === mesaSeleccionada"
+                (click)="rotarMesa(mesa, 5)">Rotar</button>
+        </figure>
+    </div>
+    <div *ngFor="let objetos of objetosMapa" style="position: absolute;" (click)="seleccionarObjeto(objetos)">
+        <figure cdkDrag (cdkDragEnded)="onDragEndedObjetos($event, objetos)"
+            [style.transform]="'translate3d(' + objetos.x + 'px, ' + objetos.y + 'px, 0)'"
+            [style.height]="objetos.largo + 'px'" [style.width]="objetos.ancho + 'px'"
+            [cdkDragDisabled]="bloquearArrastre">
+            <div class="btn-css" *ngIf="objetos === objetoSeleccionado">
+                <button id="btn-espacio" class="btn btn-success" *ngIf="permiteEditar && !objetos.texto"
+                    (click)="alargarObjetos(objetos, 5)">Alargar</button>
+                <button id="btn-espacio" class="btn btn-danger" *ngIf="permiteEditar && !objetos.texto"
+                    (click)="alargarObjetos(objetos, -5)">Reducir</button>
+                <button id="btn-espacio" class="btn btn-success" *ngIf="permiteEditar && !objetos.texto"
+                    (click)="ensancharObjetos(objetos, 5)">+ Ancho</button>
+                <button id="btn-espacio" class="btn btn-danger" *ngIf="permiteEditar && !objetos.texto"
+                    (click)="ensancharObjetos(objetos, -5)">- Ancho</button>
+                <button id="btnEditar" class="btn btn-warning" *ngIf="permiteEditar"
+                    (click)="rotarObjetos(objetos, 5)">Rotar</button>
+            </div>
+            <img [src]="objetos.imagen" style="cursor: grab; user-select: none;" cdkDragHandle
+                [style.transform]="'rotate(' + objetos.rotacion + 'deg)'" [style.height]="objetos.largo + 'px'"
+                [style.width]="objetos.ancho + 'px'">
+            <h5 class="numeroMesa" style="cursor: grab; user-select: none; position: absolute;"
+                [style.transform]="'rotate(' + objetos.rotacion + 'deg)'" [style.color]="objetos.colorText"
+                cdkDragHandle>
+                {{objetos.texto}}</h5>
+        </figure>
+    </div>
+</div>
