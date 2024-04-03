@@ -18,6 +18,7 @@ export class MesasComponent implements OnInit {
   PosicionesGuardadas = [];
   
   isLogged = false;
+  bloquearArrastre = true;
 
   constructor(private sMesas1: Mesas1Service, private tokenService: TokenService) { }
 

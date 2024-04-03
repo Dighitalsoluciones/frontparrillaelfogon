@@ -1,0 +1,30 @@
+.imgHor {
+  width: 25px;
+  height: 68px;
+}
+
+.numeroMesa {
+  font-family: Impact;
+  position: absolute;
+  top: 25px;
+  left: 5px;
+}
+
+.vacioDrag {
+  width: 25px;
+  height: 68px;
+}
+
+#btnEditar {
+  margin-right: 10px;
+}
+
+.btn-css {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-css button {
+  flex: 1 0 auto; /* Esto hace que todos los botones tengan el mismo tamaño */
+  margin: 0 10px 10px; /* Esto añade un poco de espacio entre los botones */
+}
