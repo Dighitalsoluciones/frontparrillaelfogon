@@ -23,7 +23,7 @@ export class ModalNewObjetoComponent implements OnInit {
 
   comboTipoObjeto: string
   colorElegido: string
-  lista: string[] = ["BARRA", "TEXTO", "CUBO"];
+  lista: string[] = ["BARRA", "TEXTO", "CUBO", "DELIMITADOR"];
   listaColores: string[] = ["RED", "WHITE", "BLACK"];
 
   constructor(private objetosMapaService: ObjetosMapaServiceService) { }
@@ -53,8 +53,18 @@ export class ModalNewObjetoComponent implements OnInit {
       this.texto = this.texto;
       this.colorText = this.colorElegido;
       this.onCreateObjetosMapa();
-    } else {
+    } else  if (this.comboTipoObjeto == "CUBO") {
       this.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1712024512/APP%20PARRILLA%20EL%20FOGON/CUADRADO_exyf0d.png";
+      this.x = 33;
+      this.y = -870;
+      this.rotacion = 0;
+      this.ancho = 100;
+      this.largo = 100;
+      this.texto = "";
+      this.colorText = "";
+      this.onCreateObjetosMapa();
+    } else {
+      this.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668893263/APP%20PARRILLA%20EL%20FOGON/recuadroplano_bctgwl.png";
       this.x = 33;
       this.y = -870;
       this.rotacion = 0;

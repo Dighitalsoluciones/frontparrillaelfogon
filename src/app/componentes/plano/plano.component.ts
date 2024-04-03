@@ -152,18 +152,4 @@ export class PlanoComponent implements OnInit {
     this.objetosMapaService.update(id, objeto).subscribe();
   }
 
-  onCreateObjetosMapa(): void {
-    const objetosMapa = new Objetosmapa(this.imagen, this.x, this.y, this.rotacion, this.ancho,
-      this.largo, this.texto, this.colorText);
-    this.objetosMapaService.save(objetosMapa).subscribe(
-      data => {
-        alert("✅ Objeto creado correctamente");
-      }, err => {
-        alert("⛔Fallo en la creación del objeto, debes completar todos los campos⛔");
-      }
-    )
-  }
-
-
-
 }

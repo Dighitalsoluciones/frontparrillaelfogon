@@ -13,6 +13,8 @@
 .vacioDrag {
   width: 25px;
   height: 68px;
+  z-index: 99;
+  position: relative;
 }
 
 #btnEditar {
