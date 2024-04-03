@@ -7,27 +7,31 @@ import { Mesas1 } from '../Model/mesas1';
   providedIn: 'root'
 })
 export class Mesas1Service {
-  mesasURL = 'https://bkparrillaelfogon-5526d4bf3ec2.herokuapp.com/mesas1/'
+  mesasURL = 'http://localhost:8080/mesas1/'
 
   constructor(private httpClient: HttpClient) { }
 
-  public lista(): Observable<Mesas1[]>{
+  public lista(): Observable<Mesas1[]> {
     return this.httpClient.get<Mesas1[]>(this.mesasURL + 'lista');
   }
 
-  public details(id: number): Observable<Mesas1>{
+  public details(id: number): Observable<Mesas1> {
     return this.httpClient.get<Mesas1>(this.mesasURL + `detail/${id}`);
   }
 
-  public save(mesas1: Mesas1): Observable<any>{
+  public save(mesas1: Mesas1): Observable<any> {
     return this.httpClient.post<any>(this.mesasURL + 'create', mesas1);
   }
-  
-  public update(id: number, mesas1: Mesas1): Observable<any>{
+
+  public update(id: number, mesas1: Mesas1): Observable<any> {
     return this.httpClient.put<any>(this.mesasURL + `update/${id}`, mesas1);
   }
 
-  public delete(id: number): Observable<any>{
+  public delete(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.mesasURL + `delete/${id}`);
+  }
+
+  public updateAllMesas(mesas: Mesas1[]): Observable<any> {
+    return this.httpClient.put<any>(this.mesasURL + 'updateAll', mesas);
   }
 }

@@ -25,6 +25,9 @@ import { NuevoegresoComponent } from './componentes/caja/nuevoegreso.component';
 import { CajadiariaComponent } from './componentes/cajadiaria/cajadiaria.component';
 import { CajadiariaeditarComponent } from './componentes/cajadiaria/cajadiariaeditar.component';
 import { ComandacocinaComponent } from './componentes/mesas/comandacocina.component';
+import { PlanoComponent } from './componentes/plano/plano.component';
+import { EditorPlanoComponent } from './componentes/plano/editor-plano/editor-plano.component';
+import { ModalNewObjetoComponent } from './componentes/modals/modal-new-objeto/modal-new-objeto.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { ComandacocinaComponent } from './componentes/mesas/comandacocina.compon
     CajadiariaComponent,
     CajadiariaeditarComponent,
     ComandacocinaComponent,
+    PlanoComponent,
+    EditorPlanoComponent,
+    ModalNewObjetoComponent,
   
     
    
