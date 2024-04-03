@@ -1,20 +1,13 @@
 <div class="row" *ngIf="isLogged">
-    <h2 style="text-align: center;">Distribucion de las mesas</h2>
+    <h2 style="text-align: center">Distribucion de las mesas</h2>
     <div class="col-12">
         <div class="title">Plano</div>
-
         <div *ngIf="isLogged">
             <!-- spinnig de carga de linea 2 y se agrega un div con ngif que tome todo para mostrar lo cargado-->
-            <div *ngIf="loading" class="spinner"> </div>
+            <div *ngIf="loading" class="spinner"></div>
             <div *ngIf="cargado">
-                <div>
-                    <button [routerLink]="['/verplano']">EDITAR MAPA</button>
-                </div>
-
                 <app-plano [bloquearArrastre]="bloquearArrastre"></app-plano>
-
             </div>
         </div>
-
     </div>
 </div>
