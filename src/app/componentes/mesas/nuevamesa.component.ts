@@ -9,32 +9,37 @@ import { Mesas1Service } from 'src/app/Service/mesas1.service';
   styleUrls: ['./nuevamesa.component.css']
 })
 export class NuevamesaComponent implements OnInit {
-  listaMesas: string[]=["https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png", "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664023857/APP%20PARRILLA%20EL%20FOGON/mesas_jf2twc.png"];
+  listaMesas: string[] = ["https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png", "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664023857/APP%20PARRILLA%20EL%20FOGON/mesas_jf2twc.png"];
 
-    estado: string = "Cerrada";
-    comanda: string = "";
-    cierre: string = "";
-    liquidada: string = "false";
-    imagen: string = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
-    numeroMesa: string = '';
-    totalComanda = 0;
-    comensales = 0;
-    impresion= "false";
+  estado: string = "Cerrada";
+  comanda: string = "";
+  cierre: string = "";
+  liquidada: string = "false";
+  imagen: string = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
+  numeroMesa: string = '';
+  totalComanda = 0;
+  comensales = 0;
+  impresion = "false";
+  x: number = 33;
+  y: number = -870;
+  rotacion: number;
 
   constructor(private sMesas1: Mesas1Service, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onCreate(): void{
-    const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa, this.totalComanda, this.comensales, this.impresion);
+  onCreate(): void {
+    const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa, this.totalComanda,
+      this.comensales, this.impresion, this.x, this.y, this.rotacion);
     this.sMesas1.save(mesas).subscribe(
-      data=>{alert("✅ Mesa creada correctamente");
-      this.router.navigate(['menumesas']);
-    }, err =>{
-      alert("⛔Fallo en la creación de la mesa, debes completar todos los campos⛔");
-      this.router.navigate(['menumesas'])
-    }
+      data => {
+        alert("✅ Mesa creada correctamente");
+        this.router.navigate(['menumesas']);
+      }, err => {
+        alert("⛔Fallo en la creación de la mesa, debes completar todos los campos⛔");
+        this.router.navigate(['menumesas'])
+      }
     )
   }
 
