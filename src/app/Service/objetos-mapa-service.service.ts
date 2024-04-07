@@ -8,7 +8,7 @@ import { Objetosmapa } from '../Model/objetosmapa';
 })
 export class ObjetosMapaServiceService {
 
-  objetosMapaURL = 'http://localhost:8080/objetosmapa/'
+  objetosMapaURL = 'https://bkparrillaelfogon-5526d4bf3ec2.herokuapp.com/objetosmapa/'
 
   constructor(private httpClient: HttpClient) { }
 
