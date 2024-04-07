@@ -16,6 +16,7 @@ import { MenumesasComponent } from './componentes/mesas/menumesas.component';
 import { NuevamesaComponent } from './componentes/mesas/nuevamesa.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { EditorPlanoComponent } from './componentes/plano/editor-plano/editor-plano.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'cajadiaria', component: CajadiariaComponent},
   {path: 'formadepago/:id', component: CajadiariaeditarComponent},
   {path: 'comandacocina/:id', component: ComandacocinaComponent},
+  {path: 'verplano', component: EditorPlanoComponent},
   
 ];
 
