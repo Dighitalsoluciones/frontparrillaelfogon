@@ -354,13 +354,16 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     this.Ticket.check = "false";
   }
 
+  //Creacion de nuevo Ticket
   numeroTicket: number = 0;
   fechaTicket: string = '';
   check: string = "";
+  mesero: string = "";
 
   NuevoTicket(): void {
     if (this.Mesas.totalComanda != 0) {
-      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago, this.check);
+      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha,
+        this.Mesas.numeroMesa, this.formadepago, this.check, this.mesero);
       this.sTicket.save(ticket).subscribe(
         data => {
           alert("✅ Ticket creado correctamente");

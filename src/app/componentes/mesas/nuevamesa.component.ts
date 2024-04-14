@@ -23,6 +23,7 @@ export class NuevamesaComponent implements OnInit {
   x: number = 33;
   y: number = -870;
   rotacion: number;
+  mesero: string = "";
 
   constructor(private sMesas1: Mesas1Service, private router: Router) { }
 
@@ -31,7 +32,7 @@ export class NuevamesaComponent implements OnInit {
 
   onCreate(): void {
     const mesas = new Mesas1(this.estado, this.comanda, this.cierre, this.liquidada, this.imagen, this.numeroMesa, this.totalComanda,
-      this.comensales, this.impresion, this.x, this.y, this.rotacion);
+      this.comensales, this.impresion, this.x, this.y, this.rotacion, this.mesero);
     this.sMesas1.save(mesas).subscribe(
       data => {
         alert("✅ Mesa creada correctamente");

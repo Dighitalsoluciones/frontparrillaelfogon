@@ -1,34 +1,55 @@
 <!-- spinnig de carga de linea 2 y se agrega un div con ngif que tome todo para mostrar lo cargado-->
-<div *ngIf="loading" class="spinner"> </div>
+<div *ngIf="loading" class="spinner"></div>
 <div *ngIf="cargado">
-  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ display: displayStyle }"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">ATENCIÓN</h4>
         </div>
         <div class="modal-body">
-          <h3>Desea abrir la mesa {{Mesas.numeroMesa}}?</h3>
-
+          <h3>Desea abrir la mesa {{ Mesas.numeroMesa }}?</h3>
         </div>
 
         <div class="modal-footer">
-          <input type="text" class="form-control" [(ngModel)]="Mesas.cierre" style="display: none;">
-          <button type="button" class="btn btn-success"
-            (click)="abrirMesa();verBotonAgregar();verBotonGuardar();guardaYcontinua()">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="Mesas.cierre"
+            style="display: none"
+          />
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="
+              abrirMesa();
+              verBotonAgregar();
+              verBotonGuardar();
+              guardaYcontinua()
+            "
+          >
             Abrir
           </button>
           <button type="button" class="btn btn-danger" (click)="closePopup()">
             Cancelar
           </button>
-
         </div>
       </div>
     </div>
   </div>
 
   <!-- El modal de cerrar la caja sin imprimir ticket-->
-  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':modalRendirCaja}">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ display: modalRendirCaja }"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,159 +57,180 @@
         </div>
         <div class="modal-body">
           <h3>Deseas Rendir Dinero sin haber impreso el ticket?</h3>
-
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" (click)="abarcativaRendirMesa()">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="abarcativaRendirMesa()"
+          >
             Confirmar
           </button>
-          <button type="button" class="btn btn-danger" (click)="closePopupRendirMesa()">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="closePopupRendirMesa()"
+          >
             Cancelar
           </button>
-
         </div>
       </div>
     </div>
   </div>
 
-
-
-
   <div class="container fondoEdit">
     <div class="row" id="textosColor">
-      <div class="oculto-impresion" [ngStyle]="{'display':VistaNormal}">
+      <div class="oculto-impresion" [ngStyle]="{ display: VistaNormal }">
         <form novalidate #f="ngForm">
-
           <div class="card text-center">
             <div class="card-header">
-              <h3>MESA N°: {{Mesas.numeroMesa}}</h3>
-              <h2>Cupo de comensales en esta mesa: {{Mesas.comensales}}</h2>
-
+              <h3>MESA N°: {{ Mesas.numeroMesa }}</h3>
+              <h2>Cupo de comensales en esta mesa: {{ Mesas.comensales }}</h2>
             </div>
             <ng-template [ngIf]="verBoton() && !Mesas.cierre">
               <div class="card-body">
-                <h5 class="card-title" [ngStyle]="{'display':verabrirdespuesdelcierre}">Abrir mesa para comenzar a
-                  agregar articulos a la comanda</h5>
+                <h5
+                  class="card-title"
+                  [ngStyle]="{ display: verabrirdespuesdelcierre }"
+                >
+                  Abrir mesa para comenzar a agregar articulos a la comanda
+                </h5>
 
-                <button class="btn btn-primary" (click)="openPopup()"
-                  [ngStyle]="{'display':verabrirdespuesdelcierre}">ABRIR MESA</button>
+                <button
+                  class="btn btn-primary"
+                  (click)="openPopup()"
+                  [ngStyle]="{ display: verabrirdespuesdelcierre }"
+                >
+                  ABRIR MESA
+                </button>
               </div>
             </ng-template>
 
             <ng-template [ngIf]="verBoton()">
               <div class="card-footer text-muted" id="CardEstadoAbierta">
-                <input type="text" class="form-control" [(ngModel)]="Mesas.estado" style="display: none;">
-                <h3>ESTADO: {{Mesas.estado}}</h3>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="Mesas.estado"
+                  style="display: none"
+                />
+                <h3>ESTADO: {{ Mesas.estado }}</h3>
               </div>
             </ng-template>
 
             <ng-template [ngIf]="NoVerBoton()">
               <div class="card-footer text-muted" id="CardEstadoCerrada">
-                <input type="text" class="form-control" [(ngModel)]="Mesas.estado" style="display: none;">
-                <h3>ESTADO: {{Mesas.estado}}</h3>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="Mesas.estado"
+                  style="display: none"
+                />
+                <h3>ESTADO: {{ Mesas.estado }}</h3>
               </div>
             </ng-template>
-
           </div>
-          <mat-slide-toggle [(ngModel)]="Mesas.cierre" (ngModelChange)="cambioCierre()"></mat-slide-toggle>
+          <mat-slide-toggle
+            [(ngModel)]="Mesas.cierre"
+            (ngModelChange)="cambioCierre()"
+          ></mat-slide-toggle>
           <ng-template [ngIf]="verBotonAgrega()">
             <div class="d-flex justify-content-end">
-              <button id="BtnAgregarArt" type="button" class="btn btn-success"
-                (click)="mostrarComanda();DevolverLista();verBotonGuardar()">
+              <button
+                id="BtnAgregarArt"
+                type="button"
+                class="btn btn-success"
+                (click)="mostrarComanda(); DevolverLista(); verBotonGuardar()"
+              >
                 Agregar Articulos
               </button>
-
             </div>
           </ng-template>
-
 
           <div class="row">
             <div class="col-sm-6">
               <div>
                 <div *ngIf="modificaciones()">
-                  <button class="btn btn-success espacio-btn" id="botonAgregar"
-                    (click)="guardarCambios();guardaYcontinua3();">
+                  <button
+                    class="btn btn-success espacio-btn"
+                    id="botonAgregar"
+                    (click)="guardarCambios(); guardaYcontinua3()"
+                  >
                     CONFIRMAR CAMBIOS
                   </button>
                 </div>
                 <ng-template [ngIf]="NoVerBoton()">
-
-                  <button id="BtnAgregarItem" type="button" class="btn btn-danger espacio-btn"
-                    (click)="cerrarMesa();verBotonGuardar();DevolverLista()">
+                  <button
+                    id="BtnAgregarItem"
+                    type="button"
+                    class="btn btn-danger espacio-btn"
+                    (click)="cerrarMesa(); verBotonGuardar(); DevolverLista()"
+                  >
                     CERRAR MESA
                   </button>
-                  <button [disabled]="!Mesas.comanda" style="margin-top: 5px"
-                    class="btn btn-outline-dark rounded float-start espaciado-botones" (click)="comandaCocina()"
-                    title="Imprimir comanda">
+                  <button
+                    [disabled]="!Mesas.comanda"
+                    style="margin-top: 5px"
+                    class="btn btn-outline-dark rounded float-start espaciado-botones"
+                    (click)="comandaCocina()"
+                    title="Imprimir comanda"
+                  >
                     <i class="fa-sharp fa-solid fa-print"></i>
                   </button>
                 </ng-template>
 
-
                 <ng-template [ngIf]="templateRendirMesa()">
-                  <h3>Total a Cobrar: {{Mesas.totalComanda | currency: '$'}}</h3>
-                  <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn"
-                    (click)="rendirDineroMesa();verBotonGuardar()">
+                  <h3>
+                    Total a Cobrar: {{ Mesas.totalComanda | currency : "$" }}
+                  </h3>
+                  <button
+                    id="BtnAgregarItem"
+                    type="button"
+                    class="btn btn-warning espacio-btn"
+                    (click)="rendirDineroMesa(); verBotonGuardar()"
+                  >
                     DINERO RENDIDO
                   </button>
 
-                  <ng-template [ngIf]=" templateImprimir()">
-                    <button id="BtnAgregarItem" type="button" class="btn btn-dark espacio-btn"
-                      (click)="MostrarVistaImpresion()">
+                  <ng-template [ngIf]="templateImprimir()">
+                    <button
+                      id="BtnAgregarItem"
+                      type="button"
+                      class="btn btn-dark espacio-btn"
+                      (click)="MostrarVistaImpresion()"
+                    >
                       IMPRIMIR TICKET
                     </button>
                   </ng-template>
-
                 </ng-template>
-                <button class="btn btn-danger espacio-btn" id="botonAgregar" (click)="cancelar()">
+                <button
+                  class="btn btn-danger espacio-btn"
+                  id="botonAgregar"
+                  (click)="cancelar()"
+                >
                   VOLVER
                 </button>
               </div>
-              <!--Sacar este recuadro
-              <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Productos agregado a esta Mesa</h5>
-                <p>NADA PARA MOSTRAR</p>
-
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                          <tr>
-                              <th>Imagen</th>
-                              <th>Nombre</th>
-                              <th>Cantidad</th>
-                              <th>Precio</th>
-                           
-                          </tr>
-                      </thead>
-          <tbody *ngFor="let art of sinceros">
-              <tr>
-                  <td><img id="imgArticulo" [src]="[art.imagen]"></td>
-                  <td>{{art["nombre"]}}</td>
-                  <td>{{art["cantidad"]}}</td>
-                  <td>{{art["precioventa"] | currency: '$'}}</td>
-              </tr>  
-              </tbody>
-              </table>  
-         </div>
-
-
-                <button class="btn btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
-                <button class="btn btn-primary" (click)="DevolverLista()">Traer lista</button>
-              </div>
-            </div>
-          -->
-
               <ng-template [ngIf]="verBotonAgrega()">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">PRODUCTOS AGREGADOS A ESTA MESA</h5>
-                    <button class="btn btn-primary" (click)="DevolverLista()" style="margin-bottom: 10px;">VER PRODUCTOS
-                      DE ESTA MESA</button>
+                    <button
+                      class="btn btn-primary"
+                      (click)="DevolverLista()"
+                      style="margin-bottom: 10px"
+                    >
+                      VER PRODUCTOS DE ESTA MESA
+                    </button>
 
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <table
+                        class="table table-bordered"
+                        id="dataTable"
+                        width="100%"
+                        cellspacing="0"
+                      >
                         <ng-template [ngIf]="filtroBarraTabla()">
                           <thead>
                             <tr>
@@ -202,16 +244,26 @@
                         </ng-template>
                         <tbody *ngFor="let art of traelo">
                           <tr>
-                            <td><img id="imgArticulo" [src]="[art.imagen]"></td>
-                            <td>{{art.nombre}}</td>
-                            <td>{{art["cantidad"]}}</td>
-                            <td>{{art["precioventa"] | currency: '$'}}</td>
-                            <td>{{art.cantidad * art.precioventa | currency: '$'}}</td>
+                            <td>
+                              <img id="imgArticulo" [src]="[art.imagen]" />
+                            </td>
+                            <td>{{ art.nombre }}</td>
+                            <td>{{ art["cantidad"] }}</td>
+                            <td>{{ art["precioventa"] | currency : "$" }}</td>
+                            <td>
+                              {{
+                                art.cantidad * art.precioventa | currency : "$"
+                              }}
+                            </td>
                           </tr>
                         </tbody>
-                        <p id="novertotal">Total Orden: {{TotalComanda() | currency: '$'}}</p>
-                        <h3 style="text-align: end;">Total En Orden: {{Mesas.totalComanda | currency: '$'}}</h3>
-
+                        <p id="novertotal">
+                          Total Orden: {{ TotalComanda() | currency : "$" }}
+                        </p>
+                        <h3 style="text-align: end">
+                          Total En Orden:
+                          {{ Mesas.totalComanda | currency : "$" }}
+                        </h3>
                       </table>
                     </div>
 
@@ -224,40 +276,58 @@
               </ng-template>
             </div>
 
-
             <div class="col-sm-6">
-
-              <div class="card-body" id="comandaArt" [ngStyle]="{'display':verComanda}">
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div
+                class="card-body"
+                id="comandaArt"
+                [ngStyle]="{ display: verComanda }"
+              >
+                <form
+                  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                >
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" name="filtrarArticulos"
-                      placeholder="Buscar por Articulo..." style="margin: 0px 15px 0px 15px;"
-                      [(ngModel)]="filtrarArticulos" aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-
-                    </div>
+                    <input
+                      type="text"
+                      class="form-control bg-light border-0 small"
+                      name="filtrarArticulos"
+                      placeholder="Buscar por Articulo..."
+                      style="margin: 0px 15px 0px 15px"
+                      [(ngModel)]="filtrarArticulos"
+                      aria-label="Search"
+                      aria-describedby="basic-addon2"
+                    />
+                    <div class="input-group-append"></div>
                   </div>
                 </form>
 
-
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <table
+                    class="table table-bordered"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                  >
                     <thead>
                       <tr>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
-
                       </tr>
                     </thead>
-                    <tbody *ngFor="let Articulos of producto | filtroarticulos: filtrarArticulos">
+                    <tbody
+                      *ngFor="
+                        let Articulos of producto
+                          | filtroarticulos : filtrarArticulos
+                      "
+                    >
                       <tr>
-                        <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
-                        <td>{{Articulos.nombre}}</td>
-                        <td>{{Articulos.precioventa | currency: '$'}}</td>
                         <td>
-
+                          <img id="imgArticulo" [src]="[Articulos.imagen]" />
+                        </td>
+                        <td>{{ Articulos.nombre }}</td>
+                        <td>{{ Articulos.precioventa | currency : "$" }}</td>
+                        <td>
                           <!--
                               <ng-template [ngIf]="CantidadCero(Articulos)">
                             <button id="BtnAgregarItem" type="button" class="btn btn-danger" (click)="DelItem(Articulos)">
@@ -270,28 +340,29 @@
                             +
                           </button>-->
 
-                          <button id="BtnAgregarItem" type="button" class="btn btn-danger"
-                            (click)="SacarSinRepetir(Articulos)">
+                          <button
+                            id="BtnAgregarItem"
+                            type="button"
+                            class="btn btn-danger"
+                            (click)="SacarSinRepetir(Articulos)"
+                          >
                             -
                           </button>
-                          <button id="BtnAgregarItem" type="button" class="btn btn-success"
-                            (click)="AgregarSinRepetir(Articulos)">
+                          <button
+                            id="BtnAgregarItem"
+                            type="button"
+                            class="btn btn-success"
+                            (click)="AgregarSinRepetir(Articulos)"
+                          >
                             +
                           </button>
-
-
-
                         </td>
-
-
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-
             </div>
-
           </div>
 
           <!-- sacarlo por un rato <div>
@@ -328,23 +399,20 @@
                 </button>
               </div> -->
         </form>
-
-
-
-
       </div>
 
       <div class="col align-self-start">
-        <div class="vistaimprimir" [ngStyle]="{'display':verSoloImpresion}">
+        <div class="vistaimprimir" [ngStyle]="{ display: verSoloImpresion }">
           <div class="ticket">
             <img
               src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1673479801/APP%20PARRILLA%20EL%20FOGON/mini_logo_fogon_vgmega.png"
-              alt="Logotipo">
-            <p class="centrado">Comanda de Mesa N°{{Mesas.numeroMesa}}
+              alt="Logotipo"
+            />
+            <p class="centrado">
+              Comanda de Mesa N°{{ Mesas.numeroMesa }}
 
-
-              <br>{{FechaTicket}}
-
+              <br />{{ FechaTicket }}
+            </p>
 
             <table id="tableticket">
               <thead>
@@ -356,82 +424,96 @@
               </thead>
               <tbody *ngFor="let articulos of traelo">
                 <tr>
-                  <td class="cantidad centrado">{{articulos["cantidad"]}}</td>
-                  <td class="producto">{{articulos.nombre}}</td>
-                  <td class="precio">{{articulos.cantidad * articulos.precioventa}}</td>
+                  <td class="cantidad centrado">{{ articulos["cantidad"] }}</td>
+                  <td class="producto">{{ articulos.nombre }}</td>
+                  <td class="precio">
+                    {{ articulos.cantidad * articulos.precioventa }}
+                  </td>
                 </tr>
               </tbody>
               <tr>
-
                 <td class="cantidad"></td>
                 <td class="cantidad"><strong>TOTAL $</strong></td>
-                <td class="precio"><strong>{{Mesas.totalComanda}}</strong></td>
+                <td class="precio">
+                  <strong>{{ Mesas.totalComanda }}</strong>
+                </td>
               </tr>
             </table>
             <p class="precio centrado">-------------------------------------</p>
-            <p class="centrado">¡GRACIAS POR SU COMPRA!
-              <br>PARRILLA EL FOGON
+            <p class="centrado">
+              ¡GRACIAS POR SU COMPRA! <br />PARRILLA EL FOGON
             </p>
           </div>
-          <button id="BtnAgregarItem" type="button" class="btn btn-warning espacio-btn oculto-impresion"
-            (click)="ImprimirTicket()">
+          <button
+            id="BtnAgregarItem"
+            type="button"
+            class="btn btn-warning espacio-btn oculto-impresion"
+            (click)="ImprimirTicket()"
+          >
             CONFIRMAR
           </button>
-          <button class="btn btn-danger espacio-btn oculto-impresion" id="botonAgregar" (click)="cancelar()">
+          <button
+            class="btn btn-danger espacio-btn oculto-impresion"
+            id="botonAgregar"
+            (click)="cancelar()"
+          >
             MENU MESAS
           </button>
-          <button class="btn btn-primary espacio-btn oculto-impresion" id="botonAgregar"
-            (click)="volverAtrasEnImpreso()">
+          <button
+            class="btn btn-primary espacio-btn oculto-impresion"
+            id="botonAgregar"
+            (click)="volverAtrasEnImpreso()"
+          >
             VOLVER ATRAS
           </button>
-
         </div>
       </div>
 
       <!--Impresion de comanda para la cocina-->
-      <div class="vistaimprimir" [ngStyle]="{'display':TicketCocina}">
+      <div class="vistaimprimir" [ngStyle]="{ display: TicketCocina }">
         <div class="ticket">
           <p class="centrado">COMANDA PARA COCINA</p>
-          <p class="centrado">Comanda de Mesa N°{{Mesas.numeroMesa}}</p>
+          <p class="centrado">Comanda de Mesa N°{{ Mesas.numeroMesa }}</p>
           <p class="precio centrado">---------------------------------------</p>
           <p class="centrado">FECHA Y HORA DE EMISION</p>
-          <p class="centrado">{{fecha}}</p>
+          <p class="centrado">{{ fecha }}</p>
 
           <table class="centrado" id="tableticket">
             <thead class="centrado">
               <tr>
                 <th class="cantidad centrado">CANT</th>
                 <th class="producto">PRODUCTO</th>
-
               </tr>
             </thead>
             <tbody class="centrado" *ngFor="let art of traelo">
               <tr>
-                <td class="cantidad centrado">{{art["cantidad"]}}</td>
-                <td class="producto">{{art.nombre}}</td>
-
+                <td class="cantidad centrado">{{ art["cantidad"] }}</td>
+                <td class="producto">{{ art.nombre }}</td>
               </tr>
-
             </tbody>
-
-
           </table>
           <p class="precio centrado">---------------------------------------</p>
-          <p class="centrado">TICKET PARA COCINA
-            <br>PARRILLA EL FOGON
-          </p>
+          <p class="centrado">TICKET PARA COCINA <br />PARRILLA EL FOGON</p>
         </div>
 
-
         <div>
-          <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" style="margin-bottom: 5px;"
-            (click)="ImprimirCocina()">IMPRIMIR</button>
+          <button
+            class="btn btn-outline-dark rounded oculto-impresion btn-espacio"
+            style="margin-bottom: 5px"
+            (click)="ImprimirCocina()"
+          >
+            IMPRIMIR
+          </button>
         </div>
         <div>
-          <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio"
-            (click)="volverAtras();">VOLVER</button>
+          <button
+            class="btn btn-outline-dark rounded oculto-impresion btn-espacio"
+            (click)="volverAtras()"
+          >
+            VOLVER
+          </button>
         </div>
       </div>
-
     </div>
   </div>
+</div>
