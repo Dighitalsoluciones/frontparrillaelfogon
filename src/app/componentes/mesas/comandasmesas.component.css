@@ -1,104 +1,112 @@
-#imgArticulo{
-    width: 64px;
-    vertical-align: middle;
-    border-radius: 50px;
+#imgArticulo {
+  width: 64px;
+  vertical-align: middle;
+  border-radius: 50px;
 }
 
-#BtnAgregarArt{
-    margin-bottom: 5px;
-    margin-top: 5px;
+#BtnAgregarArt {
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
-#CardEstadoCerrada{
-    background-color:lightgreen;
+#CardEstadoCerrada {
+  background-color: lightgreen;
 }
-#CardEstadoAbierta{
-    background-color:tomato;
+#CardEstadoAbierta {
+  background-color: tomato;
 }
 
-#BtnAgregarItem{
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#BtnAgregarItem {
     margin-right: 8px;
     color: white;
+  }
+
+.btnAgregarItems {
+  flex: 1;
+  margin: 0 10px;
 }
 
-.espacio-btn{
-    margin: 8px 8px 8px 8px;
-
+.espacio-btn {
+  margin: 8px 8px 8px 8px;
 }
-#novertotal{
-    color: white;
+#novertotal {
+  color: white;
 }
 
 /* El Css del Ticket */
 .vistaimprimir {
-    font-size: 14px;
-    font-family: Arial;
+  font-size: 14px;
+  font-family: Arial;
 }
 
-
 #tableticket {
-    border-top: 1px solid black;
-    border-collapse: collapse;
+  border-top: 1px solid black;
+  border-collapse: collapse;
 }
 
 td.producto,
 th.producto {
-    width: 130px;
-    max-width: 130px;
+  width: 130px;
+  max-width: 130px;
 }
 
 td.cantidad,
 th.cantidad {
-    width: 50px;
-    max-width: 50px;
-    word-break: break-all;
+  width: 50px;
+  max-width: 50px;
+  word-break: break-all;
 }
 
 td.precio,
 th.precio {
-    width: 70px;
-    max-width: 70px;
-    word-break: break-all;
+  width: 70px;
+  max-width: 70px;
+  word-break: break-all;
 }
 
 .centrado {
-    text-align: center;
-    align-content: center;
+  text-align: center;
+  align-content: center;
 }
 
 .ticket {
-    width: 220px;
-    max-width: 220px;
+  width: 220px;
+  max-width: 220px;
 }
 
 img {
-    max-width: inherit;
-    width: inherit;
+  max-width: inherit;
+  width: inherit;
 }
 /*Agregado de un spinner de carga de linea 78 a 97*/
 .spinner {
-    margin: 100px auto;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    border-top: 3px solid #3498db;
-    border-right: 3px solid transparent;
-    border-radius: 50%;
-    animation: spinner 0.5s linear infinite;
-  }
-  
-  @keyframes spinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-top: 3px solid #3498db;
+  border-right: 3px solid transparent;
+  border-radius: 50%;
+  animation: spinner 0.5s linear infinite;
+}
 
-
-@media print{
-    .oculto-impresion, .oculto-impresion *{
-      display: none !important;
-    }
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media print {
+  .oculto-impresion,
+  .oculto-impresion * {
+    display: none !important;
+  }
+}
