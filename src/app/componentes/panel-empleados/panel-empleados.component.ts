@@ -32,20 +32,21 @@ export class PanelEmpleadosComponent implements OnInit {
 
   editarEmpleado(id: number, empleado: Empleado) {
     if (empleado.id === id) {
-      empleado.editar = true;
+      empleado.editar = "true";
     }
   }
 
   cancelarEditarEmpleado(id: number, empleado: Empleado) {
     if (empleado.id === id) {
-      empleado.editar = false;
+      empleado.editar = "false";
+
     }
   }
 
   actualizarEmpleado(id: number, empleado: Empleado) {
     this.serviceEmpleado.update(id, empleado).subscribe();
     alert("✅ Datos modificado/s correctamente");
-    location.reload();
+    empleado.editar = "false";
   }
 
   eliminarEmpleado(id: number) {

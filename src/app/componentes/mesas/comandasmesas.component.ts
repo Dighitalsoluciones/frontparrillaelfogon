@@ -309,7 +309,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   observacion: string = '';
   fecha: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
   numerodeMesa: string = '';
-  formadepago: string = '';
+  formadepago: string = 'EFECTIV';
   mesero: string = "";
   numeroTicket: number = 0;
   fechaTicket: string = '';

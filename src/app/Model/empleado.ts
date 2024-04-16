@@ -3,9 +3,9 @@ export class Empleado {
     codigo: string;
     nombre: string;
     contacto: string;
-    editar: boolean;
+    editar: string;
 
-    constructor(codigo: string, nombre: string, contacto: string, editar: boolean) {
+    constructor(codigo: string, nombre: string, contacto: string, editar: string) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.contacto = contacto;

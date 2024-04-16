@@ -14,7 +14,7 @@ export class ModalNewEmpleadoComponent implements OnInit {
   codigo: string = "";
   nombre: string = "";
   contacto: string = "";
-  editar: boolean = false;
+  editar: string = "false";
 
   constructor(private serviceEmpleado: EmpleadoService) { }
 
