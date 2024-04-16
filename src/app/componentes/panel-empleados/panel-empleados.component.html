@@ -24,39 +24,39 @@
                         <tbody *ngFor="let item of empleados">
                             <tr class="align-middle">
                                 <td>
-                                    <span *ngIf="!item.editar">{{ item.codigo }}</span>
-                                    <input type="text" name="codigo" [(ngModel)]="item.codigo" *ngIf="item.editar" />
+                                    <span *ngIf="item.editar === 'false'">{{ item.codigo }}</span>
+                                    <input type="text" name="codigo" [(ngModel)]="item.codigo" *ngIf="item.editar === 'true'" />
                                 </td>
 
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
                                             class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer"
-                                            *ngIf="!item.editar" />
+                                            *ngIf="item.editar === 'false'" />
                                         <div>
-                                            <div class="h6 mb-0 lh-1" *ngIf="!item.editar">
+                                            <div class="h6 mb-0 lh-1" *ngIf="item.editar === 'false'">
                                                 {{ item.nombre }}
                                             </div>
                                             <input type="text" name="nombre" [(ngModel)]="item.nombre"
-                                                *ngIf="item.editar" />
+                                            *ngIf="item.editar === 'true'" />
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="d-inline-block align-middle" *ngIf="!item.editar">{{ item.contacto
+                                    <span class="d-inline-block align-middle" *ngIf="item.editar === 'false'">{{ item.contacto
                                         }}</span>
-                                    <input *ngIf="item.editar" type="text" name="contacto"
+                                    <input *ngIf="item.editar === 'true'" type="text" name="contacto"
                                         [(ngModel)]="item.contacto" />
                                 </td>
                                 <td class="text-end">
                                     <span style="margin-right: 10px;"><i class="fa-solid fa-square-check fa-2xl"
                                             style="color: #057c03" (click)="actualizarEmpleado(item.id, item)"
-                                            *ngIf="item.editar"></i></span>
+                                            *ngIf="item.editar === 'true'"></i></span>
                                     <span><i class="fa-solid fa-square-xmark fa-2xl" style="color: #fb0404;"
                                             (click)="cancelarEditarEmpleado(item.id, item)"
-                                            *ngIf="item.editar"></i></span>
+                                            *ngIf="item.editar === 'true'"></i></span>
                                     <button class="btn btn-light" (click)="editarEmpleado(item.id, item)"
-                                        *ngIf="!item.editar">
+                                    *ngIf="item.editar === 'false'">
                                         <i class="fa-solid fa-pen-to-square"> Editar</i>
                                     </button>
                                     <button class="btn btn-light" (click)="eliminarEmpleado(item.id)">
