@@ -1,47 +1,63 @@
 <div class="vistaimprimir">
-    <div class="ticket">
-      <img
-          src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668959703/APP%20PARRILLA%20EL%20FOGON/logoticket_m09xl7.png"
-          alt="Logotipo">
-          <p class="centrado">N°{{ticket.id}}</p>
-      <p class="centrado">Comanda de Mesa N°{{ticket.numerodeMesa}}</p>
-      <p class="precio centrado">---------------------------------------</p>
-          <p class="centrado">{{ticket.fecha}}</p> 
-             
-      <table id="tableticket">
-          <thead>
-              <tr>
-                  <th class="cantidad centrado">CANT</th>
-                  <th class="producto">PRODUCTO</th>
-                  <th class="precio">SUB</th>
-              </tr>
-          </thead>
-          <tbody *ngFor="let art of traelo">
-              <tr>
-                  <td class="cantidad centrado">{{art["cantidad"]}}</td>
-                  <td class="producto">{{art.nombre}}</td>
-                  <td class="precio">{{art.precioventa * art.cantidad}}</td>
-              </tr>
-              
-          </tbody>
-          
-          <td class="producto centrado"><strong>TOTAL</strong></td>
-          
-          <p class="precio centrado">--------------$</p>
-              <td class="precio"><strong>{{ticket.importe}}</strong></td>
-         
-      </table>
-      <p class="precio centrado">---------------------------------------</p>
-      <p class="centrado">¡GRACIAS POR SU COMPRA!
-          <br>PARRILLA EL FOGON</p>
+  <div class="ticket">
+    <img
+      src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668959703/APP%20PARRILLA%20EL%20FOGON/logoticket_m09xl7.png"
+      alt="Logotipo"
+    />
+    <p class="centrado">N°{{ ticket.id }}</p>
+    <p class="centrado">Comanda de Mesa N°{{ ticket.numerodeMesa }}</p>
+    <p class="precio centrado">---------------------------------------</p>
+    <p class="centrado">{{ ticket.fecha }}</p>
+    <p class="text-center">Fué atendido Por: {{ ticket.mesero }}</p>
+
+    <table id="tableticket">
+      <thead>
+        <tr>
+          <th class="cantidad centrado">CANT</th>
+          <th class="producto">PRODUCTO</th>
+          <th class="precio">SUB</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let art of traelo">
+        <tr>
+          <td class="cantidad centrado">{{ art["cantidad"] }}</td>
+          <td class="producto">{{ art.nombre }}</td>
+          <td class="precio">{{ art.precioventa * art.cantidad }}</td>
+        </tr>
+      </tbody>
+
+      <td class="producto centrado"><strong>TOTAL</strong></td>
+
+      <p class="precio centrado">--------------$</p>
+      <td class="precio">
+        <strong>{{ ticket.importe }}</strong>
+      </td>
+    </table>
+    <p class="precio centrado">---------------------------------------</p>
+    <p class="centrado">¡GRACIAS POR SU COMPRA! <br />PARRILLA EL FOGON</p>
   </div>
-  </div>
-  <div>
-    <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="DevolverListado()">CARGAR VALORES DEL TICKET</button>
-  </div>
-  <div>
-  <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" (click)="ImprimirTicket()">IMPRIMIR</button>
- </div>
- <div>
-    <button class="btn btn-outline-dark rounded oculto-impresion btn-espacio" routerLink="/cajadiaria">VOLVER</button>
+</div>
+<div>
+  <button
+    class="btn btn-outline-dark rounded oculto-impresion btn-espacio"
+    (click)="DevolverListado()"
+  >
+    CARGAR VALORES DEL TICKET
+  </button>
+</div>
+<div>
+  <button
+    class="btn btn-outline-dark rounded oculto-impresion btn-espacio"
+    (click)="ImprimirTicket()"
+  >
+    IMPRIMIR
+  </button>
+</div>
+<div>
+  <button
+    class="btn btn-outline-dark rounded oculto-impresion btn-espacio"
+    routerLink="/cajadiaria"
+  >
+    VOLVER
+  </button>
 </div>

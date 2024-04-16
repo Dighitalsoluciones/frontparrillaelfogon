@@ -28,6 +28,9 @@ import { ComandacocinaComponent } from './componentes/mesas/comandacocina.compon
 import { PlanoComponent } from './componentes/plano/plano.component';
 import { EditorPlanoComponent } from './componentes/plano/editor-plano/editor-plano.component';
 import { ModalNewObjetoComponent } from './componentes/modals/modal-new-objeto/modal-new-objeto.component';
+import { PanelEmpleadosComponent } from './componentes/panel-empleados/panel-empleados.component';
+import { ModalNewEmpleadoComponent } from './componentes/modals/modal-new-empleado/modal-new-empleado.component';
+import { ModalFormaPagoComponent } from './componentes/modals/modal-forma-pago/modal-forma-pago.component';
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { ModalNewObjetoComponent } from './componentes/modals/modal-new-objeto/m
     PlanoComponent,
     EditorPlanoComponent,
     ModalNewObjetoComponent,
+    PanelEmpleadosComponent,
+    ModalNewEmpleadoComponent,
+    ModalFormaPagoComponent,
   
     
    

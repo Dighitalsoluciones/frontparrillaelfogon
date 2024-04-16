@@ -2,10 +2,12 @@ import { formatDate } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
+import { Empleado } from 'src/app/Model/empleado';
 import { Mesas1 } from 'src/app/Model/mesas1';
 import { Recibos } from 'src/app/Model/recibos';
 import { Ticket } from 'src/app/Model/ticket';
 import { ArticulosService } from 'src/app/Service/articulos.service';
+import { EmpleadoService } from 'src/app/Service/empleado.service';
 import { Mesas1Service } from 'src/app/Service/mesas1.service';
 import { RecibosService } from 'src/app/Service/recibos.service';
 import { TicketService } from 'src/app/Service/ticket.service';
@@ -24,7 +26,11 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   Mesas: Mesas1 = null;
   total: number = 0;
   producto: Articulos[] = [];
-  Ticket: Ticket = null;
+  Ticket: Ticket | null = null;
+
+  empleados: Empleado[] = [];
+
+  meseroSeleccionado: string = "";
 
   TicketCocina = "none";
 
@@ -122,7 +128,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
 
   constructor(private sMesas: Mesas1Service, private sProductos: ArticulosService, private sTicket: TicketService, private sRecibos: RecibosService, private activatedRouter: ActivatedRoute,
-    private router: Router) {
+    private router: Router, private serviceEmpleado: EmpleadoService) {
   }
   filtrarArticulos = [];
 
@@ -142,6 +148,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       this.cargado = true;
     }, 1500);
 
+    this.listarEmpleados();
 
     this.traelo = [];
     this.descomprimir = [];
@@ -151,8 +158,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     this.traerProductos();
 
     this.comandafinal = [];
-
-
 
     const id = this.activatedRouter.snapshot.params['id'];
     this.sMesas.details(id).subscribe(
@@ -164,6 +169,10 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       }
     )
 
+  }
+
+  listarEmpleados() {
+    this.serviceEmpleado.lista().subscribe(data => { this.empleados = data });
   }
 
   verBoton(): any {
@@ -210,8 +219,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     }
   }
 
-
-
   CantidadCero(Articulos: any) {
     if (Articulos.cantidad === 0) {
       return false;
@@ -230,53 +237,9 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     }
   }
 
-
   traerProductos(): void {
     this.sProductos.lista().subscribe(data => { this.producto = data; })
   }
-
-  /* En deshuso
-        AddItem(Articulos: any){
-          if (Articulos.cantidad == undefined){
-            Articulos.cantidad = 1;
-          } else if (Articulos.cantidad != undefined){
-            ++Articulos.cantidad;
-            this.comandafinal.push(Articulos);
-            this.unicos = Array.from(new Set(this.comandafinal));
-            this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
-          }
-        }
-  
-        DelItem(Articulos: any){
-          if (Articulos.cantidad == undefined){
-            Articulos.cantidad = 1;
-          } else if (Articulos.cantidad != undefined){
-            --Articulos.cantidad;
-            this.comandafinal.filter((Articulos) => Articulos !== Articulos);
-            this.sinceros = this.unicos.filter(Articulos => Articulos.cantidad !=0);
-            
-          }
-        }
-  
-        VerAlgoAnterior(){
-      let recoveredData = localStorage.getItem('comanda')
-  if(recoveredData == null){
-      //No tenemos nada guardado, por lo cual vamos a guardar el carListFav
-    localStorage.setItem('comanda', JSON.stringify(this.sinceros))
-  } else {
-      //Tenemos algo, por lo cual vamos a añadir un nuevo coche
-    let data = JSON.parse(recoveredData)
-    let newCar = {name:'car3', id:3}
-    //Asegurate que lo que guardes es realmente un array.
-    data.push(newCar)
-    localStorage.setItem('comanda', JSON.stringify(data))
-  }
-  
-  //Check si se guardo bien
-  console.log(localStorage.getItem('car'))
-        }
-  
-  */
 
   AgregarSinRepetir(traelo) {
 
@@ -323,9 +286,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   }
 
   DevolverLista() {
-    this.traelo = JSON.parse(this.Mesas.comanda);
-    console.log(this.traelo);
-
+    try {
+      this.traelo = JSON.parse(this.Mesas.comanda);
+      console.log(this.traelo);
+    } catch (error) {
+      console.error('Error al analizar JSON:', error);
+    }
   }
 
   TraeloDale(): any {
@@ -336,14 +302,18 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     console.log(this.Mesas.numeroMesa);
   }
 
-  //para crear Tickets
 
+  //Creacion de nuevo Ticket
   listadoArticulos: string = '';
   importe: number = 0;
   observacion: string = '';
   fecha: string = formatDate(Date.now(), 'dd/MM/yyyy hh:mm:ss', 'en-US');
   numerodeMesa: string = '';
   formadepago: string = 'EFECTIV';
+  mesero: string = "";
+  numeroTicket: number = 0;
+  fechaTicket: string = '';
+  check: string = "";
 
   GrabarValoresTicketNuevo() {
     this.Ticket.listadoArticulos = this.Mesas.comanda;
@@ -354,13 +324,11 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     this.Ticket.check = "false";
   }
 
-  numeroTicket: number = 0;
-  fechaTicket: string = '';
-  check: string = "";
-
   NuevoTicket(): void {
     if (this.Mesas.totalComanda != 0) {
-      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha, this.Mesas.numeroMesa, this.formadepago, this.check);
+      var mesero = this.Mesas.mesero;
+      const ticket = new Ticket(this.Mesas.comanda, this.Mesas.totalComanda, this.observacion, this.fecha,
+        this.Mesas.numeroMesa, this.formadepago, this.check, mesero);
       this.sTicket.save(ticket).subscribe(
         data => {
           alert("✅ Ticket creado correctamente");
@@ -468,17 +436,15 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   }
 
   cerrarMesa() {
+    this.DevolverLista();
     this.verComanda = "none";
-    this.guardaYcontinua();
-
     this.Mesas.estado = "Cerrada";
     this.Mesas.cierre = "false";
     this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesapendientecobrovertical_pyky9o.png";
-
     this.Mesas.liquidada = "true";
+    this.Mesas.comanda = JSON.stringify(this.traelo);
     this.nomostrardespuesdelcierre();
     this.guardaYcontinua();
-    this.DevolverLista();
   }
 
   //para crear recibos
@@ -498,8 +464,15 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         }
       )
     } else {
-      this.rendirDineroMesa();
-      this.cancelar();
+      this.Mesas.estado = "Cerrada";
+      this.Mesas.cierre = "false";
+      this.Mesas.cierre = "";
+      this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
+      this.Mesas.liquidada = "false";
+      this.Mesas.totalComanda = 0;
+      this.Mesas.impresion = "false";
+      this.onUpdate();
+      this.router.navigate(['']);
     }
   }
 
@@ -513,9 +486,9 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       this.Mesas.cierre = "";
       this.Mesas.imagen = "https://res.cloudinary.com/dighitalsoluciones/image/upload/v1666925103/APP%20PARRILLA%20EL%20FOGON/mesalibrevertical_yipjpm.png";
       this.Mesas.liquidada = "false";
+      this.Mesas.mesero = "";
       this.NuevoRecibo();
       this.Mesas.totalComanda = 0;
-      this.onUpdate();
       this.Mesas.impresion = "false";
       this.onUpdate();
       this.router.navigate(['']);

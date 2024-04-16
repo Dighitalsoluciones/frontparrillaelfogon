@@ -17,26 +17,29 @@ import { NuevamesaComponent } from './componentes/mesas/nuevamesa.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { EditorPlanoComponent } from './componentes/plano/editor-plano/editor-plano.component';
+import { PanelEmpleadosComponent } from './componentes/panel-empleados/panel-empleados.component';
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'login', component: LoginComponent},
-  {path: 'menuarticulos', component: MenuproductosComponent},
-  {path: 'nuevoarticulo', component: NuevoproductoComponent},
-  {path: 'editarticulo/:id', component: EditarproductoComponent},
-  {path: 'menumesas', component: MenumesasComponent},
-  {path: 'nuevamesa', component: NuevamesaComponent},
-  {path: 'editarmesa/:id', component: EditarmesasComponent},
-  {path: 'agregarcomanda/:id', component: ComandasmesasComponent},
-  {path: 'caja', component: CajaComponent},
-  {path: 'editarticket/:id', component: EditarticketComponent},
-  {path: 'vistaticket/:id', component: VistaimpresionComponent},
-  {path: 'nuevoegreso', component: NuevoegresoComponent},
-  {path: 'cajadiaria', component: CajadiariaComponent},
-  {path: 'formadepago/:id', component: CajadiariaeditarComponent},
-  {path: 'comandacocina/:id', component: ComandacocinaComponent},
-  {path: 'verplano', component: EditorPlanoComponent},
-  
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'menuarticulos', component: MenuproductosComponent },
+  { path: 'nuevoarticulo', component: NuevoproductoComponent },
+  { path: 'editarticulo/:id', component: EditarproductoComponent },
+  { path: 'menumesas', component: MenumesasComponent },
+  { path: 'nuevamesa', component: NuevamesaComponent },
+  { path: 'editarmesa/:id', component: EditarmesasComponent },
+  { path: 'agregarcomanda/:id', component: ComandasmesasComponent },
+  { path: 'caja', component: CajaComponent },
+  { path: 'editarticket/:id', component: EditarticketComponent },
+  { path: 'vistaticket/:id', component: VistaimpresionComponent },
+  { path: 'nuevoegreso', component: NuevoegresoComponent },
+  { path: 'cajadiaria', component: CajadiariaComponent },
+  { path: 'formadepago/:id', component: CajadiariaeditarComponent },
+  { path: 'comandacocina/:id', component: ComandacocinaComponent },
+  { path: 'verplano', component: EditorPlanoComponent },
+  { path: 'colaboradores', component: PanelEmpleadosComponent },
+
+
 ];
 
 @NgModule({

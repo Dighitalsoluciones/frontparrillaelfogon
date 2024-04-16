@@ -20,6 +20,9 @@
           <a title="Editar Plano" class="btn btn-outline-dark my-2 my-sm-0 espaciado-btn-redes" type="submit" routerLink="/verplano" *ngIf="isLogged" style="background-color: gainsboro;"><i class="fa-regular fa-map"></i>  Editar Plano</a>
         </li>
         <li class="espaciado-botones">
+          <a title="Colaboradores" class="btn btn-outline-dark my-2 my-sm-0 espaciado-btn-redes" type="submit" routerLink="/colaboradores" *ngIf="isLogged" style="background-color: gainsboro;"><i class="fa-solid fa-user"></i>  Colaboradores</a>
+        </li>
+        <li class="espaciado-botones">
         <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="login()" *ngIf="!isLogged" >LOGIN</button>
         <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="onLogout()" *ngIf="isLogged">LOGOUT</button>
       </li>
