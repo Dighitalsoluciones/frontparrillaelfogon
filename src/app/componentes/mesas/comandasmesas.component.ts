@@ -30,6 +30,11 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   empleados: Empleado[] = [];
 
+  //Propiedades para el modal forma de pago
+  lista = ["EFECTIV", "MP"];
+  formaDePagoRecibo: string = "";
+  conCuantoPaga: number = 0;
+
   meseroSeleccionado: string = "";
 
   TicketCocina = "none";
@@ -167,7 +172,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         alert("Error al modificar la mesa");
         this.router.navigate(['']);
       }
-    )
+    );
+
 
   }
 
@@ -453,7 +459,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   NuevoRecibo(): void {
     if (this.Mesas.totalComanda != 0) {
-      const recibos = new Recibos(this.fecha, this.corresTicket, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formadepago, this.checkEdR);
+      const recibos = new Recibos(this.fecha, this.corresTicket, this.Mesas.totalComanda, this.observacion, this.Mesas.numeroMesa, this.formaDePagoRecibo, this.checkEdR);
       this.sRecibos.save(recibos).subscribe(
         data => {
           alert("✅ Recibo generado correctamente");
@@ -492,7 +498,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       this.Mesas.impresion = "false";
       this.onUpdate();
       this.router.navigate(['']);
-      alert("Presiona Enter para continuar");
     }
   }
 
