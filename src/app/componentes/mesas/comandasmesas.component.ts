@@ -498,6 +498,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       this.Mesas.impresion = "false";
       this.onUpdate();
       this.router.navigate(['']);
+      alert("Presiona Enter para continuar");
     }
   }
 
