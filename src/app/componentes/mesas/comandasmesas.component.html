@@ -203,7 +203,22 @@
                   <h3>
                     Total a Cobrar: {{ Mesas.totalComanda | currency : "$" }}
                   </h3>
+                  <!-- Botón que permite seleccionar la forma de pago y calculo de vuelto -->
                   <button
+                    *ngIf="Mesas.totalComanda != 0"
+                    id="BtnAgregarItem"
+                    type="button"
+                    class="btn btn-warning espacio-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalFormaDePago"
+                    [disabled]="Mesas.impresion === 'false'"
+                  >
+                    DINERO RENDIDO
+                  </button>
+
+                  <!-- Botón que actua para solamente cerrar la caja y devolver valores por default -->
+                  <button
+                    *ngIf="Mesas.totalComanda == 0"
                     id="BtnAgregarItem"
                     type="button"
                     class="btn btn-warning espacio-btn"
@@ -211,6 +226,112 @@
                   >
                     DINERO RENDIDO
                   </button>
+
+                  <!-- Modal para rendir dinero, ver forma de pago y si es efectivo calcula vuelto-->
+                  <div class="modal" id="modalFormaDePago" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Elige la forma de pago</h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div
+                          class="modal-body justify-content-center text-center"
+                        >
+                          <form (ngSubmit)="cancelarMenuMesas()">
+                            <div
+                              class="form-group"
+                              style="
+                                margin-top: 15px;
+                                margin-bottom: 15px;
+                                margin-bottom: 15px;
+                              "
+                            >
+                              <label for="formaDePago" style="font-size: large">
+                                Forma de Pago:
+                              </label>
+                              <select
+                                name="formaDePago"
+                                style="margin-left: 10px"
+                                [(ngModel)]="formaDePagoRecibo"
+                              >
+                                <option
+                                  [value]="item"
+                                  *ngFor="let item of lista"
+                                >
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <h3 class="text-center">
+                                Importe Total:
+                                {{ Mesas.totalComanda | currency : "$" }}
+                              </h3>
+                              <div *ngIf="formaDePagoRecibo === 'EFECTIV'">
+                                <label
+                                  for="cuantoPaga"
+                                  style="
+                                    margin-top: 15px;
+                                    margin-bottom: 15px;
+                                    font-size: large;
+                                  "
+                                >
+                                  💰 Con cuanto paga?
+                                </label>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="cuantoPaga"
+                                  name="cuantoPaga"
+                                  [(ngModel)]="conCuantoPaga"
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <h3
+                                class="text-center darVto"
+                                *ngIf="conCuantoPaga != 0"
+                              >
+                                Dar Vuelto :
+                                {{
+                                  conCuantoPaga - Mesas.totalComanda
+                                    | currency : "$"
+                                }}
+                              </h3>
+                            </div>
+                            <div class="btn-container" style="margin-top: 25px">
+                              <button
+                                type="submit"
+                                class="btn btn-success btn-acep-canc"
+                                (click)="rendirDineroMesa(); verBotonGuardar()"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              >
+                                Aceptar
+                              </button>
+                              <button
+                                class="btn btn-danger btn-acep-canc"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              >
+                                CANCELAR
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Fin de modal de rendir dinero -->
+
+                  <!-- (click)="rendirDineroMesa(); verBotonGuardar()" -->
                   <!-- <a
                     class="btn btn-primary btn-sm"
                     type="button"

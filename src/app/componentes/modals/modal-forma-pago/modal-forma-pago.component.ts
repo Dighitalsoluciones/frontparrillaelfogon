@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Mesas1 } from 'src/app/Model/mesas1';
 
 @Component({
   selector: 'app-modal-forma-pago',
@@ -9,15 +10,14 @@ export class ModalFormaPagoComponent implements OnInit {
 
   lista = ["EFECTIV", "MP"];
   formaDePago: string = "";
+  conCuantoPaga: number = 0;
+  calculoVuelto: number = 0;
+  valorTicket: number;
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-  
-  }
-
-  crearRecibo() {
-
+   
   }
 
 }

@@ -11,7 +11,7 @@
         ></button>
       </div>
       <div class="modal-body justify-content-center text-center">
-        <form (ngSubmit)="crearRecibo()">
+        <form>
           <div class="form-group" style="margin-top: 15px; margin-bottom: 10px">
             <label for="formaDePago"> Forma de Pago: </label>
             <select
@@ -24,13 +24,40 @@
               </option>
             </select>
           </div>
-          <button
-            style="margin-top: 10px"
-            type="submit"
-            class="btn btn-primary"
-          >
-            Crear
-          </button>
+          <div class="form-group">
+            <label for="cuantoPaga"> Con cuanto paga? </label>
+            <input
+              type="number"
+              class="form-control"
+              id="cuantoPaga"
+              name="cuantoPaga"
+              [(ngModel)]="conCuantoPaga"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="calculoVuelto"> Calculo de Vuelto : </label>
+            <input
+              type="number"
+              class="form-control"
+              id="calculoVuelto"
+              name="calculoVuelto"
+              [(ngModel)]="calculoVuelto"
+              required
+            />
+          </div>
+          <div class="btn-container">
+            <button type="submit" class="btn btn-success btn-acep-canc">
+              Aceptar
+            </button>
+            <button
+              class="btn btn-danger btn-acep-canc"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              CANCELAR
+            </button>
+          </div>
         </form>
       </div>
     </div>
