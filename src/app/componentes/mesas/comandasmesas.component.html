@@ -384,7 +384,7 @@
                             <tr>
                               <th>Imagen</th>
                               <th>Nombre</th>
-                              <th>Cantidad</th>
+                              <th>Cant</th>
                               <th>Precio</th>
                               <th>Subtotal</th>
                             </tr>
@@ -395,7 +395,7 @@
                             <td>
                               <img id="imgArticulo" [src]="[art.imagen]" />
                             </td>
-                            <td>{{ art.nombre }}</td>
+                            <td class="nombre-producto">{{ art.nombre }}</td>
                             <td>{{ art["cantidad"] }}</td>
                             <td>{{ art["precioventa"] | currency : "$" }}</td>
                             <td>
@@ -412,6 +412,14 @@
                           Total En Orden:
                           {{ Mesas.totalComanda | currency : "$" }}
                         </h3>
+                        <button
+                        class="btn btn-warning text-start"
+                        [disabled]="traelo.length !== 0 && Mesas.totalComanda != 0"
+                        (click)="vaciarMesa()"
+                        *ngIf="btnVaciar"
+                      >
+                        ACTUALIZAR TOTAL
+                      </button>
                       </table>
                     </div>
 
@@ -473,7 +481,7 @@
                         <td>
                           <img id="imgArticulo" [src]="[Articulos.imagen]" />
                         </td>
-                        <td>
+                        <td class="nombre-producto">
                           {{ Articulos.nombre }}
                           <p *ngIf="Articulos.stock == 0" style="color: red">
                             <strong>SIN STOCK</strong>
@@ -483,7 +491,6 @@
                         <td>
                           <div class="btn-container">
                             <button
-                              [disabled]="Articulos.stock == 0"
                               type="button"
                               class="btn btn-danger btnAgregarItems"
                               (click)="SacarSinRepetir(Articulos)"
