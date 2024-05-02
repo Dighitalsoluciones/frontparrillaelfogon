@@ -473,11 +473,17 @@
                         <td>
                           <img id="imgArticulo" [src]="[Articulos.imagen]" />
                         </td>
-                        <td>{{ Articulos.nombre }}</td>
+                        <td>
+                          {{ Articulos.nombre }}
+                          <p *ngIf="Articulos.stock == 0" style="color: red">
+                            <strong>SIN STOCK</strong>
+                          </p>
+                        </td>
                         <td>{{ Articulos.precioventa | currency : "$" }}</td>
                         <td>
                           <div class="btn-container">
                             <button
+                              [disabled]="Articulos.stock == 0"
                               type="button"
                               class="btn btn-danger btnAgregarItems"
                               (click)="SacarSinRepetir(Articulos)"
@@ -485,6 +491,7 @@
                               <i class="fa-solid fa-minus"></i>
                             </button>
                             <button
+                              [disabled]="Articulos.stock == 0"
                               type="button"
                               class="btn btn-success btnAgregarItems"
                               (click)="AgregarSinRepetir(Articulos)"

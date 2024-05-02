@@ -32,7 +32,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   //Propiedades para el modal forma de pago
   lista = ["EFECTIV", "MP"];
-  formaDePagoRecibo: string = "";
+  formaDePagoRecibo: string = "EFECTIV";
   conCuantoPaga: number = 0;
 
   meseroSeleccionado: string = "";
@@ -288,7 +288,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   guardarCambios() {
 
     this.Mesas.comanda = JSON.stringify(this.traelo, ['id', 'nombre', 'cantidad', 'precioventa', 'imagen']);
-    console.log(this.Mesas.comanda);
   }
 
   DevolverLista() {
@@ -337,6 +336,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         this.Mesas.numeroMesa, this.formadepago, this.check, mesero);
       this.sTicket.save(ticket).subscribe(
         data => {
+          //Metodo para guardar el stock
+          this.saveStock();
           alert("✅ Ticket creado correctamente");
         }, err => {
           alert("⛔Fallo en la creación del ticket⛔");
@@ -584,6 +585,29 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       }
     )
 
+  }
+
+  //Para actualizar stock
+  saveStock() {
+    for (let item of this.traelo) {
+      this.sProductos.details(item.id).subscribe(
+        data => {
+          let nuevoStock = data.stock - item.cantidad;
+          data.stock = nuevoStock;
+          this.sProductos.update(item.id, data).subscribe(
+            data => {
+              console.log('Stock actualizado con éxito');
+            },
+            error => {
+              console.error('Error actualizando el stock', error);
+            }
+          );
+        },
+        error => {
+          console.error('Error obteniendo el artículo', error);
+        }
+      );
+    }
   }
 
 }
