@@ -255,10 +255,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       if (this.traelo[i].id == traelo.id) {
         if (producto.stock > 0) {
           this.traelo[i].cantidad++
-          producto.stock--
-          this.sProductos.update(producto.id, producto).subscribe(data => {
-            console.log("stock actualizado id: " + producto.id);
-          });
+          if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
+            producto.stock--
+            this.sProductos.update(producto.id, producto).subscribe(data => {
+              console.log("stock actualizado id: " + producto.id);
+            });
+          }
           this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
           repetido = true;
         }
@@ -267,10 +269,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     if (repetido == false) {
       if (producto.stock > 0) {
         traelo.cantidad = 1;
-        producto.stock--
-        this.sProductos.update(producto.id, producto).subscribe(data => {
-          console.log("stock actualizado id: " + producto.id);
-        });
+        if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
+          producto.stock--
+          this.sProductos.update(producto.id, producto).subscribe(data => {
+            console.log("stock actualizado id: " + producto.id);
+          });
+        }
         this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
         this.traelo.push(traelo);
       }
@@ -283,10 +287,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.traelo.length; i++) {
       if (this.traelo[i].id == traelo.id) {
         this.traelo[i].cantidad--
-        producto.stock++
-        this.sProductos.update(producto.id, producto).subscribe(data => {
-          console.log("stock actualizado id: " + producto.id);
-        });
+        if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
+          producto.stock++
+          this.sProductos.update(producto.id, producto).subscribe(data => {
+            console.log("stock actualizado id: " + producto.id);
+          });
+        }
         this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
         repetido = true;
       }

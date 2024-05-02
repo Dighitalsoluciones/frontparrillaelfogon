@@ -10,8 +10,9 @@ export class Articulos {
     imagen: string;
     cantidad: number;
     checkEdit: string;
+    isTrazable: boolean;
 
-    constructor(nombre: string, familia: string,  stock: number, puntorepo: number, costo: number, precioventa: number, stockinicial: number, imagen: string, cantidad: number, checkEdit: string){
+    constructor(nombre: string, familia: string,  stock: number, puntorepo: number, costo: number, precioventa: number, stockinicial: number, imagen: string, cantidad: number, checkEdit: string, isTrazable: boolean){
         this.nombre = nombre;
         this.familia = familia;
         this.stock = stock;
@@ -22,6 +23,7 @@ export class Articulos {
         this.imagen = imagen;
         this.cantidad = cantidad;
         this.checkEdit = checkEdit;
+        this.isTrazable = isTrazable;
        
     }
 }

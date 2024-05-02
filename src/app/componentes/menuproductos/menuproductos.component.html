@@ -1,220 +1,314 @@
-
-<head>
-
-
-</head>
+<head> </head>
 
 <body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul
+      class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      id="accordionSidebar"
+    >
+      <!-- Sidebar - Brand -->
+      <a
+        class="sidebar-brand d-flex align-items-center justify-content-center"
+        href="index.html"
+      >
+        <div class="sidebar-brand-icon rotate-n-15"></div>
+      </a>
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+      <img
+        src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664566586/APP%20PARRILLA%20EL%20FOGON/barrafondomaschica_i9obkd.png"
+        class="img-fluid"
+        alt="Responsive image"
+      />
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Nav Item - Pages Collapse Menu -->
+      <button
+        class="btn btn-outline-dark rounded"
+        style="margin: 5px 5px 5px 5px"
+        routerLink=""
+      >
+        <i class="fa-solid fa-house"> Volver a la Pantalla Principal</i>
+      </button>
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    
-                </div>
-                
-            </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block" />
 
-            <img src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1664566586/APP%20PARRILLA%20EL%20FOGON/barrafondomaschica_i9obkd.png" class="img-fluid" alt="Responsive image">
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
 
-            
-            <!-- Nav Item - Pages Collapse Menu -->
-            <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink=''><i class="fa-solid fa-house"> Volver a la Pantalla Principal</i>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        <nav
+          class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+        >
+          <!-- Sidebar Toggle (Topbar) -->
+          <form class="form-inline">
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
             </button>
-          
+          </form>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+          <!-- Topbar Search -->
+          <form
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+          >
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control bg-light border-0 small"
+                name="filtrarArticulos"
+                placeholder="Buscar por Articulo..."
+                style="margin: 0px 15px 0px 15px"
+                [(ngModel)]="filtrarArticulos"
+                aria-label="Search"
+                aria-describedby="basic-addon2"
+              />
+              <div class="input-group-append"></div>
             </div>
+          </form>
 
-        </ul>
-        <!-- End of Sidebar -->
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="searchDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div
+                class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown"
+              >
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control bg-light border-0 small"
+                      placeholder="Search for..."
+                      aria-label="Search"
+                      aria-describedby="basic-addon2"
+                    />
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <button
+                class="btn btn-outline-dark rounded"
+                style="margin: 5px 5px 5px 5px"
+                routerLink="/nuevoarticulo"
+                *ngIf="isLogged"
+                title="Agregar Nuevo Articulo"
+              >
+                <i class="fas fa-plus"> Nuevo</i>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  class="table table-bordered"
+                  id="dataTable"
+                  width="100%"
+                  cellspacing="0"
+                >
+                  <thead>
+                    <tr>
+                      <th>Cod</th>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Familia</th>
+                      <th>Costo</th>
+                      <th>Valor de Venta</th>
+                      <th>Stock Inicial</th>
+                      <th>Stock Actual</th>
+                      <th>Punto de Reposición</th>
+                      <th>Es Trazable?</th>
+                      <th>Eliminar</th>
+                      <th>Editar</th>
+                    </tr>
+                  </thead>
 
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
+                  <tbody
+                    *ngFor="
+                      let Articulos of producto
+                        | filtroarticulos : filtrarArticulos
+                    "
+                  >
+                    <tr>
+                      <td>{{ Articulos.id }}</td>
+                      <td>
+                        <img id="imgArticulo" [src]="[Articulos.imagen]" />
+                      </td>
+                      <td>{{ Articulos.nombre }}</td>
+                      <td>{{ Articulos.familia }}</td>
+                      <td>{{ Articulos.costo | currency : "$" }}</td>
+                      <td *ngIf="Articulos.checkEdit">
+                        {{ Articulos.precioventa | currency : "$" }}
+                        <i
+                          class="far fa-edit"
+                          (click)="Articulos.checkEdit = false"
+                        ></i>
+                      </td>
+                      <td *ngIf="!Articulos.checkEdit">
+                        <input
+                          type="text"
+                          [(ngModel)]="Articulos.precioventa"
+                        />
+                        <i
+                          class="fa-solid fa-xmark"
+                          style="color: #ff0000"
+                          (click)="Articulos.checkEdit = true"
+                        ></i>
+                        <i
+                          class="fa-solid fa-check"
+                          style="color: #1d8724"
+                          (click)="
+                            confirmarPrecio(Articulos.id, this.Articulos);
+                            Articulos.checkEdit = true
+                          "
+                        >
+                          Confirmar</i
+                        >
+                      </td>
+                      <td>{{ Articulos.stockinicial }}</td>
+                      <td>{{ Articulos.stock }}</td>
+                      <td>{{ Articulos.puntorepo }}</td>
+                      <td>
+                        {{
+                          convertirABooleano(Articulos.isTrazable) ? "Si" : "No"
+                        }}
+                      </td>
+                      <td style="display: flex">
+                        <button
+                          class="btn btn-outline-dark rounded float-end espaciado-botones"
+                          (click)="delete(Articulos.id)"
+                          *ngIf="isLogged"
+                          title="Eliminar"
+                        >
+                          <i class="fas fa-trash-alt"></i>
                         </button>
-                    </form>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" name="filtrarArticulos" placeholder="Buscar por Articulo..." style="margin: 0px 15px 0px 15px;" [(ngModel)]="filtrarArticulos"
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                       
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <button class="btn btn-outline-dark rounded" style="margin: 5px 5px 5px 5px;" routerLink="/nuevoarticulo" *ngIf="isLogged" title="Agregar Nuevo Articulo"><i class="fas fa-plus"> Nuevo</i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo</th>
-                                            <th>Imagen</th>
-                                            <th>Nombre</th>
-                                            <th>Familia</th>
-                                            <th>Costo</th>
-                                            <th>Valor de Venta</th>
-                                            <th>Stock Inicial</th>
-                                            <th>Stock Actual</th>
-                                            <th>Punto de Reposición</th>
-                                            <th>Eliminar</th>
-                                            <th>Editar</th>
-                                        </tr>
-                                    </thead>
-                               
-                                    <tbody *ngFor="let Articulos of producto | filtroarticulos: filtrarArticulos">
-                                        <tr>
-                                            <td>{{Articulos.id}}</td>
-                                            <td><img id="imgArticulo" [src]="[Articulos.imagen]"></td>
-                                            <td>{{Articulos.nombre}}</td>
-                                            <td>{{Articulos.familia}}</td>
-                                            <td>{{Articulos.costo | currency: '$'}}</td>
-                                            <td *ngIf="Articulos.checkEdit">{{Articulos.precioventa | currency: '$'}} <i class="far fa-edit" (click)="Articulos.checkEdit = false"></i></td>
-                                            <td *ngIf="!Articulos.checkEdit"><input type="text" [(ngModel)]="Articulos.precioventa"> <i class="fa-solid fa-xmark" style="color: #ff0000;" (click)="Articulos.checkEdit = true"></i> <i class="fa-solid fa-check" style="color: #1d8724;" (click)="confirmarPrecio(Articulos.id, this.Articulos); Articulos.checkEdit = true"> Confirmar</i></td>
-                                            <td>{{Articulos.stockinicial}}</td>
-                                            <td>{{Articulos.stock}}</td>
-                                            <td>{{Articulos.puntorepo}}</td>
-                                            <td style="display: flex ;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" (click)="delete(Articulos.id)" *ngIf="isLogged" title="Eliminar">
-                                                <i class="fas fa-trash-alt"></i></button></td>
-                                            <td style="align-self: flex-start;"><button class="btn btn-outline-dark rounded float-end espaciado-botones" *ngIf="isLogged" routerLink="/editarticulo/{{Articulos.id}}" title="Editar">
-                                                    <i class="far fa-edit"></i></button></td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
+                      </td>
+                      <td style="align-self: flex-start">
+                        <button
+                          class="btn btn-outline-dark rounded float-end espaciado-botones"
+                          *ngIf="isLogged"
+                          routerLink="/editarticulo/{{ Articulos.id }}"
+                          title="Editar"
+                        >
+                          <i class="far fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Dighital Soluciones</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
+          </div>
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Dighital Soluciones</span>
+          </div>
         </div>
+      </footer>
+      <!-- End of Footer -->
     </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Logout Modal-->
+  <div
+    class="modal fade"
+    id="logoutModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Logout" below if you are ready to end your current session.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
 </body>
-
-

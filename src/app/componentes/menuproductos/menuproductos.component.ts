@@ -11,10 +11,10 @@ import { TokenService } from 'src/app/Service/token.service';
 })
 export class MenuproductosComponent implements OnInit {
   producto: Articulos[] = [];
-  productos : Articulos = null;
+  productos: Articulos = null;
 
-  constructor(private sProductos: ArticulosService, private tokenService: TokenService, private activatedRouter: ActivatedRoute ) { }
-  
+  constructor(private sProductos: ArticulosService, private tokenService: TokenService, private activatedRouter: ActivatedRoute) { }
+
   filtrarArticulos = [];
 
   isLogged = false;
@@ -22,26 +22,29 @@ export class MenuproductosComponent implements OnInit {
   ngOnInit(): void {
     this.traerProductos();
     const id = this.activatedRouter.snapshot.params['id'];
-    if(id != null){
-    this.sProductos.details(id).subscribe(
-      data =>{
-        this.productos = data});}
-    if(this.tokenService.getToken()){
+    if (id != null) {
+      this.sProductos.details(id).subscribe(
+        data => {
+          this.productos = data
+        });
+    }
+    if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
       this.isLogged = false;
     }
   }
-  traerProductos(): void{
-    this.sProductos.lista().subscribe(data => {this.producto = data;})
+  traerProductos(): void {
+    this.sProductos.lista().subscribe(data => { this.producto = data; })
   }
 
-  delete(id?: number){
-    if(id != undefined){
+  delete(id?: number) {
+    if (id != undefined) {
       this.sProductos.delete(id).subscribe(
-        data =>{alert("✅ Articulo borrado correctamente");
+        data => {
+          alert("✅ Articulo borrado correctamente");
           this.traerProductos();
-        }, err =>{
+        }, err => {
           alert("No se pudo borrar el articulo");
         }
       )
@@ -49,11 +52,16 @@ export class MenuproductosComponent implements OnInit {
   }
 
 
-  confirmarPrecio(id, producto){
+  confirmarPrecio(id, producto) {
     this.sProductos.update(id, producto).subscribe(
-      data => {alert("✅ Articulo modificado correctamente");
-  });
-}
+      data => {
+        alert("✅ Articulo modificado correctamente");
+      });
+  }
+
+  convertirABooleano(valor: string): boolean {
+    return valor.toLowerCase() === 'true';
+  }
 
 
 }
