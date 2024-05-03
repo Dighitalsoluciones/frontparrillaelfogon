@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Articulos } from 'src/app/Model/articulos';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { TicketService } from 'src/app/Service/ticket.service';
-import { format } from '@formkit/tempo';
+import * as moment from 'moment';
 
 interface Articulo {
   id: number;
@@ -23,8 +22,14 @@ export class VentasScreenComponent implements OnInit {
 
   startDate: Date;
   endDate: Date;
+  fechaHastaMin: Date;
+  fechaInicioMax: Date;
+
   totalArticulosVendidos: number = 0;
   articulosVendidos = [];
+
+  //Para usar en la busqueda con el pipe
+  filtrarArticulos = [];
 
   constructor(private serviceArticulos: ArticulosService, private serviceTicket: TicketService) { }
 
@@ -43,14 +48,14 @@ export class VentasScreenComponent implements OnInit {
   // contarArticulosVendidos() {
   //   this.totalArticulosVendidos = 0;
   //   this.articulosVendidos = []; // Objeto para almacenar los artículos vendidos
-  
+
   //   this.serviceTicket.lista().subscribe(tickets => {
   //     tickets.forEach(ticket => {
   //       if (ticket.listadoArticulos) { // Verifica si listadoArticulos existe
   //         let articulos = JSON.parse(ticket.listadoArticulos); // Convierte el string a un array
   //         articulos.forEach((articulo: Articulo) => {
   //           this.totalArticulosVendidos += articulo.cantidad;
-  
+
   //           // Si el artículo ya existe en el objeto, suma la cantidad. Si no, lo agrega.
   //           if (this.articulosVendidos[articulo.nombre]) {
   //             this.articulosVendidos[articulo.nombre] += articulo.cantidad;
@@ -65,16 +70,18 @@ export class VentasScreenComponent implements OnInit {
 
   contarArticulosVendidos() {
     this.totalArticulosVendidos = 0;
-    this.articulosVendidos = []; // Objeto para almacenar los artículos vendidos
-  
+    this.articulosVendidos = [];
+
     this.serviceTicket.lista().subscribe(tickets => {
       tickets.forEach(ticket => {
         const ticketDate = this.parseDate(ticket.fecha);
-        if (ticket.listadoArticulos && this.isWithinDateRange(ticketDate)) { // Verifica si listadoArticulos existe y si la fecha del ticket está dentro del rango
-          let articulos = JSON.parse(ticket.listadoArticulos); // Convierte el string a un array
+        // Verifica si listadoArticulos existe y si la fecha del ticket está dentro del rango
+        if (ticket.listadoArticulos && this.isWithinDateRange(ticketDate)) {
+          // Convierte el string a un array
+          let articulos = JSON.parse(ticket.listadoArticulos);
           articulos.forEach((articulo: Articulo) => {
             this.totalArticulosVendidos += articulo.cantidad;
-  
+
             // Si el artículo ya existe en el objeto, suma la cantidad. Si no, lo agrega.
             if (this.articulosVendidos[articulo.nombre]) {
               this.articulosVendidos[articulo.nombre] += articulo.cantidad;
@@ -86,24 +93,27 @@ export class VentasScreenComponent implements OnInit {
       });
     });
   }
-  
+
   // Función para convertir una fecha en formato 'DD/MM/YYYY HH:mm:ss' a un objeto Date
-parseDate(dateString) {
-  const [day, month, yearAndTime] = dateString.split('/');
-  const [year, time] = yearAndTime.split(' ');
-  let date = new Date(year, month - 1, day);
-  date.setHours(0, 0, 0, 0); // Asegura que la fecha comienza a las 00:00:00
-  return date;
-}
-  
-  // Función para verificar si una fecha está dentro del rango de fechas seleccionado
-  isWithinDateRange(date) {
-    const startDate = new Date(this.startDate);
-    const endDate = new Date(this.endDate);
-    startDate.setHours(0, 0, 0, 0); // Asegura que la fecha de inicio comienza a las 00:00:00
-    endDate.setHours(23, 59, 59, 999); // Asegura que la fecha de fin termina a las 23:59:59
-    // Ignora la hora al comparar las fechas
-    return date.setHours(0, 0, 0, 0) >= startDate.getTime() && date.setHours(0, 0, 0, 0) <= endDate.getTime();
+  parseDate(dateString: any) {
+    return moment(dateString, 'DD/MM/YYYY HH:mm:ss').startOf('day').toDate();
   }
+
+  // Función para verificar si una fecha está dentro del rango de fechas seleccionado
+  isWithinDateRange(date: any) {
+    const startDate = moment(this.startDate).startOf('day');
+    const endDate = moment(this.endDate).endOf('day');
+    date = moment(date);
+    return date.isSameOrAfter(startDate) && date.isSameOrBefore(endDate);
+  }
+
+  updateFechaHastaMin() {
+    this.fechaHastaMin = this.startDate;
+  }
+
+  updateFechaInicioMax() {
+    this.fechaInicioMax = this.endDate;
+  }
+
 
 }
