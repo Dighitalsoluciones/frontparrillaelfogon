@@ -76,6 +76,8 @@
                         type="text"
                         class="form-control"
                         placeholder="(Opcional) Buscar Articulo"
+                        autocomplete="off"
+                        [(ngModel)]="textoFiltro"
                       />
                     </address>
                   </div>
@@ -98,7 +100,7 @@
                       </thead>
                       <tbody>
                         <tr
-                          *ngFor="let articulo of articulosVendidos | keyvalue"
+                        *ngFor="let articulo of articulosVendidos | keyvalue | filtrararticulosvendidos: textoFiltro"
                         >
                           <td>{{ articulo.key }}</td>
                           <td>

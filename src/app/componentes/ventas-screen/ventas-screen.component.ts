@@ -29,7 +29,7 @@ export class VentasScreenComponent implements OnInit {
   articulosVendidos = [];
 
   //Para usar en la busqueda con el pipe
-  filtrarArticulos = [];
+  textoFiltro: string = "";
 
   constructor(private serviceArticulos: ArticulosService, private serviceTicket: TicketService) { }
 
