@@ -31,6 +31,7 @@ import { ModalNewObjetoComponent } from './componentes/modals/modal-new-objeto/m
 import { PanelEmpleadosComponent } from './componentes/panel-empleados/panel-empleados.component';
 import { ModalNewEmpleadoComponent } from './componentes/modals/modal-new-empleado/modal-new-empleado.component';
 import { ModalFormaPagoComponent } from './componentes/modals/modal-forma-pago/modal-forma-pago.component';
+import { VentasScreenComponent } from './componentes/ventas-screen/ventas-screen.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { ModalFormaPagoComponent } from './componentes/modals/modal-forma-pago/m
     PanelEmpleadosComponent,
     ModalNewEmpleadoComponent,
     ModalFormaPagoComponent,
+    VentasScreenComponent,
   
     
    
