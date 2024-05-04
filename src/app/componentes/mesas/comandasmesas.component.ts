@@ -257,7 +257,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
           this.traelo[i].cantidad++
           if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
             producto.stock--
-            this.sProductos.update(producto.id, producto).subscribe(data => {
+            this.sProductos.actualizarStock(producto.id, producto).subscribe(data => {
               console.log("stock actualizado id: " + producto.id);
             });
           }
@@ -271,7 +271,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         traelo.cantidad = 1;
         if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
           producto.stock--
-          this.sProductos.update(producto.id, producto).subscribe(data => {
+          this.sProductos.actualizarStock(producto.id, producto).subscribe(data => {
             console.log("stock actualizado id: " + producto.id);
           });
         }
@@ -289,7 +289,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
         this.traelo[i].cantidad--
         if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
           producto.stock++
-          this.sProductos.update(producto.id, producto).subscribe(data => {
+          this.sProductos.actualizarStock(producto.id, producto).subscribe(data => {
             console.log("stock actualizado id: " + producto.id);
           });
         }
