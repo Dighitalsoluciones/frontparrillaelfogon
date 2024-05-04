@@ -38,6 +38,9 @@ import { ModalAddArtComponent } from './componentes/modals/modal-add-art/modal-a
 import { FiltroPorNombrePipe } from './pipes/filtro-por-nombre.pipe';
 import { FiltroPorFamiliaPipe } from './pipes/filtro-por-familia.pipe';
 import { FiltroPorCodigoPipe } from './pipes/filtro-por-codigo.pipe';
+import { ConsultaStockComponent } from './componentes/consulta-stock/consulta-stock.component';
+import { DetallesStockComponent } from './componentes/consulta-stock/detalles-stock/detalles-stock.component';
+import { ConsultarStockItemsComponent } from './componentes/stock-screen/consultar-stock-items/consultar-stock-items.component';
 
 
 @NgModule({
@@ -76,6 +79,9 @@ import { FiltroPorCodigoPipe } from './pipes/filtro-por-codigo.pipe';
     FiltroPorNombrePipe,
     FiltroPorFamiliaPipe,
     FiltroPorCodigoPipe,
+    ConsultaStockComponent,
+    DetallesStockComponent,
+    ConsultarStockItemsComponent,
   
     
    

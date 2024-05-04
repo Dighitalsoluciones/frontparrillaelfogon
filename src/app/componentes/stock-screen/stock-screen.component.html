@@ -41,12 +41,12 @@
                       Guardar
                     </button>
                     <button
-                    class="btn btn-danger"
-                    (click)="vaciarDatos()"
-                    [disabled]="articulos.length == 0"
-                  >
-                    Vaciar
-                  </button>
+                      class="btn btn-danger"
+                      (click)="vaciarDatos()"
+                      [disabled]="articulos.length == 0"
+                    >
+                      Vaciar
+                    </button>
                   </div>
                 </div>
               </div>
@@ -55,6 +55,14 @@
               <!-- Row start -->
               <div class="row gutters">
                 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                  <div class="text-start">
+                    <button class="btn btn-warning" routerLink="/movimientosstock">
+                      Consultar Movimientos
+                    </button>
+                    <button class="btn btn-success" routerLink="/consultastockitems" style="margin-left: 10px;">
+                      CONSULTAR STOCK
+                    </button>
+                  </div>
                   <div class="invoice-details">
                     <address>
                       <input
