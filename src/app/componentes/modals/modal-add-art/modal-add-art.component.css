@@ -1,0 +1,230 @@
+* {
+  user-select: none;
+}
+
+.custom-table {
+  border: 1px solid #2b3958;
+}
+.custom-table thead {
+  background: #2f71c1;
+}
+.custom-table thead th {
+  border: 0;
+  color: #ffffff;
+}
+.custom-table > tbody tr:hover {
+  background: #172033;
+}
+.custom-table > tbody tr:nth-of-type(even) {
+  background-color: #1a243a;
+}
+.custom-table > tbody td {
+  border: 1px solid #2e3d5f;
+}
+
+.table {
+  background: #1a243a;
+  color: #bcd0f7;
+  font-size: 0.75rem;
+}
+
+.td {
+  vertical-align: center;
+  text-align: center;
+}
+
+.botonera {
+  width: 30px;
+  height: 30px;
+}
+
+.search-options {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.search-options p {
+  margin: 5px 5px 5px 5px;
+}
+
+/* Switch para elegir tipo de busqueda */
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: flex;
+  align-self: start;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #b0b0b0;
+  border: 1px solid #b0b0b0;
+  transition: 0.4s;
+  border-radius: 32px;
+  outline: none;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  outline: 2px solid #b0b0b0;
+  left: -1px;
+  bottom: -1px;
+  background-color: #fff;
+  transition: transform 0.25s ease-in-out 0s;
+}
+
+.slider-icon {
+  opacity: 0;
+  height: 12px;
+  width: 12px;
+  stroke-width: 8;
+  position: absolute;
+  z-index: 999;
+  stroke: #222222;
+  right: 60%;
+  top: 30%;
+  transition: right ease-in-out 0.3s, opacity ease-in-out 0.15s;
+}
+
+input:checked + .slider {
+  background-color: #222222;
+}
+
+input:checked + .slider .slider-icon {
+  opacity: 1;
+  right: 20%;
+}
+
+input:checked + .slider:before {
+  transform: translateX(1.5em);
+  outline-color: #181818;
+}
+/* Fin Switch para tipo de busqueda */
+
+/* Barra de búsqueda */
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 500px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 45px;
+  padding-left: 2.5rem;
+  box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
+  border: 0;
+  border-radius: 12px;
+  background-color: #16171d;
+  outline: none;
+  color: #bdbecb;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: text;
+  z-index: 0;
+}
+
+.input::placeholder {
+  color: #bdbecb;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2.5px #2f303d;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Fin barra de búsqueda */
+
+/* Input cantidad de productos */
+.number-control {
+  display: flex;
+  align-items: center;
+}
+
+.number-left::before,
+.number-right::after {
+  content: attr(data-content);
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  width: 20px;
+  color: white;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.number-quantity {
+  padding: 0.25rem;
+  border: 0;
+  width: 50px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.number-left:hover::before,
+.number-right:hover::after {
+  background-color: #666666;
+}
+/* Fin input cantidad de productos */
+
+.btn-confirmar {
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Limitar el ancho de la columna nombre del array de articulos */
+.nombre-producto {
+  max-width: 280px;
+  word-wrap: break-word;
+}
+
+@media (max-width: 767px) {
+  input:checked + .slider .slider-icon {
+    opacity: 1;
+    right: -5%;
+  }
+}

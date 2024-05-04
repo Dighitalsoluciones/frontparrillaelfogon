@@ -33,6 +33,11 @@ import { ModalNewEmpleadoComponent } from './componentes/modals/modal-new-emplea
 import { ModalFormaPagoComponent } from './componentes/modals/modal-forma-pago/modal-forma-pago.component';
 import { VentasScreenComponent } from './componentes/ventas-screen/ventas-screen.component';
 import { FiltrararticulosvendidosPipe } from './pipes/filtrararticulosvendidos.pipe';
+import { StockScreenComponent } from './componentes/stock-screen/stock-screen.component';
+import { ModalAddArtComponent } from './componentes/modals/modal-add-art/modal-add-art.component';
+import { FiltroPorNombrePipe } from './pipes/filtro-por-nombre.pipe';
+import { FiltroPorFamiliaPipe } from './pipes/filtro-por-familia.pipe';
+import { FiltroPorCodigoPipe } from './pipes/filtro-por-codigo.pipe';
 
 
 @NgModule({
@@ -66,6 +71,11 @@ import { FiltrararticulosvendidosPipe } from './pipes/filtrararticulosvendidos.p
     ModalFormaPagoComponent,
     VentasScreenComponent,
     FiltrararticulosvendidosPipe,
+    StockScreenComponent,
+    ModalAddArtComponent,
+    FiltroPorNombrePipe,
+    FiltroPorFamiliaPipe,
+    FiltroPorCodigoPipe,
   
     
    

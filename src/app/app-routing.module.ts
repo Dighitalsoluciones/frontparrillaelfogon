@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { EditorPlanoComponent } from './componentes/plano/editor-plano/editor-plano.component';
 import { PanelEmpleadosComponent } from './componentes/panel-empleados/panel-empleados.component';
 import { VentasScreenComponent } from './componentes/ventas-screen/ventas-screen.component';
+import { StockScreenComponent } from './componentes/stock-screen/stock-screen.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'verplano', component: EditorPlanoComponent },
   { path: 'colaboradores', component: PanelEmpleadosComponent },
   { path: 'ventas', component: VentasScreenComponent },
+  { path: 'stock', component: StockScreenComponent },
+
 
 
 

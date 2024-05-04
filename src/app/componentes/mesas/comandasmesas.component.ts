@@ -645,30 +645,30 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   //Se resolvio la actualizacion de stock de otra manera, cada vez que se agrega o se descuenta items, y no por
   //finalizacion del ticket. Para tener el stock en tiempo real.
   // //Para actualizar stock
-  saveStock() {
-    for (let item of this.traelo) {
-      this.sProductos.details(item.id).subscribe(
-        data => {
-          let nuevoStock = data.stock - item.cantidad;
-          if (nuevoStock >= 0) {
-            data.stock = nuevoStock;
-            this.sProductos.update(item.id, data).subscribe(
-              data => {
-                console.log('Stock actualizado con éxito');
-              },
-              error => {
-                console.error('Error actualizando el stock', error);
-              }
-            );
-          } else {
-            console.error('La cantidad es mayor que el stock disponible');
-          }
-        },
-        error => {
-          console.error('Error obteniendo el artículo', error);
-        }
-      );
-    }
-  }
+  // saveStock() {
+  //   for (let item of this.traelo) {
+  //     this.sProductos.details(item.id).subscribe(
+  //       data => {
+  //         let nuevoStock = data.stock - item.cantidad;
+  //         if (nuevoStock >= 0) {
+  //           data.stock = nuevoStock;
+  //           this.sProductos.update(item.id, data).subscribe(
+  //             data => {
+  //               console.log('Stock actualizado con éxito');
+  //             },
+  //             error => {
+  //               console.error('Error actualizando el stock', error);
+  //             }
+  //           );
+  //         } else {
+  //           console.error('La cantidad es mayor que el stock disponible');
+  //         }
+  //       },
+  //       error => {
+  //         console.error('Error obteniendo el artículo', error);
+  //       }
+  //     );
+  //   }
+  // }
 
 }
