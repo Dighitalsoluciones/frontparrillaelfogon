@@ -18,6 +18,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { EditorPlanoComponent } from './componentes/plano/editor-plano/editor-plano.component';
 import { PanelEmpleadosComponent } from './componentes/panel-empleados/panel-empleados.component';
+import { VentasScreenComponent } from './componentes/ventas-screen/ventas-screen.component';
+import { StockScreenComponent } from './componentes/stock-screen/stock-screen.component';
+import { ConsultaStockComponent } from './componentes/consulta-stock/consulta-stock.component';
+import { DetallesStockComponent } from './componentes/consulta-stock/detalles-stock/detalles-stock.component';
+import { ConsultarStockItemsComponent } from './componentes/stock-screen/consultar-stock-items/consultar-stock-items.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,6 +43,16 @@ const routes: Routes = [
   { path: 'comandacocina/:id', component: ComandacocinaComponent },
   { path: 'verplano', component: EditorPlanoComponent },
   { path: 'colaboradores', component: PanelEmpleadosComponent },
+  { path: 'ventas', component: VentasScreenComponent },
+  { path: 'stock', component: StockScreenComponent },
+  { path: 'movimientosstock', component: ConsultaStockComponent },
+  { path: 'detallestock/:id', component: DetallesStockComponent },
+  { path: 'consultastockitems', component: ConsultarStockItemsComponent },
+
+
+
+
+
 
 
 ];

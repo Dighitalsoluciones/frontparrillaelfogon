@@ -9,35 +9,40 @@ import { ArticulosService } from 'src/app/Service/articulos.service';
   styleUrls: ['./editarproducto.component.css']
 })
 export class EditarproductoComponent implements OnInit {
-  producto : Articulos = null;
-  lista: string[]=["COCINA", "PARRILLA" , "BEBIDAS"];
+  producto: Articulos = null;
+  lista: string[] = ["COCINA", "PARRILLA", "BEBIDAS"];
 
-  constructor(private sArticulos: ArticulosService, private activatedRouter: ActivatedRoute, 
+  constructor(private sArticulos: ArticulosService, private activatedRouter: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sArticulos.details(id).subscribe(
-      data =>{
+      data => {
         this.producto = data;
-      }, err =>{
+        // Nos aseguramos de que isTrazable es una cadena antes de llamar a toLowerCase()
+        if (typeof this.producto.isTrazable === 'string') {
+          this.producto.isTrazable = (this.producto.isTrazable as string).toLowerCase() === 'true';
+        }
+      }, err => {
         alert("Error al modificar la experiencia");
         this.router.navigate(['menuarticulos']);
       }
     )
   }
 
-  onUpdate(): void{
+  onUpdate(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sArticulos.update(id, this.producto).subscribe(
-      data => {alert("✅ Articulo modificado correctamente");
+      data => {
+        alert("✅ Articulo modificado correctamente");
         this.router.navigate(['menuarticulos']);
-      }, err =>{
+      }, err => {
         alert("⛔ Error al modificar el articulo ⛔");
         this.router.navigate(['menuarticulos']);
       }
     )
-    
+
   }
 
   cancelar(): void {

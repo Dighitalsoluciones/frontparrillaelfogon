@@ -32,7 +32,7 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
   //Propiedades para el modal forma de pago
   lista = ["EFECTIV", "MP"];
-  formaDePagoRecibo: string = "";
+  formaDePagoRecibo: string = "EFECTIV";
   conCuantoPaga: number = 0;
 
   meseroSeleccionado: string = "";
@@ -60,6 +60,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   cerrar = false;
 
   condicionIf = false;
+
+  btnVaciar: boolean = false;
 
   comandaCocina() {
     // this.guardarCambios();
@@ -174,7 +176,6 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
       }
     );
 
-
   }
 
   listarEmpleados() {
@@ -248,36 +249,75 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   }
 
   AgregarSinRepetir(traelo) {
-
+    let producto = this.producto.find(item => item.id == traelo.id);
     let repetido = false;
     for (let i = 0; i < this.traelo.length; i++) {
       if (this.traelo[i].id == traelo.id) {
-        this.traelo[i].cantidad++
-        this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
-        repetido = true;
+        if (producto.stock > 0) {
+          this.traelo[i].cantidad++
+          if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
+            producto.stock--
+            this.sProductos.actualizarStock(producto.id, producto).subscribe(data => {
+              console.log("stock actualizado id: " + producto.id);
+            });
+          }
+          this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
+          repetido = true;
+        }
       }
     }
     if (repetido == false) {
-      traelo.cantidad = 1;
-      this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
-      this.traelo.push(traelo);
-
+      if (producto.stock > 0) {
+        traelo.cantidad = 1;
+        if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
+          producto.stock--
+          this.sProductos.actualizarStock(producto.id, producto).subscribe(data => {
+            console.log("stock actualizado id: " + producto.id);
+          });
+        }
+        this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
+        this.traelo.push(traelo);
+      }
     }
   }
 
   SacarSinRepetir(traelo) {
-
+    let producto = this.producto.find(item => item.id == traelo.id);
     let repetido = false;
     for (let i = 0; i < this.traelo.length; i++) {
       if (this.traelo[i].id == traelo.id) {
         this.traelo[i].cantidad--
+        if ((producto.isTrazable as unknown as string).toLowerCase() === 'true') {
+          producto.stock++
+          this.sProductos.actualizarStock(producto.id, producto).subscribe(data => {
+            console.log("stock actualizado id: " + producto.id);
+          });
+        }
         this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
         repetido = true;
       }
     }
     if (repetido == false) {
-      this.traelo.push(traelo);
+      this.TotalComanda();
 
+    }
+  }
+
+  SacarSinRepetirExistente(traelo) {
+    let producto = this.producto.find(item => item.id == traelo.id);
+    let repetido = false;
+    for (let i = 0; i < this.traelo.length; i++) {
+      if (this.traelo[i].id == traelo.id) {
+        this.traelo[i].cantidad--;
+        producto.stock++;
+        this.sProductos.update(producto.id, producto).subscribe(data => {
+          console.log("stock actualizado id: " + producto.id);
+        });
+        repetido = true;
+      }
+    }
+    this.traelo = this.traelo.filter(traelo => traelo.cantidad != 0);
+    if (repetido == false) {
     }
   }
 
@@ -288,13 +328,12 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   guardarCambios() {
 
     this.Mesas.comanda = JSON.stringify(this.traelo, ['id', 'nombre', 'cantidad', 'precioventa', 'imagen']);
-    console.log(this.Mesas.comanda);
   }
 
   DevolverLista() {
     try {
       this.traelo = JSON.parse(this.Mesas.comanda);
-      console.log(this.traelo);
+      this.btnVaciar = true;
     } catch (error) {
       console.error('Error al analizar JSON:', error);
     }
@@ -413,7 +452,16 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
 
 
   cancelar(): void {
-    this.router.navigate(['']);
+    if (this.traelo.length === 0) {
+      this.DevolverLista();
+      this.guardarCambios();
+      this.guardaYcontinua2();
+      this.router.navigate(['']);
+    } else {
+      this.guardarCambios();
+      this.guardaYcontinua2();
+      this.router.navigate(['']);
+    }
   }
 
   cancelarMenuMesas(): void {
@@ -572,6 +620,14 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     }
   }
 
+  vaciarMesa() {
+    this.traelo = [];
+    this.Mesas.comanda = "";
+    this.Mesas.totalComanda = 0;
+    this.guardarCambios();
+    this.guardaYcontinua3();
+  }
+
   guardaYcontinua3(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sMesas.update(id, this.Mesas).subscribe(
@@ -585,5 +641,34 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
     )
 
   }
+
+  //Se resolvio la actualizacion de stock de otra manera, cada vez que se agrega o se descuenta items, y no por
+  //finalizacion del ticket. Para tener el stock en tiempo real.
+  // //Para actualizar stock
+  // saveStock() {
+  //   for (let item of this.traelo) {
+  //     this.sProductos.details(item.id).subscribe(
+  //       data => {
+  //         let nuevoStock = data.stock - item.cantidad;
+  //         if (nuevoStock >= 0) {
+  //           data.stock = nuevoStock;
+  //           this.sProductos.update(item.id, data).subscribe(
+  //             data => {
+  //               console.log('Stock actualizado con éxito');
+  //             },
+  //             error => {
+  //               console.error('Error actualizando el stock', error);
+  //             }
+  //           );
+  //         } else {
+  //           console.error('La cantidad es mayor que el stock disponible');
+  //         }
+  //       },
+  //       error => {
+  //         console.error('Error obteniendo el artículo', error);
+  //       }
+  //     );
+  //   }
+  // }
 
 }

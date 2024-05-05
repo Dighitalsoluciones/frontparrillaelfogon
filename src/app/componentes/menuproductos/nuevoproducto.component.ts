@@ -21,6 +21,7 @@ export class NuevoproductoComponent implements OnInit {
   imagen: string = '';
   cantidad: number = 0;
   checkEdit: string = "false";
+  isTrazable: boolean = false;
 
   constructor(private sArticulos: ArticulosService, private router: Router) { }
 
@@ -28,7 +29,12 @@ export class NuevoproductoComponent implements OnInit {
   }
 
   onCreate(): void{
-    const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo, this.precioventa, this.stockinicial, this.imagen, this.cantidad, this.checkEdit);
+    if(this.stockinicial != 0){
+      this.stock = this.stockinicial;
+    }
+    
+    const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo,
+       this.precioventa, this.stockinicial, this.imagen, this.cantidad, this.checkEdit, this.isTrazable);
     this.sArticulos.save(producto).subscribe(
       data=>{alert("✅ Articulo creado correctamente");
       this.router.navigate(['menuarticulos']);
