@@ -31,8 +31,10 @@ export class StockScreenComponent implements OnInit {
   }
 
   traerProximoMovimientoStock() {
-    this.serviceMovimientoStock.getNextId().subscribe(data => {
-      this.proximoMovimientoStock = data;
+    var totalDeMovimientosStock = 0;
+    this.serviceMovimientoStock.lista().subscribe(movimientosStock => {
+      totalDeMovimientosStock = movimientosStock.length;
+      this.proximoMovimientoStock = totalDeMovimientosStock + 1;
     })
   }
 
