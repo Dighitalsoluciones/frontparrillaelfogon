@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Articulos } from 'src/app/Model/articulos';
 import { ArticulosService } from 'src/app/Service/articulos.service';
+import { SpinnerService } from 'src/app/Service/spinner.service';
 
 @Component({
   selector: 'app-nuevoproducto',
@@ -23,7 +24,8 @@ export class NuevoproductoComponent implements OnInit {
   checkEdit: string = "false";
   isTrazable: boolean = false;
 
-  constructor(private sArticulos: ArticulosService, private router: Router) { }
+  constructor(private sArticulos: ArticulosService, private router: Router,
+     private serviceSpinner: SpinnerService) { }
 
   ngOnInit(): void {
   }
@@ -31,15 +33,18 @@ export class NuevoproductoComponent implements OnInit {
   onCreate(): void{
     if(this.stockinicial != 0){
       this.stock = this.stockinicial;
+      this.serviceSpinner.llamarSpinner();
     }
     
     const producto = new Articulos(this.nombre, this.familia, this.stock, this.puntorepo, this.costo,
        this.precioventa, this.stockinicial, this.imagen, this.cantidad, this.checkEdit, this.isTrazable);
     this.sArticulos.save(producto).subscribe(
       data=>{alert("✅ Articulo creado correctamente");
+      this.serviceSpinner.pararSpinner();
       this.router.navigate(['menuarticulos']);
     }, err =>{
       alert("⛔Fallo en la creación del articulo, debes completar todos los campos⛔");
+      this.serviceSpinner.pararSpinner();
       this.router.navigate(['menuarticulos'])
     }
     )

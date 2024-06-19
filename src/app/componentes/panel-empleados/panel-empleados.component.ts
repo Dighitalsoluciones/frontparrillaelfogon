@@ -44,9 +44,9 @@ export class PanelEmpleadosComponent implements OnInit {
   }
 
   actualizarEmpleado(id: number, empleado: Empleado) {
+    empleado.editar = "false";
     this.serviceEmpleado.update(id, empleado).subscribe();
     alert("✅ Datos modificado/s correctamente");
-    empleado.editar = "false";
   }
 
   eliminarEmpleado(id: number) {

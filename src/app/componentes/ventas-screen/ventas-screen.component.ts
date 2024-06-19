@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { TicketService } from 'src/app/Service/ticket.service';
 import * as moment from 'moment';
+import { SpinnerService } from 'src/app/Service/spinner.service';
 
 interface Articulo {
   id: number;
@@ -31,7 +32,8 @@ export class VentasScreenComponent implements OnInit {
   //Para usar en la busqueda con el pipe
   textoFiltro: string = "";
 
-  constructor(private serviceArticulos: ArticulosService, private serviceTicket: TicketService) { }
+  constructor(private serviceArticulos: ArticulosService, private serviceTicket: TicketService,
+    private serviceSpinner: SpinnerService) { }
 
   ngOnInit(): void {
     this.traerListadoArticulos();
@@ -69,6 +71,7 @@ export class VentasScreenComponent implements OnInit {
   // }
 
   contarArticulosVendidos() {
+    this.serviceSpinner.llamarSpinner();
     this.totalArticulosVendidos = 0;
     this.articulosVendidos = [];
 
@@ -91,6 +94,7 @@ export class VentasScreenComponent implements OnInit {
           });
         }
       });
+      this.serviceSpinner.pararSpinner();
     });
   }
 
