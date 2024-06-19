@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MesasComponent } from './componentes/mesas/mesas.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BarrainicialComponent } from './componentes/barrainicial/barrainicial.component';
 import { MenuproductosComponent } from './componentes/menuproductos/menuproductos.component';
 import { NuevoproductoComponent } from './componentes/menuproductos/nuevoproducto.component';
@@ -41,6 +41,9 @@ import { FiltroPorCodigoPipe } from './pipes/filtro-por-codigo.pipe';
 import { ConsultaStockComponent } from './componentes/consulta-stock/consulta-stock.component';
 import { DetallesStockComponent } from './componentes/consulta-stock/detalles-stock/detalles-stock.component';
 import { ConsultarStockItemsComponent } from './componentes/stock-screen/consultar-stock-items/consultar-stock-items.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InterceptorService } from './Service/interceptor.service';
 
 
 @NgModule({
@@ -82,10 +85,10 @@ import { ConsultarStockItemsComponent } from './componentes/stock-screen/consult
     ConsultaStockComponent,
     DetallesStockComponent,
     ConsultarStockItemsComponent,
-  
-    
-   
-    
+
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -93,13 +96,15 @@ import { ConsultarStockItemsComponent } from './componentes/stock-screen/consult
     HttpClientModule,
     FormsModule,
     DragDropModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
 
 
-    
+
 
   ],
   providers: [
-    
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
 })

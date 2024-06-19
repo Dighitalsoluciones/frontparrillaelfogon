@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { MovimientoStock } from 'src/app/Model/movimiento-stock';
 import { MovimientoStockService } from 'src/app/Service/movimiento-stock.service';
+import { SpinnerService } from 'src/app/Service/spinner.service';
 
 @Component({
   selector: 'app-consulta-stock',
@@ -18,15 +19,17 @@ export class ConsultaStockComponent implements OnInit {
   totalArticulosVendidos: number = 0;
   movimientosStock: MovimientoStock[] = []
 
-  constructor(private serviceMovimientoStock: MovimientoStockService) { }
+  constructor(private serviceMovimientoStock: MovimientoStockService, private serviceSpinner: SpinnerService) { }
 
   ngOnInit(): void {
   }
 
   traerListaMovimientoStockFiltrados() {
+    this.serviceSpinner.llamarSpinner();
     this.serviceMovimientoStock.lista().subscribe(data => {
       this.movimientosStock = data;
       this.filtrarPorFecha();
+      this.serviceSpinner.pararSpinner();
     })
   }
 

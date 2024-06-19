@@ -4,6 +4,7 @@ import { MovimientoStock } from 'src/app/Model/movimiento-stock';
 import { ArticulosService } from 'src/app/Service/articulos.service';
 import { CompartidoService } from 'src/app/Service/compartido.service';
 import { MovimientoStockService } from 'src/app/Service/movimiento-stock.service';
+import { SpinnerService } from 'src/app/Service/spinner.service';
 
 @Component({
   selector: 'app-stock-screen',
@@ -22,7 +23,7 @@ export class StockScreenComponent implements OnInit {
   listadoItem: string = '';
 
   constructor(private serviceCompartido: CompartidoService, private serviceMovimientoStock: MovimientoStockService,
-    private serviceArticulo: ArticulosService) {
+    private serviceArticulo: ArticulosService, private serviceSpinner: SpinnerService) {
     this.serviceCompartido.currentData.subscribe(data => this.articulos = data)
   }
 
@@ -77,7 +78,7 @@ export class StockScreenComponent implements OnInit {
 
   saveStock() {
     let updatePromises = []; // Array para guardar todas las promesas
-
+    this.serviceSpinner.llamarSpinner();
     for (let item of this.articulos) {
       let updatePromise = new Promise<void>((resolve, reject) => {
         this.serviceArticulo.details(item.id).subscribe(
@@ -92,12 +93,15 @@ export class StockScreenComponent implements OnInit {
               error => {
                 console.error('Error actualizando el stock', error);
                 reject(); // Rechaza la promesa si hay un error
+                this.serviceSpinner.pararSpinner();
               }
             );
           },
           error => {
             console.error('Error obteniendo el artículo', error);
             reject(); // Rechaza la promesa si hay un error
+            this.serviceSpinner.pararSpinner();
+
           }
         );
       });
@@ -107,6 +111,8 @@ export class StockScreenComponent implements OnInit {
 
     // Espera a que todas las promesas se resuelvan antes de recargar la página
     Promise.all(updatePromises).then(() => location.reload());
+    this.serviceSpinner.pararSpinner();
+
   }
 
   vaciarDatos() {
