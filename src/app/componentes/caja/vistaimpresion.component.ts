@@ -15,6 +15,8 @@ export class VistaimpresionComponent implements OnInit {
 
   verTablaArt = "none";
 
+  agregarEncabezadoFiscal: boolean = false;
+
   verTablaArticulos() {
     this.verTablaArt = "block";
     console.log(this.verTablaArt)

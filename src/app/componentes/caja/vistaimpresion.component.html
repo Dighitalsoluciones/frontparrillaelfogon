@@ -4,6 +4,10 @@
       src="https://res.cloudinary.com/dighitalsoluciones/image/upload/v1668959703/APP%20PARRILLA%20EL%20FOGON/logoticket_m09xl7.png"
       alt="Logotipo"
     />
+    <p class="text-center" style="margin-top: 5px;" *ngIf="agregarEncabezadoFiscal">CUIT: 20-28494757-7</p>
+            <p class="text-center" *ngIf="agregarEncabezadoFiscal">Lombardi Bruno Matias</p>
+            <p class="text-center" *ngIf="agregarEncabezadoFiscal">R.I</p>
+            <p class="text-center" *ngIf="agregarEncabezadoFiscal">CONSUMIDOR FINAL</p>
     <p class="centrado">N°{{ ticket.id }}</p>
     <p class="centrado">Comanda de Mesa N°{{ ticket.numerodeMesa }}</p>
     <p class="precio centrado">---------------------------------------</p>
@@ -60,4 +64,20 @@
   >
     VOLVER
   </button>
+  <div class="checkbox-wrapper-46 oculto-impresion">
+    <input
+      type="checkbox"
+      id="cbx-46"
+      class="inp-cbx"
+      [(ngModel)]="agregarEncabezadoFiscal"
+    />
+    <label for="cbx-46" class="cbx"
+      ><span>
+        <svg viewBox="0 0 12 10" height="10px" width="12px">
+          <polyline
+            points="1.5 6 4.5 9 10.5 1"
+          ></polyline></svg></span
+      ><span><strong>Agregar encabezado fiscal?</strong></span>
+    </label>
+  </div>
 </div>

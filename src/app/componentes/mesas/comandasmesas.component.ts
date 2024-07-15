@@ -360,6 +360,8 @@ export class ComandasmesasComponent implements OnInit, OnChanges {
   fechaTicket: string = '';
   check: string = "";
 
+  agregarEncabezadoFiscal: boolean = false;
+
   GrabarValoresTicketNuevo() {
     this.Ticket.listadoArticulos = this.Mesas.comanda;
     this.Ticket.importe = this.Mesas.totalComanda;
